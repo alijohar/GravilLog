@@ -4,6 +4,7 @@ import '../../../../../core/connection/network_info.dart';
 import '../../../../../core/errors/exceptions.dart';
 import '../../../../../core/errors/failure.dart';
 import '../../../../../core/params/params.dart';
+import '../../../../core/local_preferences/local_preferences.dart';
 import '../../business/repositories/auth_repository.dart';
 import '../datasources/auth_local_data_source.dart';
 import '../datasources/auth_remote_data_source.dart';
@@ -11,7 +12,7 @@ import '../models/auth_model.dart';
 
 class AuthRepositoryImpl implements AuthRepository {
   final AuthRemoteDataSource remoteDataSource;
-  final AuthLocalDataSource localDataSource;
+  final LocalPreferences localDataSource;
   final NetworkInfo networkInfo;
 
   AuthRepositoryImpl({
@@ -27,9 +28,9 @@ class AuthRepositoryImpl implements AuthRepository {
     if (await networkInfo.isConnected!) {
         try {
           AuthModel remoteAuth =
-              await remoteDataSource.getAuth(authParams: authParams);
+              await remoteDataSource.login(authParams: authParams);
 
-          localDataSource.cacheAuth(authToCache: remoteAuth);
+          // localDataSource.cacheAuth(authToCache: remoteAuth);
 
           return Right(remoteAuth);
         } on ServerException {

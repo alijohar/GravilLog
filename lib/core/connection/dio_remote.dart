@@ -2,6 +2,7 @@ import 'package:dio/dio.dart';
 import 'package:pretty_dio_logger/pretty_dio_logger.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
+import '../resources/constants_manager.dart';
 import '../resources/strings_manager.dart';
 
 class DioSingleton {
@@ -16,7 +17,7 @@ class DioSingleton {
     // Initialize Dio with your preferred configurations
 
       _dio = Dio(BaseOptions(
-        baseUrl: AppStrings.API,
+        baseUrl: AppConstants.BASE_URL,
         connectTimeout: Duration(seconds: 60),
         headers: {
           'Content-Type': 'application/json',

@@ -64,7 +64,7 @@ class _MyAppState extends State<MyApp> {
       translations: Translation(),
       unknownRoute: GetPage(name: '/notfound', page: () => RouteGenerator.unDefinedPage()),
       getPages: RouteGenerator.getPages(),
-      initialRoute: Routes.loginRoute,
+      initialRoute: Routes.SplaschRoute,
     );
   }
 }
