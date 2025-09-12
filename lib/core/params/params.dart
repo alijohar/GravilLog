@@ -22,6 +22,11 @@ class AuthParams {
   DateTime? birthDate;
   String? uuid;
   bool? patient;
+  String? phoneNumber;
+  String? countryCode;
+  String? language;
+
+
 
 
 
@@ -36,15 +41,20 @@ class AuthParams {
     this.birthDate,
     this.patient,
     this.email,
+    this.countryCode,
+    this.phoneNumber
   });
 
   AuthParams.register({
     this.name,
     this.type,
+    this.email,
     this.typeValue,
     this.country,
     this.birthDate,
     this.password,
+    this.countryCode,
+    this.phoneNumber,
   });
   AuthParams.registerGoogle({
     this.uuid,
@@ -63,6 +73,19 @@ class AuthParams {
     this.image,
     this.country,
   });
+
+  AuthParams.getPatientInfo({
+    this.token,
+
+  });
+
+  AuthParams.resetPassword({
+    this.email,
+    this.language,
+
+  });
+
+
 
   Map<String, dynamic> toJson() => {
     "id": id,
@@ -107,4 +130,25 @@ class AuthParams {
   };
 }
 
+class PregnantInfoParams {
+  String? pregnancyId;
+  String? pregnancyNumber;
+  String? firstVisitDate;
+  String? expectedDeliveryPlace;
+  String? expectedDeliveryDate;
+  String? expectedDeliveryMode;
+  String? importantNotes;
 
+  PregnantInfoParams({
+    this.pregnancyId,
+    this.pregnancyNumber,
+    this.firstVisitDate,
+    this.expectedDeliveryPlace,
+    this.expectedDeliveryDate,
+    this.expectedDeliveryMode,
+    this.importantNotes,
+
+
+  });
+
+}

@@ -24,8 +24,8 @@ class TemplateRemoteDataSourceImpl implements TemplateRemoteDataSource {
       );
       var response = BaseResModel.fromJson(baseResponse);
 
-      if (response.statusCode == 200) {
-        return TemplateModel.fromJson(response.data);
+      if (response.id == 200) {
+        return TemplateModel.fromJson(response.result);
       } else {
         throw ServerException();
       }

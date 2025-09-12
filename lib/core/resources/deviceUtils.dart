@@ -5,6 +5,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:get/get.dart';
 
 
@@ -98,6 +99,25 @@ class Deviceutils {
     }
     return false;
   }
+
+  static void flushBarMessage(String message, BuildContext context) {
+
+    Fluttertoast.showToast(
+        msg: message,
+        toastLength: Toast.LENGTH_LONG,
+        gravity: ToastGravity.TOP,
+        backgroundColor: CupertinoColors.black,
+        textColor: CupertinoColors.white
+    );
+  }
+
+  static String replacePlaceholder(String message, Map<String, String> values) {
+    values.forEach((key, value) {
+      message = message.replaceFirst('{$key}', value);
+    });
+    return message;
+  }
+
 
 
 

@@ -112,26 +112,7 @@ class LoginView extends StatelessWidget {
                             keyboardType: TextInputType.emailAddress,
                             onChanged: (value) => controller.hasEmail.value = value.isNotEmpty,
                           ),
-                           // TextFormField(
-                           //    controller: controller.emailController,
-                           //    cursorColor: Colors.black,
-                           //    decoration: InputDecoration(
-                           //      hintStyle: TextStyle(
-                           //        fontWeight: Theme.of(context)
-                           //            .textTheme
-                           //            .bodyMedium
-                           //            ?.fontWeight,
-                           //        fontSize: 14,
-                           //        letterSpacing: 14 * 0.02,
-                           //      ),
-                           //      filled: true,
-                           //      fillColor: const Color(0xFFF8F7F7),
-                           //      border: InputBorder.none,
-                           //    ),
-                           //    keyboardType: TextInputType.emailAddress,
-                           //    onChanged: (value) => controller.hasEmail.value =
-                           //        value.isNotEmpty,
-                           //  ),
+
 
                           const SizedBox(height: 16),
                           Text(
@@ -156,37 +137,7 @@ class LoginView extends StatelessWidget {
                             onChanged: (value) => controller.hasPassword.value = value.isNotEmpty,
                           )),
                           // Obx(
-                          //       () => TextFormField(
-                          //     controller: controller.passwordController,
-                          //     cursorColor: Colors.black,
-                          //     obscureText: controller.isObscured.value,
-                          //     decoration: InputDecoration(
-                          //       hintStyle: TextStyle(
-                          //         fontWeight: Theme.of(context)
-                          //             .textTheme
-                          //             .bodyMedium
-                          //             ?.fontWeight,
-                          //         fontSize: 14,
-                          //         letterSpacing: 14 * 0.02,
-                          //       ),
-                          //       filled: true,
-                          //       fillColor: const Color(0xFFF8F7F7),
-                          //       border: InputBorder.none,
-                          //       suffixIcon: IconButton(
-                          //         icon: Icon(
-                          //           controller.isObscured.value
-                          //               ? Icons.visibility_off
-                          //               : Icons.visibility,
-                          //           color: ColorManager.royalBlue,
-                          //         ),
-                          //         onPressed: () =>
-                          //             controller.isObscured.toggle(),
-                          //       ),
-                          //     ),
-                          //     onChanged: (value) =>
-                          //     controller.hasPassword.value = value.isNotEmpty,
-                          //   ),
-                          // ),
+
                           const SizedBox(height: 20),
                           Center(
                             child: TextButton(

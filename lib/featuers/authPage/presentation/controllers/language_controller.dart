@@ -9,7 +9,7 @@ import '../../../../core/errors/failure.dart';
 import '../../../../core/local_preferences/local_preferences.dart';
 import '../../../../core/resources/langauge_manager.dart';
 import '../../../../core/resources/routes_manager.dart';
-import '../../business/entities/auth_entity.dart';
+import '../../business/entities/auth_result_entity.dart';
 
 class LanguageController extends GetxController {
    LocalPreferences localDataSource = Get.find();

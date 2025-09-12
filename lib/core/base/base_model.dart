@@ -3,41 +3,24 @@ import 'dart:ffi';
 import 'package:dio/dio.dart';
 
 class BaseResModel<T> {
-  dynamic data;
-  String? message;
-  int? statusCode;
-  int? errorCode;
+  dynamic result;
+  String? jsonrpc;
+  int? id;
   BaseResModel(
-      {required this.data,
-        required this.message,
-        required this.errorCode,
-        required this.statusCode});
+      {required this.result,
+        required this.jsonrpc,
+        required this.id,
+       });
   BaseResModel.fromJson(Response baseJson) {
   Map<String, dynamic> json = baseJson.data;
-    errorCode = json['error_code'];
-    statusCode = baseJson.statusCode;
-    data = json["data"];
-    message = json["message"].toString() ?? '';
+  jsonrpc = json['jsonrpc'];
+  id = json['id'];
+  result = json["result"];
   }
 }
 
 
 
-class BaseSocketResModel<T> {
-  dynamic data;
-  bool? success;
-  String? message;
-
-  BaseSocketResModel({required this.data,
-    required this.success,
-  });
-
-  BaseSocketResModel.fromJson(Map<String, dynamic> json) {
-    data = json["data"];
-    success = json["success"] ?? false;
-    message = json["message"] ?? "";
-  }
-}
 
 
 

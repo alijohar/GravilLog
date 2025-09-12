@@ -25,7 +25,10 @@ class OnboardingController extends GetxController {
      Get.toNamed(Routes.loginRoute);
   }
 
-  navigateToSignup() {}
+  navigateToSignup() {
+    Get.toNamed(Routes.signUpRoute);
+
+  }
 
 
 }

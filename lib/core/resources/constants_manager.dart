@@ -28,6 +28,22 @@ class AppConstants {
   static const NEW_NUTRITION_SESSION = "newNutritionSession";
   static const DELETE_PATIENT = "deletePatient";
 
+  ////////Gravilog
+
+  static const TOKEN = "token";
+  static const SIGNUP_DUPLICATE = "DUPLICATE_ENTRY";
+  static const EMAIL_SENT = "EMAIL_SENT";
+  static const PATIENT_NOT_FOUND = "PATIENT_NOT_FOUND";
+  static const USER_LANGUAGE = "user_language";
+  static const PATIENT_INFO = "patient_info";
+  static const MEDICINE_INFO = "medicine_info";
+  static const PREGNANCY_INFO = "pregnancy_info";
+  static const CONTRACTION_TRACKER = "contraction_tracker";
+  static const PHOTO_GALLERY = "photo_gallery";
+  static const DOCTOR_CALLS = "doctor_calls";
+  static const WEIGHT_BMI = "weight_bmi";
+  static const HEIGHT_BMI = "height_bmi";
+
 
 }
 

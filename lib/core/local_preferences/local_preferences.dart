@@ -2,9 +2,14 @@ import 'dart:convert';
 
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:gravilog_2025/featuers/authPage/data/models/auth_result_model.dart';
+import 'package:gravilog_2025/featuers/authPage/data/models/get_pregnancy_result_model.dart';
+import 'package:gravilog_2025/featuers/authPage/data/models/patient_info_result_model.dart';
 
 import 'package:shared_preferences/shared_preferences.dart';
+import '../../featuers/authPage/business/entities/auth_result_entity.dart';
 import '../../featuers/authPage/data/models/user_model.dart';
+import '../../featuers/questions/data/models/pregnant_info_model.dart';
 import '../resources/constants_manager.dart';
 import 'local_storage.dart';
 
@@ -12,7 +17,6 @@ import 'local_storage.dart';
 class LocalPreferences extends LocalStorage {
   SharedPreferences instance;
   LocalPreferences(this.instance);
-  ///Aliali123#
   @override
   Rx<UserModel>? getUser() {
     try {
@@ -80,4 +84,60 @@ class LocalPreferences extends LocalStorage {
     // Retrieve the language code from shared preferences or persistent storage
     return instance.getString(AppConstants.PREFS_KEY_LANGUAGE);
   }
+
+  @override
+  Future<bool> savePregnancyInfo(GetPregnancyResultModel data) async {
+    try {
+      await instance.setString(AppConstants.PREGNANCY_INFO, jsonEncode(data.toJson()));
+    return true;
+    } catch (e) {
+    print('Error saving user pregnancy info: $e');
+    return false;
+    }
+  }
+
+  @override
+  Future<bool> savePatientInfo(PatientInfoResultModel? data) async {
+    try {
+      if(data==null) return false;
+      await instance.setString(AppConstants.PATIENT_INFO, jsonEncode(data.toJson()));
+    return true;
+    } catch (e) {
+    print('Error saving user session: $e');
+    return false;
+    }
+  }
+
+  @override
+  Future<bool> saveUserSession(AuthResultModel data) async {
+    try {
+      final token = data.token;
+      if (token != null && token is String) {
+        await instance.setString(AppConstants.TOKEN, token);
+    return true;
+    } else {
+    print('Error: Token is null or not a string');
+    return false;
+    }
+    } catch (e) {
+    print('Error saving user session: $e');
+    return false;
+    }
+  }
+  @override
+  Future<Pair<bool, String>> getUserSession() async {
+    try {
+      final token = instance.getString(AppConstants.TOKEN);
+      if (token != null) {
+        return Pair(true, token);
+      } else {
+        print('Error: Token is null or not a string');
+        return Pair(false, '');
+      }
+    } catch (e) {
+      print('Error occurred while fetching token: $e');
+      return Pair(false, '');
+    }
+  }
+
 }
