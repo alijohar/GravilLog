@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
+import 'package:gravilog_2025/core/resources/app_theme.dart';
 import 'package:gravilog_2025/core/resources/color_manager.dart';
 import 'package:gravilog_2025/featuers/authPage/presentation/controllers/language_controller.dart';
 
@@ -19,7 +20,7 @@ class _LanguageViewState extends State<LanguageView> {
   Widget build(BuildContext context) {
     return Directionality(
       textDirection: TextDirection.ltr,
-      child: Scaffold(
+      child: context.gradientScaffold(
         body: SafeArea(
           child: Column(
             children: [
@@ -36,12 +37,7 @@ class _LanguageViewState extends State<LanguageView> {
                             languageController.currentLanguage.value == 'en'
                                 ? 'Choose the language'
                                 : 'اختر اللغة',
-                            style: const TextStyle(
-                              fontFamily: 'Almarai',
-                              fontWeight: FontWeight.w800,
-                              fontSize: 24,
-                              color: Colors.black54, // direkter statt withOpacity(0.6)
-                            ),
+                            style: context.textStyles.displayLarge,
                           ),
                           ),
                           const SizedBox(height: 80),
@@ -57,16 +53,11 @@ class _LanguageViewState extends State<LanguageView> {
                                       height: 130,
                                       decoration: const BoxDecoration(
                                         shape: BoxShape.circle,
-                                        color: ColorManager.paleAqua,
                                       ),
                                       child: Center(
                                         child: Text(
                                           'EN',
-                                          style: TextStyle(
-                                            fontSize: 40,
-                                            fontFamily: 'Almarai',
-                                            fontWeight: FontWeight.w700,
-                                          ),
+                                          style: context.textStyles.displayLarge?.copyWith(fontSize: 40),
                                         ),
                                       ),
                                     ),
@@ -82,11 +73,11 @@ class _LanguageViewState extends State<LanguageView> {
                                           shape: BoxShape.circle,
                                           color: languageController.currentLanguage.value == 'en'
                                               ? ColorManager.royalBlue
-                                              : ColorManager.lightGray,
+                                              : ColorManager.grey,
                                         ),
                                         child: Center(
                                           child: languageController.currentLanguage.value == 'en'
-                                              ? const Icon(Icons.check, color: Colors.white)
+                                              ? Icon(Icons.check, color: context.onPrimaryColor)
                                               : null,
                                         ),
                                       ),
@@ -108,11 +99,7 @@ class _LanguageViewState extends State<LanguageView> {
                                               bottom: 23, left: 2),
                                           child: Text(
                                             'ع',
-                                            style: TextStyle(
-                                              fontSize: 40,
-                                              fontFamily: 'Almarai',
-                                              fontWeight: FontWeight.w700,
-                                            ),
+                                            style: context.textStyles.displayLarge?.copyWith(fontSize: 40),
                                           ),
                                         ),
                                       ),
@@ -130,11 +117,11 @@ class _LanguageViewState extends State<LanguageView> {
                                           shape: BoxShape.circle,
                                           color: languageController.currentLanguage.value == 'ar'
                                               ? ColorManager.royalBlue
-                                              : ColorManager.lightGray,
+                                              : ColorManager.grey,
                                         ),
                                         child: Center(
                                           child: languageController.currentLanguage.value == 'ar'
-                                              ? const Icon(Icons.check, color: Colors.white)
+                                              ? Icon(Icons.check, color: context.onPrimaryColor)
                                               : null,
                                         ),
                                       ),
@@ -156,10 +143,7 @@ class _LanguageViewState extends State<LanguageView> {
                 child: ElevatedButton(
                   onPressed: () => languageController.onContinue() ,
                   style: ElevatedButton.styleFrom(
-                      backgroundColor: ColorManager.royalBlue,
-                      shape: const BeveledRectangleBorder(),
-                      padding: const EdgeInsets.symmetric(vertical: 10),
-                      minimumSize: const Size(double.infinity, 50)),
+                      backgroundColor: ColorManager.royalBlue,),
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
@@ -167,11 +151,7 @@ class _LanguageViewState extends State<LanguageView> {
                         languageController.currentLanguage.value == 'en'
                             ? 'Continue'
                             : 'استمرار',
-                        style: const TextStyle(
-                          color: Colors.white,
-                          fontSize: 20,
-                          fontWeight: FontWeight.w700,
-                        ),
+                        style: context.textStyles.headlineLarge?.copyWith(color: context.onPrimaryColor),
                       ),
                       )
                     ],

@@ -11,7 +11,7 @@ import 'package:get/get_core/src/get_main.dart';
 import 'package:get/get_state_manager/src/rx_flutter/rx_obx_widget.dart';
 
 import '../../../../core/resources/color_manager.dart';
-import '../../../../core/resources/strings_manager.dart';
+import '../../../../core/resources/app_theme.dart';
 import '../controllers/signup_controller.dart';
 import '../widgets/custom_text_fiels.dart';
 
@@ -22,12 +22,7 @@ class SignupView extends StatelessWidget {
   Widget build(BuildContext context) {
     final SignupController controller = Get.find();
 
-    return Scaffold(
-      backgroundColor: Colors.white,
-      appBar: AppBar(
-        backgroundColor: Colors.transparent,
-
-      ),
+    return context.gradientScaffold(
       body: SafeArea(
         child: Padding(
           padding: const EdgeInsets.only(left: 20, right: 20, bottom: 20),
@@ -39,26 +34,26 @@ class SignupView extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.stretch,
                     children: [
                       Text(
-                        AppStrings.createFreeAccount.tr,
-                        style: const TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
+                        "create_free_account".tr,
+                        style: context.textStyles.displayLarge,
                       ),
                       const SizedBox(height: 5),
                       RichText(
                         text: TextSpan(
-                          text: "${AppStrings.alreadyHaveAnAccount.tr}\t",
-                          style: TextStyle(fontSize: 14, color: Colors.black.withOpacity(0.6)),
+                          text: "${"already_have_an_account".tr}\t",
+                          style: context.textStyles.bodyMedium?.copyWith(color: context.secondaryColor),
                           children: [
                             TextSpan(
-                              text: AppStrings.signUp.tr,
-                              style: const TextStyle(fontSize: 14, color: Colors.blue),
+                              text: "sign_up".tr,
+                              style: context.textStyles.bodyMedium?.copyWith(color: context.primaryColor),
                               recognizer: TapGestureRecognizer()..onTap = controller.navigateToSignup,
                             ),
                           ],
                         ),
                       ),
 
-                      if (Platform.isAndroid) ssoUI(controller),
-                      if (Platform.isIOS) ssoUI(controller),
+                      if (Platform.isAndroid) ssoUI(controller, context),
+                      if (Platform.isIOS) ssoUI(controller, context),
 
                       const SizedBox(height: 30),
 
@@ -66,22 +61,22 @@ class SignupView extends StatelessWidget {
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            Text(AppStrings.email.tr),
+                            Text("email".tr),
                             const SizedBox(height: 10),
 
                             CustomTextFormField(
                               controller: controller.emailController,
-                              hintText: AppStrings.email.tr,
+                              hintText: "email".tr,
                               keyboardType: TextInputType.emailAddress,
                               onChanged: (value) => controller.hasEmail.value = value.isNotEmpty,
                             ),
                             const SizedBox(height: 16),
 
-                            Text(AppStrings.password.tr),
+                            Text("password".tr),
                             const SizedBox(height: 10),
                             Obx(() => CustomTextFormField(
                               controller: controller.passwordController,
-                              hintText: AppStrings.password.tr,
+                              hintText: "password".tr,
                               obscureText: controller.isObscured.value,
                               suffixIcon: IconButton(
                                 icon: Icon(
@@ -94,10 +89,10 @@ class SignupView extends StatelessWidget {
                             )),
                             const SizedBox(height: 30),
 
-                            Text(AppStrings.phoneNumber.tr),
+                            Text("phone_number".tr),
                             const SizedBox(height: 10),
                             Container(
-                              height: 54.0, // Set the height for the entire row
+                              height: 54.0,
                               child: Row(
                                 mainAxisAlignment: MainAxisAlignment.start,
                                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -106,14 +101,14 @@ class SignupView extends StatelessWidget {
                                   Expanded(
                                     flex: 1,
                                     child: Container(
-                                      height: 54.0, // Set the height for the country code field
+                                      height: 54.0,
 
                                       child: TextFormField(
                                         controller: controller.countryCodeController,
                                         keyboardType: TextInputType.phone,
-                                        decoration: const InputDecoration(
+                                        decoration: InputDecoration(
                                           filled: true,
-                                          fillColor: Color(0xFFF8F7F7),
+                                          fillColor: context.surfaceVariant,
                                           border: InputBorder.none,
                                           hintText: "+1",
                                           counter: SizedBox.shrink(), // Hide the character counter
@@ -139,7 +134,7 @@ class SignupView extends StatelessWidget {
                                     child:
                                     CustomTextFormField(
                                       controller:  controller.phoneController,
-                                      hintText: AppStrings.phoneNumber.tr,
+                                      hintText: "phone_number".tr,
                                       keyboardType: TextInputType.phone,
                                     )
 
@@ -161,17 +156,17 @@ class SignupView extends StatelessWidget {
                                     decoration: BoxDecoration(
                                       shape: BoxShape.circle,
                                       color: controller.isChecked.value
-                                          ? Colors.blue
-                                          : Colors.white,
+                                          ? context.primaryColor
+                                          : context.surfaceColor,
                                       border: Border.all(
                                         color: controller.isChecked.value
-                                            ? Colors.blue
-                                            : Colors.grey.withOpacity(0.3),
+                                            ? context.primaryColor
+                                            : context.onSurfaceColor,
                                       ),
                                     ),
                                     child: controller.isChecked.value
-                                        ? const Icon(Icons.check,
-                                        size: 16, color: Colors.white)
+                                        ? Icon(Icons.check,
+                                        size: 16, color: context.onPrimaryColor)
                                         : const SizedBox.shrink(),
                                   ),
                                 ),
@@ -179,25 +174,24 @@ class SignupView extends StatelessWidget {
                                 Expanded(
                                   child: RichText(
                                     text: TextSpan(
-                                      style: TextStyle(
-                                          color: Colors.black.withOpacity(0.6), fontSize: 14),
+                                      style: context.textStyles.bodyMedium?.copyWith(color: context.secondaryColor),
                                       children: [
                                         TextSpan(
                                             text:
-                                            "${AppStrings.acceptThe.tr}\t"),
+                                            "${"accept_the".tr}\t"),
                                         TextSpan(
                                           text:
-                                          "${AppStrings.termsOfUse.tr}\t",
-                                          style: const TextStyle(color: Colors.blue),
+                                          "${"terms_of_use".tr}\t",
+                                          style: context.textStyles.bodyMedium?.copyWith(color: context.primaryColor),
                                           recognizer: TapGestureRecognizer()
                                             ..onTap = controller.navigateToTermsOfUseView,
                                         ),
                                         TextSpan(
                                             text:
-                                            "\t${AppStrings.and.tr!}\t"),
+                                            "\t${"and".tr}\t"),
                                         TextSpan(
-                                          text: AppStrings.privacyPolicy.tr,
-                                          style: const TextStyle(color: Colors.blue),
+                                          text: "privacy_policy".tr,
+                                          style: context.textStyles.bodyMedium?.copyWith(color: context.primaryColor),
                                           recognizer: TapGestureRecognizer()
                                             ..onTap = controller.navigateToPrivacyPolicyView,
                                         ),
@@ -221,14 +215,14 @@ class SignupView extends StatelessWidget {
                     ? () => controller.patientSignupWithEmail(context)
                     : null,
                 style: ElevatedButton.styleFrom(
-                  backgroundColor: Colors.pink,
+                  backgroundColor: context.primaryColor,
                   minimumSize: const Size(double.infinity, 50),
                 ),
                 child: controller.loading.value
-                    ? const CircularProgressIndicator(color: Colors.white)
+                    ? CircularProgressIndicator(color: context.onPrimaryColor)
                     : Text(
-                  AppStrings.continueBtn.tr!,
-                  style: const TextStyle(color: Colors.white, fontSize: 15),
+                  "continue".tr,
+                  style: context.textStyles.bodyMedium?.copyWith(color: context.onPrimaryColor),
                 ),
               )),
             ],
@@ -238,7 +232,7 @@ class SignupView extends StatelessWidget {
     );
   }
 
-  Widget ssoUI(SignupController controller) {
+  Widget ssoUI(SignupController controller, BuildContext context) {
     return Column(
       children: [
         const SizedBox(height: 50),
@@ -250,7 +244,7 @@ class SignupView extends StatelessWidget {
               // await controller.oauthService.facebookLogin(
               //   setLoading: controller.setLoading,
               // ),
-              child: const Icon(Icons.facebook_outlined, size: 50, color: Color(0xFF3B5998)),
+              child: Icon(Icons.facebook_outlined, size: 50, color: context.primaryColor),
             ),
             const SizedBox(width: 30),
             InkWell(
@@ -272,13 +266,13 @@ class SignupView extends StatelessWidget {
         ),
         const SizedBox(height: 50),
         Row(
-          children: const [
-            Expanded(child: Divider(thickness: 1, color: Colors.black)),
+          children: [
+            Expanded(child: Divider(thickness: 1, color: context.onSurfaceColor)),
             Padding(
-              padding: EdgeInsets.symmetric(horizontal: 8.0),
-              child: Text("OR", style: TextStyle(color: Colors.black)),
+              padding: const EdgeInsets.symmetric(horizontal: 8.0),
+              child: Text("OR", style: context.textStyles.bodyMedium?.copyWith(color: context.onSurfaceColor)),
             ),
-            Expanded(child: Divider(thickness: 1, color: Colors.black)),
+            Expanded(child: Divider(thickness: 1, color: context.onSurfaceColor)),
           ],
         ),
       ],

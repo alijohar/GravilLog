@@ -1,5 +1,4 @@
 
-import '../../../../core/resources/strings_manager.dart';
 import '../../business/entities/auth_result_entity.dart';
 
 class AuthResultModel  extends AuthResultEntity{

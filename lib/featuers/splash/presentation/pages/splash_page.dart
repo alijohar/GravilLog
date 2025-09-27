@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'dart:async';
 import '../../../../core/resources/assets_manager.dart';
-import '../../../../core/resources/color_manager.dart';
+import '../../../../core/resources/app_theme.dart';
 import '../../../../core/resources/constants_manager.dart';
 import '../controllers/splash_controller.dart';
 
@@ -28,8 +28,7 @@ class _SplashViewState extends State<SplashView> {
   }
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: ColorManager.primary,
+    return context.gradientScaffold(
       body:  SafeArea(
         child: Container(
           height: MediaQuery.of(context).size.height, // Set height to full screen
@@ -43,7 +42,7 @@ class _SplashViewState extends State<SplashView> {
                     height: 402,
                     decoration: BoxDecoration(
                       shape: BoxShape.circle,
-                      color: ColorManager.pinkSherbet.withOpacity(0.10),
+                      color: context.pinkSherbet.withOpacity(0.10),
                     ),
                   )),
               Padding(
@@ -70,7 +69,7 @@ class _SplashViewState extends State<SplashView> {
                     height: 402,
                     decoration: BoxDecoration(
                       shape: BoxShape.circle,
-                      color: const Color(0xFF74C8EA).withOpacity(0.20),
+                      color: context.skyBlue.withOpacity(0.20),
                     ),
                   )),
             ],

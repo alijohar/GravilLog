@@ -7,7 +7,6 @@ import 'package:shared_preferences/shared_preferences.dart';
 
 import '../../../../core/errors/failure.dart';
 import '../../../../core/local_preferences/local_preferences.dart';
-import '../../../../core/resources/langauge_manager.dart';
 import '../../../../core/resources/routes_manager.dart';
 import '../../business/entities/auth_result_entity.dart';
 
@@ -29,7 +28,7 @@ class LanguageController extends GetxController {
 
      await changeLanguage(currentLanguage.value);
      await setDeviceLanguage(currentLanguage.value);
-     Get.toNamed(Routes.onBoardingRoute);
+     Get.toNamed(Routes.onboardingRoute);
 
   }
 

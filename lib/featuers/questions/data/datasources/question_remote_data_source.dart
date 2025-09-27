@@ -12,7 +12,6 @@ import '../../../../core/connection/dio_remote.dart';
 import '../../../../core/errors/failure.dart';
 import '../../../../core/local_preferences/local_preferences.dart';
 import '../../../../core/resources/constants_manager.dart';
-import '../../../../core/resources/strings_manager.dart';
 import '../../../authPage/data/models/get_pregnancy_result_model.dart';
 import '../../../authPage/data/models/patient_info_result_model.dart';
 import '../models/pregnant_info_model.dart';

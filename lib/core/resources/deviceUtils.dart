@@ -38,7 +38,7 @@ class Deviceutils {
 
   static Future<bool> hasInternetConnection() async {
     try {
-      final result = await InternetAddress.lookup('example.com');
+      final result = await InternetAddress.lookup('google.com');
       return result.isNotEmpty && result[0].rawAddress.isNotEmpty;
     } on SocketException catch (_) {
       return false;
@@ -100,8 +100,7 @@ class Deviceutils {
     return false;
   }
 
-  static void flushBarMessage(String message, BuildContext context) {
-
+  static void showToastMessage(String message, BuildContext context) {
     Fluttertoast.showToast(
         msg: message,
         toastLength: Toast.LENGTH_LONG,

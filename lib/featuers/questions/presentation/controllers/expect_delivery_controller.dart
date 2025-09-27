@@ -75,7 +75,7 @@ class ExpectDeliveryController extends GetxController {
 
         final tokenPair = await localDataSource.getUserSession();
         if (!tokenPair.first) {
-          Deviceutils.flushBarMessage('User session has expired, please login', context);
+          Deviceutils.showToastMessage('User session has expired, please login', context);
           return;
         }
         final token = tokenPair.second;
@@ -88,14 +88,14 @@ class ExpectDeliveryController extends GetxController {
 
         final savePregnancyResult =  await eitherFailureOrsendPregnetInfo(token,  PregnantInfoParams(firstVisitDate:formattedLastMenstrualDate, expectedDeliveryDate: formattedDeliveryDate ));
         if (savePregnancyResult != true) {
-          Deviceutils.flushBarMessage('Failed to save pregnancy details. Please try again.', context);
+          Deviceutils.showToastMessage('Failed to save pregnancy details. Please try again.', context);
           return;
         }
 
         final pregnancyInfoSaved = await eitherFailureOrGetPregnaces(token);
 
         if (!pregnancyInfoSaved) {
-          Deviceutils.flushBarMessage('An error occurred. Please try again.', context);
+          Deviceutils.showToastMessage('An error occurred. Please try again.', context);
           return;
         }
 
@@ -104,18 +104,18 @@ class ExpectDeliveryController extends GetxController {
 
         final syncHealthResult = await eitherFailureOrSyncHealth(token, PregnantInfoParams(firstVisitDate:formattedLastMenstrualDate, expectedDeliveryDate: formattedDeliveryDate ));
         if (syncHealthResult != true) {
-          Deviceutils.flushBarMessage('Failed to sync health status. Please try again.', context);
+          Deviceutils.showToastMessage('Failed to sync health status. Please try again.', context);
           return;
         }
 
         // Fetch and Save Patient Info
         final patientInfoSaved =  await eitherFailureOrGetPatient(token);
         if (patientInfoSaved != true) {
-          Deviceutils.flushBarMessage('Failed to save pregnancy details. Please try again.', context);
+          Deviceutils.showToastMessage('Failed to save pregnancy details. Please try again.', context);
           return;
         }
         if (!patientInfoSaved) {
-          Deviceutils.flushBarMessage('An error occurred. Please try again.', context);
+          Deviceutils.showToastMessage('An error occurred. Please try again.', context);
           return;
         }
 
@@ -124,7 +124,7 @@ class ExpectDeliveryController extends GetxController {
         // _navigationService.navigateToChooseBabyView();
         print(" Navigate to Next Screen");
       } catch (error) {
-        Deviceutils.flushBarMessage('An error occurred. Please try again.', context);
+        Deviceutils.showToastMessage('An error occurred. Please try again.', context);
       } finally {
         loading.value = false;
       }

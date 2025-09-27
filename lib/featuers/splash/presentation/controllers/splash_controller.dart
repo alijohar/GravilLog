@@ -49,7 +49,7 @@ class SplashController extends GetxController {
       } else {
         // Navigate to the onboarding screen
         Get.offAllNamed(Routes.languageRoute);
-        // Get.offAllNamed(Routes.onBoardingRoute);
+        // Get.offAllNamed(Routes.onboardingRoute);
       }
     }
   }

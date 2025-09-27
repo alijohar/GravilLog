@@ -5,7 +5,6 @@ import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:gravilog_2025/core/resources/deviceUtils.dart';
-import 'package:gravilog_2025/core/resources/strings_manager.dart';
 import 'package:gravilog_2025/featuers/authPage/business/usecases/getPatientInfo.dart';
 import 'package:gravilog_2025/featuers/authPage/business/usecases/getPregnacyInfo.dart';
 import 'package:gravilog_2025/featuers/authPage/data/models/auth_result_model.dart';
@@ -77,17 +76,17 @@ class LoginController extends GetxController {
 
     // Validate email and password before proceeding
     if (email.isEmpty) {
-      Deviceutils.flushBarMessage(AppStrings.kindlyEnterEmailAddress, Get.context!);
+      Deviceutils.showToastMessage("kindly_enter_email_address".tr, Get.context!);
       return;
     }
 
     if (!_isValidEmail(email)) {
-      Deviceutils.flushBarMessage(AppStrings.kindlyEnterValidEmailAddress, Get.context!);
+      Deviceutils.showToastMessage("kindly_enter_valid_email_address".tr, Get.context!);
       return;
     }
 
     if (password.isEmpty) {
-      Deviceutils.flushBarMessage(AppStrings.kindlyEnterPassword, Get.context!);
+      Deviceutils.showToastMessage("kindly_enter_password".tr, Get.context!);
       return;
     }
  eitherFailureOrLogin(AuthParams.login(password:password , patient:true , email: email));
@@ -110,7 +109,7 @@ class LoginController extends GetxController {
     failureOrLogin.fold(
     (Failure newFailure) {
     loading.value = false;
-    Deviceutils.flushBarMessage("${AppStrings.errorOccurredTryAgain}", Get.context!);
+    Deviceutils.showToastMessage("error_occurred_try_again".tr, Get.context!);
 
 
     },
@@ -119,7 +118,7 @@ class LoginController extends GetxController {
         final pregnancyInfoSaved = await eitherFailureOrGetPregnacyInfo(AuthParams(token:authResultModel.token ));
         if (!pregnancyInfoSaved) {
           loading.value = false;
-          Deviceutils.flushBarMessage(AppStrings.errorOccurredTryAgain, Get.context!);
+          Deviceutils.showToastMessage("error_occurred_try_again".tr, Get.context!);
           return;
         }
 
@@ -149,7 +148,7 @@ class LoginController extends GetxController {
       else {
         loading.value = false;
 
-        Deviceutils.flushBarMessage(AppStrings.incorrectCredentials.tr, Get.context!);
+        Deviceutils.showToastMessage("incorrect_credentials".tr, Get.context!);
       }
 
 

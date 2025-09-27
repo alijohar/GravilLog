@@ -1,5 +1,4 @@
 
-import '../../../../core/resources/strings_manager.dart';
 import '../../business/entities/pregnant_info_entity.dart';
 
 class PregnantInfoModel extends PregnetInfoEntity {

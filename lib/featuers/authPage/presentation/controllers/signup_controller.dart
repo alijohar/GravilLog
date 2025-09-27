@@ -4,7 +4,6 @@ import 'package:data_connection_checker_tv/data_connection_checker.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
 import 'package:get/get_state_manager/src/simple/get_controllers.dart';
-import 'package:gravilog_2025/core/resources/strings_manager.dart';
 import 'package:gravilog_2025/featuers/authPage/business/usecases/signUp.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -84,22 +83,22 @@ class SignupController extends GetxController {
 
     // Validate email and password before proceeding
     if (email.isEmpty) {
-      Deviceutils.flushBarMessage(AppStrings.kindlyEnterEmailAddress.tr, context);
+      Deviceutils.showToastMessage("kindly_enter_email_address".tr, context);
       return;
     }
 
     if (!_isValidEmail(email)) {
-      Deviceutils.flushBarMessage(AppStrings.kindlyEnterValidEmailAddress.tr, context);
+      Deviceutils.showToastMessage("kindly_enter_valid_email_address".tr, context);
       return;
     }
 
     if (password.isEmpty) {
-      Deviceutils.flushBarMessage(AppStrings.kindlyEnterPassword.tr, context);
+      Deviceutils.showToastMessage("kindly_enter_password".tr, context);
       return;
     }
 
     if (password.length < 6) {
-      Deviceutils.flushBarMessage(AppStrings.kindlyEnterCharacterPassword.tr, context);
+      Deviceutils.showToastMessage("kindly_enter_character_password".tr, context);
       return;
     }
     eitherFailureOrSignUp(AuthParams.register(password:password , phoneNumber:phoneNumber, email: email,countryCode: countryCode));
@@ -124,18 +123,18 @@ class SignupController extends GetxController {
           (Failure newFailure) {
             loading.value = false;
 
-            Deviceutils.flushBarMessage("${AppStrings.errorOccurredTryAgain} ", Get.context!);
+            Deviceutils.showToastMessage("error_occurred_try_again".tr, Get.context!);
 
       },
           (AuthResultModel authResultModel) {
             loading.value = false;
 
             if (authResultModel.token?.isEmpty == true) {
-              Deviceutils.flushBarMessage(AppStrings.pleaseVerifyYourAccount.tr, Get.context!);
+              Deviceutils.showToastMessage("please_verify_your_account".tr, Get.context!);
             }
 
             if (authResultModel.error == AppConstants.SIGNUP_DUPLICATE) {
-              Deviceutils.flushBarMessage(AppStrings.alreadyAccountCreated.tr, Get.context!);
+              Deviceutils.showToastMessage("already_account_created".tr, Get.context!);
             }
 
             Timer(Duration(seconds: 5), () {

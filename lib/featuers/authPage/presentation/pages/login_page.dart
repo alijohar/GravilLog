@@ -1,12 +1,9 @@
-import 'package:flutter/material.dart';
-
 import 'dart:io';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
-import 'package:gravilog_2025/core/resources/color_manager.dart';
-import 'package:gravilog_2025/core/resources/strings_manager.dart';
+import 'package:gravilog_2025/core/resources/app_theme.dart';
 
 import '../../../../core/resources/assets_manager.dart';
 import '../controllers/login_controller.dart';
@@ -21,11 +18,7 @@ class LoginView extends StatelessWidget {
   Widget build(BuildContext context) {
     final LoginController controller = Get.find();
 
-    return Scaffold(
-      backgroundColor: Colors.white,
-      appBar: AppBar(
-        backgroundColor: Colors.transparent,
-      ),
+    return context.gradientScaffold(
       body: SafeArea(
         child: Column(
           children: [
@@ -40,40 +33,18 @@ class LoginView extends StatelessWidget {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text(
-                          AppStrings.loginToYourAccount.tr,
-                          style: TextStyle(
-                            fontSize: 24,
-                            fontWeight: Theme.of(context)
-                                .textTheme
-                                .displayMedium
-                                ?.fontWeight,
-                          ),
+                          "login_to_your_account".tr,
+                          style: context.textStyles.displayLarge,
                         ),
                         const SizedBox(height: 5),
                         RichText(
                           text: TextSpan(
-                            text: '${AppStrings.dontHaveAccount.tr}\t',
-                            style: TextStyle(
-                              fontSize: 14,
-                              letterSpacing: 14 * 0.08,
-                              color: const Color(0xFF000000).withOpacity(0.6),
-                              fontWeight: Theme.of(context)
-                                  .textTheme
-                                  .bodySmall
-                                  ?.fontWeight,
-                            ),
+                            text: '${"dont_have_account".tr}\t',
+                            style: context.textStyles.bodySmall,
                             children: <TextSpan>[
                               TextSpan(
-                                text: AppStrings.signUp.tr,
-                                style: TextStyle(
-                                  fontSize: 14,
-                                  letterSpacing: 14 * 0.04,
-                                  color: ColorManager.azure,
-                                  fontWeight: Theme.of(context)
-                                      .textTheme
-                                      .displayMedium
-                                      ?.fontWeight,
-                                ),
+                                text: "sign_up".tr,
+                                style: context.textStyles.labelLarge,
                                 recognizer: TapGestureRecognizer()
                                   ..onTap = () => controller.navigateToSignup(),
                               ),
@@ -85,10 +56,10 @@ class LoginView extends StatelessWidget {
 
                     // SSO
                     if (Platform.isAndroid && controller.ssoEnabledAndroid) ...[
-                      ssoUI(controller)
+                      ssoUI(controller, context)
                     ],
                     if (Platform.isIOS && controller.ssoEnabledIos) ...[
-                      ssoUI(controller)
+                      ssoUI(controller, context)
                     ],
 
                     const SizedBox(height: 50),
@@ -99,16 +70,13 @@ class LoginView extends StatelessWidget {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Text(
-                            AppStrings.email.tr,
-                            style: Theme.of(context)
-                                .textTheme
-                                .bodyMedium
-                                ?.copyWith(letterSpacing: 14 * 0.02),
+                            "email".tr,
+                            style: context.textStyles.bodyMedium,
                           ),
                           const SizedBox(height: 10),
                           CustomTextFormField(
                             controller: controller.emailController,
-                            hintText: AppStrings.email.tr,
+                            hintText: "email".tr,
                             keyboardType: TextInputType.emailAddress,
                             onChanged: (value) => controller.hasEmail.value = value.isNotEmpty,
                           ),
@@ -116,21 +84,18 @@ class LoginView extends StatelessWidget {
 
                           const SizedBox(height: 16),
                           Text(
-                            AppStrings.password.tr,
-                            style: Theme.of(context)
-                                .textTheme
-                                .bodyMedium
-                                ?.copyWith(letterSpacing: 14 * 0.02),
+                            "password".tr,
+                            style: context.textStyles.bodyMedium,
                           ),
                           const SizedBox(height: 10),
                           Obx(() => CustomTextFormField(
                             controller: controller.passwordController,
-                            hintText: AppStrings.password.tr,
+                            hintText: "password".tr,
                             obscureText: controller.isObscured.value,
                             suffixIcon: IconButton(
                               icon: Icon(
                                 controller.isObscured.value ? Icons.visibility_off : Icons.visibility,
-                                color: ColorManager.royalBlue,
+                                color: context.royalBlue,
                               ),
                               onPressed: () => controller.isObscured.toggle(),
                             ),
@@ -143,16 +108,8 @@ class LoginView extends StatelessWidget {
                             child: TextButton(
                               onPressed: () => controller.navigateToForgotPassword(),
                               child: Text(
-                                "${AppStrings.forgotPassword.tr}?",
-                                style: TextStyle(
-                                  fontSize: 14,
-                                  letterSpacing: 14 * 0.04,
-                                  color: ColorManager.azure,
-                                  fontWeight: Theme.of(context)
-                                      .textTheme
-                                      .displayMedium
-                                      ?.fontWeight,
-                                ),
+                                "${"forgot_password".tr}?",
+                                style: context.textStyles.labelLarge,
                               ),
                             ),
                           ),
@@ -175,22 +132,15 @@ class LoginView extends StatelessWidget {
                       ? () => controller.patientLoginWithEmail()
                       : null,
                   style: ElevatedButton.styleFrom(
-                    backgroundColor: ColorManager.pinkSherbet,
+                    backgroundColor: context.pinkSherbet,
                     shape: const BeveledRectangleBorder(),
                     minimumSize: const Size(double.infinity, 50),
                   ),
                   child: controller.loading.value
                       ? const Loader(duration: Duration(milliseconds: 600))
                       : Text(
-                    AppStrings.continueBtn.tr,
-                    style: TextStyle(
-                      color: Colors.white,
-                      fontSize: 15,
-                      fontWeight: Theme.of(context)
-                          .textTheme
-                          .displayMedium
-                          ?.fontWeight,
-                    ),
+                    "continue".tr,
+                    style: context.textStyles.labelLarge,
                   ),
                 ),
               ),
@@ -201,7 +151,7 @@ class LoginView extends StatelessWidget {
     );
   }
 
-  Widget ssoUI(LoginController controller) {
+  Widget ssoUI(LoginController controller, BuildContext context) {
     return Column(
       children: [
         const SizedBox(height: 50),
@@ -211,16 +161,16 @@ class LoginView extends StatelessWidget {
             children: [
               InkWell(
                 onTap: () => controller.facebookLogin(),
-                child: const Icon(
+                child: Icon(
                   Icons.facebook_outlined,
                   size: 50,
-                  color: Color(0xFF3B5998),
+                  color: context.primaryColor,
                 ),
               ),
               const SizedBox(width: 30),
               InkWell(
                 onTap: () => controller.googleLogin(),
-                child: SvgPicture.asset(ImageAssets.googleSvg),
+                child: SvgPicture.asset(IconAssets.googleIcon),
 
               ),
               if (Platform.isIOS) ...[
@@ -240,25 +190,18 @@ class LoginView extends StatelessWidget {
         const SizedBox(height: 50),
         Row(
           children: [
-            const Expanded(
-              child: Divider(thickness: 1, color: Colors.black),
+            Expanded(
+              child: Divider(thickness: 1, color: context.onSurfaceColor),
             ),
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 8.0),
               child: Text(
-                AppStrings.or.tr,
-                style: TextStyle(
-                  fontSize: 14,
-                  fontWeight: Theme.of(Get.context!)
-                      .textTheme
-                      .displayMedium
-                      ?.fontWeight,
-                  color: Colors.black,
-                ),
+                "or".tr,
+                style: context.textStyles.bodyMedium,
               ),
             ),
-            const Expanded(
-              child: Divider(thickness: 1, color: Colors.black),
+            Expanded(
+              child: Divider(thickness: 1, color: context.onSurfaceColor),
             ),
           ],
         ),

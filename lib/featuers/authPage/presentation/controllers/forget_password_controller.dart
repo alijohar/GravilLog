@@ -4,7 +4,6 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:gravilog_2025/core/resources/deviceUtils.dart';
-import 'package:gravilog_2025/core/resources/strings_manager.dart';
 import 'package:gravilog_2025/featuers/authPage/business/usecases/resetPassword.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -63,12 +62,12 @@ class ForgetPasswordController extends GetxController {
     final email = emailController.text.trim();
 
     if (email.isEmpty) {
-      Deviceutils.flushBarMessage(AppStrings.kindlyEnterEmailAddress.tr, context);
+      Deviceutils.showToastMessage("kindly_enter_email_address".tr, context);
       return;
     }
 
     if (!_isValidEmail(email)) {
-      Deviceutils.flushBarMessage(AppStrings.kindlyEnterValidEmailAddress.tr, context);
+      Deviceutils.showToastMessage("kindly_enter_valid_email_address".tr, context);
       return;
     }
 
@@ -88,17 +87,17 @@ class ForgetPasswordController extends GetxController {
     failureOrLogin.fold(
           (Failure newFailure) {
         loading.value = false;
-        Deviceutils.flushBarMessage(AppStrings.errorOccurredTryAgain.tr, Get.context!);
+        Deviceutils.showToastMessage("error_occurred_try_again".tr, Get.context!);
 
 
       },
           (AuthResultModel authResultModel) async {
             loading.value = false;
             if (authResultModel.result == AppConstants.EMAIL_SENT) {
-              Deviceutils.flushBarMessage(AppStrings.pleaseCheckYourInboxResetPassword.tr, Get.context!);
+              Deviceutils.showToastMessage("please_check_your_inbox_reset_password".tr, Get.context!);
               Timer(const Duration(seconds: 5), () => Get.back());
             } else if (authResultModel.error == AppConstants.PATIENT_NOT_FOUND) {
-              Deviceutils.flushBarMessage(AppStrings.patientNotFoundPleaseCheckEmail.tr, Get.context!);
+              Deviceutils.showToastMessage("patient_not_found_please_check_email".tr, Get.context!);
             }
 
       },

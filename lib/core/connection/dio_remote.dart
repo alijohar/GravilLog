@@ -1,9 +1,6 @@
 import 'package:dio/dio.dart';
 import 'package:pretty_dio_logger/pretty_dio_logger.dart';
-import 'package:shared_preferences/shared_preferences.dart';
-
 import '../resources/constants_manager.dart';
-import '../resources/strings_manager.dart';
 
 class DioSingleton {
   static final DioSingleton _instance = DioSingleton._internal();

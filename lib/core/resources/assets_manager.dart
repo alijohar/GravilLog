@@ -1,20 +1,36 @@
 const String imagePath = "assets/images";
 const String iconPath = "assets/icons";
-
 const String audioPath = "assets/audios";
 const String jsonPath = "assets/json";
 
 class ImageAssets {
+  // Logo Images
+  static const String splashLogoAr = "$imagePath/GraviLog-Ar-tran1.png";
+  static const String splashLogoEn = "$imagePath/GraviLog-En-tran1.png";
+  
+  // Onboarding Images
+  static const String onboard1 = "$imagePath/onboard1.png";
+  static const String onboard2 = "$imagePath/onboard2.png";
+  static const String onboard3 = "$imagePath/onboard3.png";
+  
+  // Status Images
+  static const String pregnant = "$imagePath/pregnant.png";
+  static const String notPregnant = "$imagePath/not_pregnant.png";
+  static const String pregnantNotPregnant = "$imagePath/pregnent_notpregnent.png";
+}
 
-  static const String splashLogoAr = "$imagePath/GraviLog-Ar-tran1";
-  static const String splashLogoEn = "$imagePath/GraviLog-En-tran1";
-  static const String googleSvg = "$iconPath/ic_google.svg";
-
+class IconAssets {
+  // Social Media Icons
+  static const String googleIcon = "$iconPath/ic_google.svg";
+  static const String facebookIcon = "$iconPath/ic_facebook.svg";
 }
 
 class JsonAssets {
+  // Add JSON asset paths here when needed
+  // static const String sampleJson = "$jsonPath/sample.json";
+}
 
-
-
-
+class AudioAssets {
+  // Add audio asset paths here when needed
+  // static const String sampleAudio = "$audioPath/sample.mp3";
 }

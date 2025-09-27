@@ -1,5 +1,4 @@
 
-import '../../../../core/resources/strings_manager.dart';
 import '../../business/entities/template_entity.dart';
 
 class TemplateModel extends TemplateEntity {
@@ -12,13 +11,13 @@ class TemplateModel extends TemplateEntity {
   factory TemplateModel.fromJson(Map<String, dynamic> json) {
     return TemplateModel(
 
-      template: json[AppStrings.kTemplate],
+      template: json['kTemplate'],
     );
   }
 
   Map<String, dynamic> toJson() {
     return {
-      AppStrings.kTemplate: template,
+      'kTemplate': template,
     };
   }
 }

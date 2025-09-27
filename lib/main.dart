@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:get/get_navigation/src/extension_navigation.dart';
 import 'package:get/get_navigation/src/root/get_material_app.dart';
@@ -8,7 +7,7 @@ import 'package:gravilog_2025/featuers/authPage/presentation/pages/login_page.da
 import 'package:shared_preferences/shared_preferences.dart';
 
 import 'core/binding/main_binding.dart';
-import 'core/resources/color_manager.dart';
+import 'core/resources/app_theme.dart';
 import 'core/resources/constants_manager.dart';
 import 'core/resources/routes_manager.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
@@ -44,11 +43,7 @@ class _MyAppState extends State<MyApp> {
       title: 'MEMO',
       debugShowCheckedModeBanner: false,
       initialBinding: MainBindings(),
-      theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: ColorManager.primary),
-        useMaterial3: true,
-        fontFamily: "Montserrat",
-      ),
+      theme: AppTheme.lightTheme,
       locale: Locale(widget.languageCode), // Default language
       fallbackLocale: const Locale('en', 'US'),
       supportedLocales: const [
@@ -64,7 +59,7 @@ class _MyAppState extends State<MyApp> {
       translations: Translation(),
       unknownRoute: GetPage(name: '/notfound', page: () => RouteGenerator.unDefinedPage()),
       getPages: RouteGenerator.getPages(),
-      initialRoute: Routes.SplaschRoute,
+      initialRoute: Routes.splashRoute,
     );
   }
 }

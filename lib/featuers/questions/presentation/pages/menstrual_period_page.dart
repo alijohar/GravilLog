@@ -6,9 +6,9 @@ import 'package:get/get_common/get_reset.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:get/get_state_manager/src/rx_flutter/rx_obx_widget.dart';
 import 'package:date_picker_plus/date_picker_plus.dart';
+import 'package:gravilog_2025/core/resources/app_theme.dart';
 import 'package:gravilog_2025/core/resources/color_manager.dart';
 import 'package:gravilog_2025/core/resources/deviceUtils.dart';
-import 'package:gravilog_2025/core/resources/strings_manager.dart';
 
 import '../../data/models/pregnant_info_model.dart';
 import '../controllers/menstrual_period_controller.dart';
@@ -20,12 +20,7 @@ class MenstrualPeriodView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: Colors.white,
-
-      appBar: AppBar(
-        backgroundColor: Colors.transparent,
-      ),
+    return context.gradientScaffold(
       body: SafeArea(
         child: Stack(
           children: [
@@ -36,13 +31,9 @@ class MenstrualPeriodView extends StatelessWidget {
                 Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 20),
                   child: Text(
-                    AppStrings.pleaseSelectMenstrualPeriod.tr,
+                    "please_select_menstrual_period".tr,
                     style: TextStyle(
-                      fontSize: 18,
-                      fontWeight:
-                      Theme.of(context).textTheme.displayLarge?.fontWeight,
-                      letterSpacing: 18 * 0.08,
-                      color: ColorManager.pinkSherbet,
+                      color: context.pinkSherbet,
                     ),
                   ),
                 ),
@@ -55,29 +46,23 @@ class MenstrualPeriodView extends StatelessWidget {
                   child: DatePicker(
                       padding:
                       const EdgeInsets.symmetric(horizontal: 20, vertical: 20),
-                      enabledCellsTextStyle: TextStyle(fontSize: 18),
-                      currentDateDecoration: const BoxDecoration(
-                        color: ColorManager.pinkSherbet,
+                      enabledCellsTextStyle: context.textStyles.headlineLarge,
+                      currentDateDecoration: BoxDecoration(
+                        color: context.pinkSherbet,
                         shape: BoxShape.circle,
                       ),
-                      highlightColor: Colors.white,
+                      highlightColor: context.surfaceColor,
                       splashRadius: 0,
-                      leadingDateTextStyle: TextStyle(
-                        color: Colors.black,
-                        fontSize: 30,
-                        fontWeight:
-                        Theme.of(context).textTheme.bodyMedium?.fontWeight,
-                      ),
-                      daysOfTheWeekTextStyle:
-                      const TextStyle(color: Colors.grey, fontSize: 16),
+                      leadingDateTextStyle: context.textStyles.displayLarge,
+                      daysOfTheWeekTextStyle: context.textStyles.bodyLarge?.copyWith(color: context.grey),
                       slidersSize: 15,
-                      slidersColor: Colors.black,
-                      selectedCellTextStyle: const TextStyle(color: Colors.white),
-                      selectedCellDecoration: const BoxDecoration(
-                        color: ColorManager.pinkSherbet,
+                      slidersColor: context.onSurfaceColor,
+                      selectedCellTextStyle: context.textStyles.bodyMedium?.copyWith(color: context.onPrimaryColor),
+                      selectedCellDecoration: BoxDecoration(
+                        color: context.pinkSherbet,
                         shape: BoxShape.circle,
                       ),
-                      currentDateTextStyle: const TextStyle(color: Colors.white),
+                      currentDateTextStyle: context.textStyles.bodyMedium?.copyWith(color: context.onPrimaryColor),
                       currentDate: controller.selectedDate.value,
                       centerLeadingDate: false,
                       minDate: DateTime.now().subtract(const Duration(days: 365)),
@@ -86,14 +71,14 @@ class MenstrualPeriodView extends StatelessWidget {
 
                   ),
                 )),
-                const Padding(
-                  padding: EdgeInsets.symmetric(horizontal: 20, vertical: 0),
+                 Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 0),
                   child: Row(
                     children: [
                       Expanded(
                         child: Divider(
                           thickness: 1,
-                          color: Color(0xFFAFAFAF),
+                          color: context.outlineColor,
                         ),
                       ),
                     ],
@@ -107,7 +92,7 @@ class MenstrualPeriodView extends StatelessWidget {
                 //   items: controller.menstrualLength.map((int value) {
                 //     return DropdownMenuItem<String>(
                 //       value: value.toString(),
-                //       child: Text('$value ${AppStrings.ta}'),
+                //       child: Text('$value ${"ta".tr}'),
                 //     );
                 //   }).toList(),
                 //   onChanged: (value) {
@@ -121,13 +106,9 @@ class MenstrualPeriodView extends StatelessWidget {
                 Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 5),
                   child: Text(
-                  AppStrings.cycleLength.tr,
+                  "cycle_length".tr,
                     style: TextStyle(
-                      fontSize: 18,
-                      fontWeight:
-                      Theme.of(context).textTheme.displayLarge?.fontWeight,
-                      letterSpacing: 18 * 0.08,
-                      color: ColorManager.pinkSherbet,
+                      color: context.pinkSherbet,
                     ),
                   ),
                 ),
@@ -141,15 +122,8 @@ class MenstrualPeriodView extends StatelessWidget {
                 Expanded(
                   child: Text(
                     Deviceutils.replacePlaceholder(
-                        AppStrings.days.tr, {'s': '${controller.menstrualLength[7]}'}),
-                    style: TextStyle(
-                      fontSize: 14,
-                      fontWeight: Theme.of(context)
-                          .textTheme
-                          .displayLarge
-                          ?.fontWeight,
-                      color: Colors.black,
-                    ),
+                        "days".tr, {'s': '${controller.menstrualLength[7]}'}),
+                    style: context.textStyles.bodyMedium,
                     overflow: TextOverflow.ellipsis,
                   ),
                 ),
@@ -160,15 +134,8 @@ class MenstrualPeriodView extends StatelessWidget {
               value: item.toString(),
               child: Text(
                 Deviceutils.replacePlaceholder(
-                    AppStrings.days.tr, {'s': '$item'}),
-                style: TextStyle(
-                  fontSize: 14,
-                  fontWeight: Theme.of(context)
-                      .textTheme
-                      .displayLarge
-                      ?.fontWeight,
-                  color: Colors.black,
-                ),
+                    "days".tr, {'s': '$item'}),
+                style: context.textStyles.bodyMedium,
                 overflow: TextOverflow.ellipsis,
               ),
             ))
@@ -188,19 +155,19 @@ class MenstrualPeriodView extends StatelessWidget {
                 color: ColorManager.pinkSherbet.withOpacity(0.3),
               ),
             ),
-            iconStyleData: const IconStyleData(
-              icon: Icon(
+            iconStyleData: IconStyleData(
+              icon: const Icon(
                 Icons.arrow_drop_down,
                 size: 20,
               ),
               iconSize: 14,
-              iconEnabledColor: Colors.black,
-              iconDisabledColor: Colors.grey,
+              iconEnabledColor: context.onSurfaceColor,
+              iconDisabledColor: context.grey,
             ),
             dropdownStyleData: DropdownStyleData(
               maxHeight: 200,
               decoration: BoxDecoration(
-                color: Color(0xFFF7B5CA),
+                color: context.pinkSherbet.withOpacity(0.3),
               ),
               offset: const Offset(0, 250),
               elevation: 0,
@@ -242,16 +209,8 @@ class MenstrualPeriodView extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 Text(
-                  AppStrings.calculate.tr,
-                  style: TextStyle(
-                    color: Colors.white,
-                    fontSize: 17,
-                    letterSpacing: 17 * 0.08,
-                    fontWeight: Theme.of(context)
-                        .textTheme
-                        .displayMedium
-                        ?.fontWeight,
-                  ),
+                  "calculate".tr,
+                  style: context.textStyles.bodyMedium?.copyWith(color: context.onPrimaryColor),
                 ),
               ],
             ),

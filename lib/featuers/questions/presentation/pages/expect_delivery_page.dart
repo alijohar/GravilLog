@@ -3,9 +3,9 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get/get_common/get_reset.dart';
 import 'package:get/get_core/src/get_main.dart';
+import 'package:gravilog_2025/core/resources/app_theme.dart';
 import 'package:gravilog_2025/core/resources/color_manager.dart';
 import 'package:gravilog_2025/core/resources/deviceUtils.dart';
-import 'package:gravilog_2025/core/resources/strings_manager.dart';
 import 'package:intl/intl.dart';
 
 import '../../../authPage/presentation/widgets/loader.dart';
@@ -27,11 +27,7 @@ class ExpectDeliveryView extends StatelessWidget {
   Widget build(BuildContext context) {
 
 
-    return Scaffold(
-      backgroundColor: Colors.white,
-      appBar: AppBar(
-        backgroundColor: Colors.transparent,
-          leading: const BackButton()),
+    return context.gradientScaffold(
       body: SafeArea(
         child: Stack(
           children: [
@@ -41,7 +37,7 @@ class ExpectDeliveryView extends StatelessWidget {
               children: [
                 Image.asset('assets/images/pregnant-women.png'),
                 Text(
-                  AppStrings.expectedDueDate.tr,
+                  "expected_due_date".tr,
                   style: TextStyle(
                     fontSize: 18,
                     fontWeight: Theme.of(context)
@@ -69,7 +65,7 @@ class ExpectDeliveryView extends StatelessWidget {
                 )),
                 const SizedBox(height: 40),
                 Text(
-                  AppStrings.daysUntilBirth.tr,
+                  "days_until_birth".tr,
                   style: TextStyle(
                     fontSize: 18,
                     fontWeight: Theme.of(context)
@@ -84,7 +80,7 @@ class ExpectDeliveryView extends StatelessWidget {
                 const SizedBox(height: 10),
                 Obx(() => Text(
                   Deviceutils.replacePlaceholder(
-                    AppStrings.days.tr,
+                    "days".tr,
                     {'s': controller.getRemainingDays().toString()},
                   ),
                   style: TextStyle(
@@ -117,7 +113,7 @@ class ExpectDeliveryView extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     Text(
-                      AppStrings.followUp.tr,
+                      "follow_up".tr,
                       style: TextStyle(
                         color: Colors.white,
                         fontSize: 17,

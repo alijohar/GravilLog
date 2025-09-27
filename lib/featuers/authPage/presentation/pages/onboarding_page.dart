@@ -2,7 +2,7 @@ import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:gravilog_2025/core/resources/strings_manager.dart';
+import 'package:gravilog_2025/core/resources/app_theme.dart';
 import 'package:gravilog_2025/featuers/authPage/presentation/controllers/onboarding_controller.dart';
 import 'package:sizer/sizer.dart';
 import 'package:url_launcher/url_launcher.dart';
@@ -18,11 +18,7 @@ class OnboardView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: Colors.white,
-      appBar: AppBar(
-        backgroundColor: Colors.transparent,
-      ),
+    return context.gradientScaffold(
       extendBody: true,
       extendBodyBehindAppBar: true,
       body: SafeArea(
@@ -37,7 +33,7 @@ class OnboardView extends StatelessWidget {
                 fit: BoxFit.contain,
               )),
 
-            _buildIndicator(),
+            _buildIndicator(context),
 
               Expanded(
                 child: CarouselSlider.builder(
@@ -54,7 +50,7 @@ class OnboardView extends StatelessWidget {
                     },
                   ),
                   itemBuilder: (context, index, realIndex) {
-                    return _buildOnboardingContent(index);
+                    return _buildOnboardingContent(index, context);
                   },
                 ),
               ),
@@ -65,24 +61,22 @@ class OnboardView extends StatelessWidget {
     );
   }
 
-  Widget _buildOnboardingContent(int index) {
+  Widget _buildOnboardingContent(int index, BuildContext context) {
     final model = onboardingController; // controller replaces ViewModel
     switch (index) {
       case 0:
         return _buildPage(
+          context: context,
           image: onboardingController.onboardImages[0],
-          title: AppStrings.onboard1Title.tr,
+          title: "onboard1_title".tr,
           description: RichText(
             text: TextSpan(
-              style: TextStyle(
-                  fontWeight: FontWeight.w600,
-                  color: Colors.black87,
-                  height: 2),
+              style: context.textStyles.bodyMedium,
               children: [
-                TextSpan(text: AppStrings.onboard1Description.tr),
+                TextSpan(text: "onboard1_description".tr),
                 TextSpan(
-                  text: AppStrings.withGravilogWeTurnPregnancyBestMonths.tr,
-                  style: TextStyle(color: ColorManager.royalBlue),
+                  text: "with_gravilog_we_turn_pregnancy_best_months".tr,
+                  style: context.textStyles.bodyMedium?.copyWith(color: context.royalBlue),
                 ),
               ],
             ),
@@ -90,16 +84,14 @@ class OnboardView extends StatelessWidget {
         );
       case 1:
         return _buildPage(
+          context: context,
           image: onboardingController.onboardImages[1],
-          title: AppStrings.onboard2Title.tr,
+          title: "onboard2_title".tr,
           description: RichText(
             text: TextSpan(
-              style: TextStyle(
-                  fontWeight: FontWeight.w600,
-                  color: Colors.black87,
-                  height: 2),
+              style: context.textStyles.bodyMedium,
               children: [
-                TextSpan(text: AppStrings.onboard2Description.tr),
+                TextSpan(text: "onboard2_description".tr),
               ],
             ),
           ),
@@ -107,19 +99,17 @@ class OnboardView extends StatelessWidget {
       case 2:
         const url = 'www.gravilog.com';
         return _buildPage(
+          context: context,
           image: onboardingController.onboardImages[2],
-          title: AppStrings.onboard3Title.tr,
+          title: "onboard3_title".tr,
           description: RichText(
             text: TextSpan(
-              style: TextStyle(
-                  fontWeight: FontWeight.w600,
-                  color: Colors.black87,
-                  height: 2),
+              style: context.textStyles.bodyMedium,
               children: [
-                TextSpan(text: "${AppStrings.onboard3Description.tr}\t"),
+                TextSpan(text: "${"onboard3_description".tr}\t"),
                 TextSpan(
                   text: url,
-                  style: TextStyle(color: ColorManager.royalBlue),
+                  style: context.textStyles.bodyMedium?.copyWith(color: context.royalBlue),
                   recognizer: TapGestureRecognizer()
                     ..onTap = () => launch('https://$url'),
                 ),
@@ -134,6 +124,7 @@ class OnboardView extends StatelessWidget {
   }
 
   Widget _buildPage({
+    required BuildContext context,
     required String image,
     required String title,
     required RichText description,
@@ -146,24 +137,20 @@ class OnboardView extends StatelessWidget {
       children: [
         Text(
          title,
-          style: TextStyle(
-              fontSize: 20,
-              fontWeight: FontWeight.w600,
-              color: ColorManager.hotPink,
-              letterSpacing: 10 * 0.08),
+          style: context.textStyles.headlineLarge?.copyWith(color: context.hotPink),
           textAlign: TextAlign.center,
         ),
         const SizedBox(height: 4),
         description,
         if (showButtons) ...[
           const SizedBox(height: 16),
-          _buildButtons(),
+          _buildButtons(context),
         ],
       ],
     );
   }
 
-  Widget _buildButtons() {
+  Widget _buildButtons(BuildContext context) {
     return Column(
       mainAxisAlignment: MainAxisAlignment.end,
       crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -176,35 +163,30 @@ class OnboardView extends StatelessWidget {
             minimumSize: const Size(double.infinity, 50),
           ),
           child: Text(
-            AppStrings.signIn.tr,
-            style: const TextStyle(
-                color: Colors.white, fontWeight: FontWeight.bold, fontSize: 15),
+            "sign_in".tr,
+            style: context.textStyles.bodyMedium?.copyWith(color: context.onPrimaryColor),
           ),
         ),
         const SizedBox(height: 12),
         ElevatedButton(
           onPressed: () => onboardingController.navigateToSignup(),
           style: ElevatedButton.styleFrom(
-            backgroundColor: Colors.white,
-            shape: const BeveledRectangleBorder(
-              side: BorderSide(color: ColorManager.pinkSherbet, width: 0.5),
+            backgroundColor: context.surfaceColor,
+            shape: BeveledRectangleBorder(
+              side: BorderSide(color: context.pinkSherbet, width: 0.5),
             ),
             minimumSize: const Size(double.infinity, 50),
           ),
           child: Text(
-            AppStrings.createNewAccount.tr,
-            style: const TextStyle(
-              color: ColorManager.pinkSherbet,
-              fontWeight: FontWeight.bold,
-              fontSize: 15,
-            ),
+            "create_new_account".tr,
+            style: context.textStyles.bodyMedium?.copyWith(color: context.pinkSherbet),
           ),
         ),
       ],
     );
   }
 
-  Widget _buildIndicator() {
+  Widget _buildIndicator(BuildContext context) {
     return Obx(() => Row(
       mainAxisAlignment: MainAxisAlignment.center,
       children: onboardingController.onboardImages.asMap().entries.map((entry) {
@@ -217,8 +199,8 @@ class OnboardView extends StatelessWidget {
             decoration: BoxDecoration(
               shape: BoxShape.circle,
               color: onboardingController.currentIndex.value == entry.key
-                  ? ColorManager.royalBlue2
-                  : Colors.black.withOpacity(0.10),
+                  ? context.secondaryColor
+                  : context.onSurfaceColor.withOpacity(0.10),
             ),
           ),
         );

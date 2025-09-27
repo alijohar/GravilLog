@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:flutter_html/flutter_html.dart';
+import 'package:gravilog_2025/core/resources/app_theme.dart';
 import 'package:gravilog_2025/featuers/authPage/presentation/controllers/term_of_use_controller.dart';
 
 class TermsOfUseView extends StatelessWidget {
@@ -167,9 +168,7 @@ class TermsOfUseView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(),
-      backgroundColor: Colors.white,
+    return context.gradientScaffold(
       body: SafeArea(
         child: Obx(() {
           if (controller.loading.value) {

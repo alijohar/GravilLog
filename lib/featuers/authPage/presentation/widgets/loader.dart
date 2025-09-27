@@ -4,7 +4,7 @@ import 'dart:math' as math show sin, pi;
 import '../../../../core/resources/color_manager.dart';class Loader extends StatefulWidget {
   const Loader({
     Key? key,
-    this.color = ColorManager.kcSecondaryColor1,
+    this.color = ColorManager.primary,
     this.size = 30.0,
     this.itemBuilder,
     this.duration = const Duration(milliseconds: 1400),

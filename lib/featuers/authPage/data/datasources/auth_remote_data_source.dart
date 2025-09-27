@@ -5,7 +5,6 @@ import '../../../../core/base/base_model.dart';
 import '../../../../core/connection/dio_remote.dart';
 import '../../../../core/errors/failure.dart';
 import '../../../../core/resources/constants_manager.dart';
-import '../../../../core/resources/strings_manager.dart';
 import '../../business/entities/auth_result_entity.dart';
 import '../models/auth_result_model.dart';
 import '../models/get_pregnancy_result_model.dart';
