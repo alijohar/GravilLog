@@ -13,7 +13,7 @@ import 'package:get/get_state_manager/src/rx_flutter/rx_obx_widget.dart';
 import '../../../../core/resources/color_manager.dart';
 import '../../../../core/resources/app_theme.dart';
 import '../controllers/signup_controller.dart';
-import '../widgets/custom_text_fiels.dart';
+import '../widgets/form_text_field/custom_text_fiels.dart';
 
 class SignupView extends StatelessWidget {
   const SignupView({super.key});
