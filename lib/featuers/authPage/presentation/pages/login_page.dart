@@ -31,15 +31,8 @@ class LoginView extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               /// add auth leading image
-              const AuthLeadingImage(),
-              const SizedBox(
-                height: 20,
-              ),
-              Text(
-                "great_to_see_you_again".tr,
-                style: context.textStyles.displayLarge!.copyWith(
-                  color: context.pinkSherbet,
-                ),
+              AuthLeadingWidget(
+                label: "great_to_see_you_again".tr,
               ),
               const SizedBox(
                 height: 20,
