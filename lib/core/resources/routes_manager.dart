@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:gravilog_2025/featuers/authPage/presentation/controllers/language_controller.dart';
 import 'package:gravilog_2025/featuers/authPage/presentation/pages/forget_password_page.dart';
 import 'package:gravilog_2025/featuers/authPage/presentation/pages/language_page.dart';
 import 'package:gravilog_2025/featuers/authPage/presentation/pages/onboarding_page.dart';
@@ -38,7 +39,12 @@ class RouteGenerator {
         }),
       ),
       GetPage(name: Routes.loginRoute, page: () => const LoginView()),
-      GetPage(name: Routes.languageRoute, page: () => const LanguageView()),
+      GetPage(
+          name: Routes.languageRoute,
+          page: () => const LanguageView(),
+          binding: BindingsBuilder(() {
+            Get.put(LanguageController());
+          })),
       GetPage(name: Routes.onboardingRoute, page: () => OnboardView()),
       GetPage(name: Routes.signUpRoute, page: () => const SignupView()),
       GetPage(name: Routes.privacyPolicyRoute, page: () => PrivacyPolicyView()),
