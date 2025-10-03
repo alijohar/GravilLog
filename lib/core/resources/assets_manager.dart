@@ -31,6 +31,7 @@ class IconAssets {
   static const String eyeIcon = "$iconPath/eye.svg";
   static const String lockIcon = "$iconPath/lock.svg";
   static const String mailIcon = "$iconPath/mail.svg";
+  static const String userIcon = "$iconPath/user.svg";
 }
 
 class JsonAssets {

@@ -1,17 +1,16 @@
 import 'dart:io';
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'package:gravilog_2025/core/resources/app_theme.dart';
 import 'package:gravilog_2025/featuers/authPage/presentation/widgets/check_box_tile/check_box_tile.dart';
 import 'package:gravilog_2025/featuers/authPage/presentation/widgets/form_text_field/text_field_icon.dart';
-import 'package:gravilog_2025/featuers/authPage/presentation/widgets/social_media_icon_button.dart';
 import 'package:gravilog_2025/featuers/authPage/presentation/widgets/widgets.dart';
 
 import '../../../../core/resources/assets_manager.dart';
 import '../controllers/login_controller.dart';
 import '../widgets/form_text_field/custom_text_fiels.dart';
 import '../widgets/loader.dart';
+import '../widgets/sso_ui.dart';
 
 class LoginView extends StatelessWidget {
   const LoginView({super.key});
@@ -133,87 +132,22 @@ class LoginView extends StatelessWidget {
 
               // SSO
               if (Platform.isAndroid && controller.ssoEnabledAndroid) ...[
-                ssoUI(controller, context)
+                SSOUi(
+                  googleOnPressed: () => controller.googleLogin(),
+                  facebookOnPressed: () => controller.facebookLogin,
+                ),
               ],
               if (Platform.isIOS && controller.ssoEnabledIos) ...[
-                ssoUI(controller, context)
+                SSOUi(
+                  googleOnPressed: () => controller.googleLogin(),
+                  facebookOnPressed: () => controller.facebookLogin,
+                  appleOnPressed: () => controller.appleLogin(),
+                ),
               ],
             ],
           ),
         ),
       ),
-    );
-  }
-
-  Widget ssoUI(LoginController controller, BuildContext context) {
-    return Column(
-      children: [
-        const SizedBox(height: 10),
-        Row(
-          children: [
-            Expanded(
-              child: Divider(
-                thickness: 1,
-                color: context.textSecondary,
-                indent: 20,
-                endIndent: 20,
-              ),
-            ),
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 8.0),
-              child: Text(
-                "or_continuo_with".tr,
-                style: context.textStyles.bodyLarge!
-                    .copyWith(color: context.textSecondary),
-              ),
-            ),
-            Expanded(
-              child: Divider(
-                thickness: 1,
-                color: context.textSecondary,
-                indent: 20,
-                endIndent: 20,
-              ),
-            ),
-          ],
-        ),
-        const SizedBox(height: 10),
-        Center(
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              SocialMediaIconButton(
-                onTap: () => controller.facebookLogin(),
-                child: Icon(
-                  Icons.facebook_outlined,
-                  size: 35,
-                  color: context.primaryColor,
-                ),
-              ),
-              const SizedBox(width: 30),
-              SocialMediaIconButton(
-                onTap: () => controller.googleLogin(),
-                child: SvgPicture.asset(
-                  IconAssets.googleIcon,
-                  height: 30,
-                  width: 30,
-                ),
-              ),
-              if (Platform.isIOS) ...[
-                const SizedBox(width: 30),
-                SocialMediaIconButton(
-                  onTap: () => controller.appleLogin(),
-                  child: SvgPicture.asset(
-                    'assets/icons/ic_apple.svg',
-                    height: 30,
-                    width: 30,
-                  ),
-                ),
-              ],
-            ],
-          ),
-        ),
-      ],
     );
   }
 }

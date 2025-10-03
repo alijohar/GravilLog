@@ -40,15 +40,19 @@ class CustomTextFormField extends StatelessWidget {
           enabledBorder: _baseBorder(),
           focusedBorder: _baseBorder(borderColor: context.textTertiary),
           errorBorder: _baseBorder(borderColor: context.errorColor),
-          prefixIcon: Padding(
-            padding: const EdgeInsets.all(10),
-            child: prefixIcon,
-          ),
+          prefixIcon: prefixIcon == null
+              ? null
+              : Padding(
+                  padding: const EdgeInsets.all(10),
+                  child: prefixIcon,
+                ),
           prefixIconConstraints: BoxConstraints.tight(const Size(40, 40)),
-          suffixIcon: Padding(
-            padding: const EdgeInsets.all(10),
-            child: suffixIcon,
-          ),
+          suffixIcon: suffixIcon == null
+              ? null
+              : Padding(
+                  padding: const EdgeInsets.all(10),
+                  child: suffixIcon,
+                ),
           suffixIconConstraints: BoxConstraints.tight(const Size(40, 40))),
       keyboardType: keyboardType,
       onChanged: onChanged,

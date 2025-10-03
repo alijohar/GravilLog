@@ -18,10 +18,13 @@ class Translation extends Translations {
               "With GraviLog, your doctor can now remotely monitor your health and your baby's, and easily create your electronic medical record. Discover more and tell your doctor at",
           "sign_in": "Sign In",
           "sign_up": "Sign up",
+          "sign_up_now": "Sign Up",
+          "don't_have_an_account": "Don't have an account?",
+          "already_have_an_account": "Already have an account?",
           "create_new_account": "Create New Account",
           "create_free_account": "Create your free account",
-          "already_have_an_account": "Do you already have an account?",
           "email": "Email",
+          "full_name": "Full Name",
           "password": "Password",
           "phone_number": "Phone Number",
           "accept_the": "I accept the",
@@ -325,6 +328,7 @@ class Translation extends Translations {
           "pampered_plan": "Pampered Plan",
           "queens_plan": "Queen's Plan",
           "kindly_enter_email_address": "Kindly enter an email address",
+          "ready_to_begin": "ready to begin",
           "kindly_enter_valid_email_address":
               "Kindly enter a valid email address",
           "kindly_enter_password": "Kindly enter a password",
@@ -529,7 +533,8 @@ class Translation extends Translations {
           "ksa_timing": "KSA timing",
           "booking_confirmed": "Booking Confirmed!",
           "nutrition_session_has_been_successfully_booked":
-              "Your nutrition session has been successfully booked! Our team will contact you soon for further coordination. For any questions, reach out to support@gravilog.com"
+              "Your nutrition session has been successfully booked! Our team will contact you soon for further coordination. For any questions, reach out to support@gravilog.com",
+          ..._newEnTranslations,
         },
         'ar_SA': {
           "onboard1_title": "من البداية الى النهاية...",
@@ -545,10 +550,13 @@ class Translation extends Translations {
               "مع سجل الحمل، طبيبك الآن قادر على متابعة صحتك وصحة جنينك عن بُعد، وإنشاء سجلك الطبي الإلكتروني بسهولة. اكتشفي المزيد وأخبري طبيبك عبر",
           "sign_in": "تسجيل الدخول",
           "sign_up": "اشتركي مجانا",
+          "sign_up_now": "اشتراك",
           "create_new_account": "انشئ حساب جديد",
           "create_free_account": "انشئ حساب جديد",
-          "already_have_an_account": "انشئ حسابك المجاني",
+          "already_have_an_account": "هل لديك حساب بالفعل؟",
+          "don't_have_an_account": "ليس لديك حساب؟",
           "email": "البريد الالكتروني",
+          "full_name": "الاسم الكامل",
           "password": "كلمة المرور",
           "phone_number": "رقم الهاتف",
           "accept_the": "أوافق على",
@@ -578,6 +586,7 @@ class Translation extends Translations {
           "boy": "ولد",
           "girl": "بنت",
           "dont_know": "لا اعرف؟",
+          "ready_to_begin": "مستعدة للبدء",
           "click_here": "انقري هنا",
           "you_wish_your_baby": "ماذا تتمني ان يكون طفلك؟",
           "do_you_suffer_below_diseases": "هل تعاني أي من الامراض التالية",
@@ -1041,6 +1050,15 @@ class Translation extends Translations {
           "booking_confirmed": "تم تأكيد الحجز!",
           "nutrition_session_has_been_successfully_booked":
               "تم حجز جلستك مع أخصائية التغذية بنجاح! سيتواصل معك فريقنا قريبًا للتنسيق. لأي استفسارات، يرجى التواصل معنا على support@gravilog.com",
+          ..._newArTranslations,
         }
       };
+
+//?this is my new translations, i will use to avoid errors.
+  final Map<String, String> _newArTranslations = {
+    "sing_in_here": "سجلي الان",
+  };
+  final Map<String, String> _newEnTranslations = {
+    "sing_in_here": "Sign In",
+  };
 }
