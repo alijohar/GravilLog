@@ -44,6 +44,7 @@ class SignupController extends GetxController {
 
   GestureTapCallback get navigateToPrivacyPolicyView =>
       () => Get.toNamed(Routes.privacyPolicyRoute);
+
   @override
   Future<void> onInit() async {
     localDataSource = LocalPreferences(
@@ -61,8 +62,8 @@ class SignupController extends GetxController {
 
   void toggleObscure() => isObscured.toggle();
 
-  void navigateToSignup() {
-    // Navigation zu SignUp
+  navigateToLogin() {
+    Get.toNamed(Routes.loginRoute);
   }
 
   void navigateToForgotPassword() {

@@ -37,10 +37,8 @@ class LoginController extends GetxController {
 
   late LocalPreferences localDataSource;
 
-
   TextEditingController emailController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
-
 
   bool ssoEnabledAndroid = true;
   bool ssoEnabledIos = true;
@@ -76,12 +74,14 @@ class LoginController extends GetxController {
 
     // Validate email and password before proceeding
     if (email.isEmpty) {
-      Deviceutils.showToastMessage("kindly_enter_email_address".tr, Get.context!);
+      Deviceutils.showToastMessage(
+          "kindly_enter_email_address".tr, Get.context!);
       return;
     }
 
     if (!_isValidEmail(email)) {
-      Deviceutils.showToastMessage("kindly_enter_valid_email_address".tr, Get.context!);
+      Deviceutils.showToastMessage(
+          "kindly_enter_valid_email_address".tr, Get.context!);
       return;
     }
 
@@ -89,7 +89,8 @@ class LoginController extends GetxController {
       Deviceutils.showToastMessage("kindly_enter_password".tr, Get.context!);
       return;
     }
- eitherFailureOrLogin(AuthParams.login(password:password , patient:true , email: email));
+    eitherFailureOrLogin(
+        AuthParams.login(password: password, patient: true, email: email));
   }
 
   Future<void> facebookLogin() async {}
@@ -98,66 +99,63 @@ class LoginController extends GetxController {
 
   Future<void> appleLogin() async {}
 
-
   void eitherFailureOrLogin(AuthParams authParams) async {
     print("eitherFailureOrLoginnnnn");
     loading.value = true;
-    final failureOrLogin = await Login(authRepository:authRepositoryImpl).call(
-    authParams: authParams,
+    final failureOrLogin = await Login(authRepository: authRepositoryImpl).call(
+      authParams: authParams,
     );
 
     failureOrLogin.fold(
-    (Failure newFailure) {
-    loading.value = false;
-    Deviceutils.showToastMessage("error_occurred_try_again".tr, Get.context!);
-
-
-    },
-    (AuthResultModel authResultModel) async {
-      if (authResultModel.token is String) {
-        final pregnancyInfoSaved = await eitherFailureOrGetPregnacyInfo(AuthParams(token:authResultModel.token ));
-        if (!pregnancyInfoSaved) {
-          loading.value = false;
-          Deviceutils.showToastMessage("error_occurred_try_again".tr, Get.context!);
-          return;
-        }
-
-        final patientInfoRespone = await eitherFailureOrgetPatientInfo(AuthParams(token:authResultModel.token ));
-
-        bool patientInfoSaved = await localDataSource.savePatientInfo(patientInfoRespone);
-        bool tokenSaved = await localDataSource.saveUserSession(authResultModel as AuthResultModel);
-        if (tokenSaved && patientInfoSaved) {
-          loading.value = false;
-
-          if (patientInfoRespone?.patient?.healthStatus?.isPregnant != null) {
-            print("navigation to home");
-            // _navigationService.pushNamedAndRemoveUntil(Routes.homeLayoutView);
-          } else {
-            // print("navigation to pregnantQuestionView");
-            Get.offAllNamed(Routes.pregnantQuestionRoute);
-
-            // _navigationService.pushNamedAndRemoveUntil(Routes.pregnantQuestionView);
-          }
-        }
-        else {
-          loading.value = false;
-
-          print("Something went wrong, try again later");
-          }
-      }
-      else {
+      (Failure newFailure) {
         loading.value = false;
+        Deviceutils.showToastMessage(
+            "error_occurred_try_again".tr, Get.context!);
+      },
+      (AuthResultModel authResultModel) async {
+        if (authResultModel.token is String) {
+          final pregnancyInfoSaved = await eitherFailureOrGetPregnacyInfo(
+              AuthParams(token: authResultModel.token));
+          if (!pregnancyInfoSaved) {
+            loading.value = false;
+            Deviceutils.showToastMessage(
+                "error_occurred_try_again".tr, Get.context!);
+            return;
+          }
 
-        Deviceutils.showToastMessage("incorrect_credentials".tr, Get.context!);
-      }
+          final patientInfoRespone = await eitherFailureOrgetPatientInfo(
+              AuthParams(token: authResultModel.token));
 
+          bool patientInfoSaved =
+              await localDataSource.savePatientInfo(patientInfoRespone);
+          bool tokenSaved = await localDataSource
+              .saveUserSession(authResultModel as AuthResultModel);
+          if (tokenSaved && patientInfoSaved) {
+            loading.value = false;
 
-    },
+            if (patientInfoRespone?.patient?.healthStatus?.isPregnant != null) {
+              print("navigation to home");
+              // _navigationService.pushNamedAndRemoveUntil(Routes.homeLayoutView);
+            } else {
+              // print("navigation to pregnantQuestionView");
+              Get.offAllNamed(Routes.pregnantQuestionRoute);
 
+              // _navigationService.pushNamedAndRemoveUntil(Routes.pregnantQuestionView);
+            }
+          } else {
+            loading.value = false;
+
+            print("Something went wrong, try again later");
+          }
+        } else {
+          loading.value = false;
+
+          Deviceutils.showToastMessage(
+              "incorrect_credentials".tr, Get.context!);
+        }
+      },
     );
   }
-
-
 
   Future<bool> eitherFailureOrGetPregnacyInfo(AuthParams authParams) async {
     loading.value = true;
@@ -167,44 +165,38 @@ class LoginController extends GetxController {
     ).call(authParams: authParams);
 
     return await failureOrLogin.fold(
-          (Failure newFailure) async {
+      (Failure newFailure) async {
         return false;
       },
-          (GetPregnancyResultModel getPregnancyResponse) async {
+      (GetPregnancyResultModel getPregnancyResponse) async {
         final pregnancyInfoSaved =
-        await localDataSource.savePregnancyInfo(getPregnancyResponse);
+            await localDataSource.savePregnancyInfo(getPregnancyResponse);
         return pregnancyInfoSaved;
       },
     );
   }
 
-
-
-
-  Future<PatientInfoResultModel?>  eitherFailureOrgetPatientInfo(AuthParams authParams) async {
+  Future<PatientInfoResultModel?> eitherFailureOrgetPatientInfo(
+      AuthParams authParams) async {
     loading.value = true;
-    final failureOrLogin = await GetPatientInfo(authRepository:authRepositoryImpl).call(
+    final failureOrLogin =
+        await GetPatientInfo(authRepository: authRepositoryImpl).call(
       authParams: authParams,
     );
 
     return await failureOrLogin.fold(
-          (Failure newFailure) async {
+      (Failure newFailure) async {
         return null;
       },
-          (PatientInfoResultModel patientInfoResultModel) async {
-
-            return patientInfoResultModel;
+      (PatientInfoResultModel patientInfoResultModel) async {
+        return patientInfoResultModel;
       },
     );
   }
 
-
   bool _isValidEmail(String email) {
     return RegExp(
-        r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+")
+            r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+")
         .hasMatch(email);
   }
 }
-
-
-

@@ -1055,10 +1055,14 @@ class Translation extends Translations {
       };
 
 //?this is my new translations, i will use to avoid errors.
-  final Map<String, String> _newArTranslations = {
-    "sing_in_here": "سجلي الان",
-  };
   final Map<String, String> _newEnTranslations = {
     "sing_in_here": "Sign In",
+    "have_no_account": "Don't have an account?",
+    "sign_up_here": "Sign Up",
+  };
+  final Map<String, String> _newArTranslations = {
+    "sing_in_here": "تسجيل الدخول",
+    "have_no_account": "ليس لديك حساب؟",
+    "sign_up_here": "سجلي الان",
   };
 }

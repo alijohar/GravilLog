@@ -6,8 +6,8 @@ import 'package:gravilog_2025/core/resources/app_theme.dart';
 import 'package:gravilog_2025/featuers/authPage/presentation/controllers/signup_controller.dart';
 import 'package:gravilog_2025/featuers/authPage/presentation/widgets/widgets.dart';
 
-import '../widgets/custom_text_button.dart';
 import '../widgets/sso_ui.dart';
+import '../widgets/text_with_button_widget.dart';
 
 class SignUpBasePage extends StatelessWidget {
   const SignUpBasePage({
@@ -60,24 +60,10 @@ class SignUpBasePage extends StatelessWidget {
               SizedBox(
                 height: MediaQuery.of(context).size.height / 6,
               ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Text(
-                    "already_have_an_account".tr,
-                    style: Theme.of(context).textTheme.labelLarge!.copyWith(
-                        fontSize: 12,
-                        color: const Color(0xff030303),
-                        fontWeight: FontWeight.normal),
-                  ),
-                  CustomTextButton(
-                    btnText: "sing_in_here".tr,
-                    textUnderLine: false,
-                    textColor: context.pinkSherbet,
-                    fontSize: 14,
-                    onPressed: () {},
-                  ),
-                ],
+              TextWithButtonWidget(
+                buttonAction: () => controller.navigateToLogin(),
+                buttonText: "sing_in_here".tr,
+                leadingText: "already_have_an_account".tr,
               ),
             ],
           ),

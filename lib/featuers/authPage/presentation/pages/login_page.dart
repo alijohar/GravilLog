@@ -4,6 +4,7 @@ import 'package:get/get.dart';
 import 'package:gravilog_2025/core/resources/app_theme.dart';
 import 'package:gravilog_2025/featuers/authPage/presentation/widgets/check_box_tile/check_box_tile.dart';
 import 'package:gravilog_2025/featuers/authPage/presentation/widgets/form_text_field/text_field_icon.dart';
+import 'package:gravilog_2025/featuers/authPage/presentation/widgets/text_with_button_widget.dart';
 import 'package:gravilog_2025/featuers/authPage/presentation/widgets/widgets.dart';
 
 import '../../../../core/resources/assets_manager.dart';
@@ -144,6 +145,15 @@ class LoginView extends StatelessWidget {
                   appleOnPressed: () => controller.appleLogin(),
                 ),
               ],
+              const SizedBox(height: 20),
+              SizedBox(
+                height: MediaQuery.of(context).size.height / 6,
+              ),
+              TextWithButtonWidget(
+                buttonAction: () => controller.navigateToSignup(),
+                leadingText: "have_no_account".tr,
+                buttonText: "sign_up_here".tr,
+              ),
             ],
           ),
         ),
