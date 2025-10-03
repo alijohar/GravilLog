@@ -12,9 +12,9 @@ class ColorManager {
   static const Color pinkSherbet = Color(0xFFEF5E9C);
   static const Color royalBlue = Color(0xFF3980FD);
   static const Color azure = Color(0xFF176AFC);
-  static const Color skyBlue = Color(0xFF39B2DA);
+  static const Color skyBlue = Color(0xFFDCE9EF);
   static const Color mintCream = Color(0xFFD3F3EE);
-  static const Color peachyPink = Color(0xFFFED8D7);
+  static const Color peachyPink = Color(0xFFFDE5EF);
 
   // Neutral Colors
   static const Color white = Color(0xFFFFFFFF);
@@ -54,5 +54,5 @@ class ColorManager {
 
   // Gradient Colors
   static const Color gradientStart = Color(0xFFFDE5EF); // Light pink
-  static const Color gradientEnd = Color(0xFFDCE9EF);   // Light blue
+  static const Color gradientEnd = Color(0xFFDCE9EF); // Light blue
 }
