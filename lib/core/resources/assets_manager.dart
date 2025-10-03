@@ -7,22 +7,27 @@ class ImageAssets {
   // Logo Images
   static const String splashLogoAr = "$imagePath/GraviLog-Ar-tran1.png";
   static const String splashLogoEn = "$imagePath/GraviLog-En-tran1.png";
-  
+
   // Onboarding Images
   static const String onboard1 = "$imagePath/onboard1.png";
   static const String onboard2 = "$imagePath/onboard2.png";
   static const String onboard3 = "$imagePath/onboard3.png";
-  
+
   // Status Images
   static const String pregnant = "$imagePath/pregnant.png";
   static const String notPregnant = "$imagePath/not_pregnant.png";
-  static const String pregnantNotPregnant = "$imagePath/pregnent_notpregnent.png";
+  //language icon
+  static const String pregnantIcon = "$imagePath/pregnant_icon.png";
+
+  static const String pregnantNotPregnant =
+      "$imagePath/pregnent_notpregnent.png";
 }
 
 class IconAssets {
   // Social Media Icons
   static const String googleIcon = "$iconPath/ic_google.svg";
   static const String facebookIcon = "$iconPath/ic_facebook.svg";
+  static const String dropDownIcon = "$iconPath/ic_drop_down.svg";
 }
 
 class JsonAssets {
