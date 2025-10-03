@@ -1,57 +1,80 @@
-import 'dart:convert';
-
-import 'package:data_connection_checker_tv/data_connection_checker.dart';
-import 'package:flutter/material.dart';
+import 'dart:async';
+import 'dart:developer';
 import 'package:get/get.dart';
+import 'package:gravilog_2025/core/resources/constants_manager.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import '../../../../core/local_preferences/local_preferences.dart';
 import '../../../../core/resources/routes_manager.dart';
-import '../../../../main.dart';
 
+enum SplashStates {
+  loggedInCompleted,
+  loggedInButNotCompletedProfile,
+  onBoardingViewedButNotLoggedIn,
+  firstVisit,
+}
 
 class SplashController extends GetxController {
   late LocalPreferences localDataSource;
+  late Timer _timer;
 
+  @override
+  void onInit() async {
+    log("========================");
 
-  Future<void> onInit() async {
     super.onInit();
-    localDataSource = LocalPreferences(
-      await SharedPreferences.getInstance(),
-    );
+    _initLocalData().then((_) => _startDelay());
   }
 
-  checkUserStatus() async {
-    bool isUserLoggedIn = localDataSource.getUser() != null;
+  Future<void> _initLocalData() async {
+    localDataSource = LocalPreferences(await SharedPreferences.getInstance());
+  }
 
+  void _startDelay() {
+    _timer = Timer(
+        const Duration(seconds: AppConstants.splashDelay), checkUserStatus);
+  }
 
-
+  Future<void> checkUserStatus() async {
+    final user = localDataSource.getUser();
+    bool isUserLoggedIn = user != null;
+    SplashStates state;
     if (isUserLoggedIn) {
-      bool isOnCompletedProfile = await localDataSource
-          .isOnCompletedProfile();
-      print("isOnCompletedProfile ${isOnCompletedProfile}");
-      if(isOnCompletedProfile) {
-        // Navigate to the main screen
-        // Get.offAllNamed(Routes.completeProfileRoute);
+      bool isOnCompletedProfile = await localDataSource.isOnCompletedProfile();
 
-      }else{
-        // _loadSavedData();
-
-        // Get.offAllNamed(Routes.mainRoute);
-
-      }
+      state = isOnCompletedProfile
+          ? SplashStates.loggedInCompleted
+          : SplashStates.loggedInButNotCompletedProfile;
     } else {
-      bool isOnBoardingScreenViewed = await localDataSource
-          .isOnBoardingScreenViewed();
-      if (isOnBoardingScreenViewed) {
-        // Navigate to the login screen
-        Get.offAllNamed(Routes.languageRoute);
-
-      } else {
-        // Navigate to the onboarding screen
-        Get.offAllNamed(Routes.languageRoute);
-        // Get.offAllNamed(Routes.onboardingRoute);
-      }
+      final isViewOnBoarding = await localDataSource.isOnBoardingScreenViewed();
+      state = isViewOnBoarding
+          ? SplashStates.onBoardingViewedButNotLoggedIn
+          : SplashStates.firstVisit;
     }
+    log("========================$state");
+
+    switch (state) {
+      case SplashStates.loggedInCompleted:
+        //navigate to home screen
+        // Get.offAllNamed(Routes.mainRoute);
+        break;
+      case SplashStates.loggedInButNotCompletedProfile:
+        //navigate to complete profile screen
+        // Get.offAllNamed(Routes.completeProfileRoute);
+        break;
+      case SplashStates.onBoardingViewedButNotLoggedIn:
+        //navigate to complete login screen
+        // Get.offAllNamed(Routes.loginRoute);
+        break;
+      case SplashStates.firstVisit:
+        Get.offAllNamed(Routes.languageRoute);
+        break;
+    }
+  }
+
+  @override
+  void onClose() {
+    _timer.cancel();
+    super.onClose();
   }
 
   // Future<void> _loadSavedData() async {
