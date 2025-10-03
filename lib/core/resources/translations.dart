@@ -555,7 +555,7 @@ class Translation extends Translations {
           "phone_number": "رقم الهاتف",
           "accept_the": "أوافق على",
           "and": "و",
-          "continue": "متابعة",
+          "continue": "استمرار",
           "login_to_your_account": "سجل الدخول الى حسابك",
           "dont_have_account": "ليس لديك حساب؟",
           "or": "أو",
