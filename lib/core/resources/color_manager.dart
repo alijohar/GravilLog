@@ -8,7 +8,7 @@ class ColorManager {
   static const Color secondary = Color(0xFF5767EB);
 
   // Accent Colors
-  static const Color hotPink = Color(0xFFEF5DA8);
+  static const Color hotPink = Color(0xFFEF5E9C);
   static const Color pinkSherbet = Color(0xFFEF5E9C);
   static const Color royalBlue = Color(0xFF3980FD);
   static const Color azure = Color(0xFF176AFC);
@@ -22,7 +22,7 @@ class ColorManager {
   static const Color transparent = Colors.transparent;
 
   // Grey Scale
-  static const Color darkGrey = Color(0xFF525252);
+  static const Color darkGrey = Color(0xFF6B6C6D);
   static const Color grey = Color(0xFF737477);
   static const Color lightGrey = Color(0xFF9E9E9E);
   static const Color lightGreyShade200 = Color(0xFFEEEEEE);
@@ -43,6 +43,7 @@ class ColorManager {
   static const Color textPrimary = Color(0xFF000201);
   static const Color textSecondary = Color(0xFF545555);
   static const Color textTertiary = Color(0xFF808080);
+
 
   // Snackbar Colors
   static const Color snackbarSuccess = Color(0xFFE9FFF2);
