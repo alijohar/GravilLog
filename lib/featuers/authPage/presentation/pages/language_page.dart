@@ -28,13 +28,13 @@ class LanguageView extends GetView<LanguageController> {
             Text(
               "chooseLanguage".tr,
               style: context.textTheme.displayMedium?.copyWith(
-                  color: ColorManager.hotPink, fontWeight: FontWeight.w700),
+                  color: ColorManager.hotPink, fontWeight: FontWeight.w400),
             ),
             const HeightSpace(8),
             Text(
               "selectLanguage".tr,
               style: context.textTheme.headlineLarge
-                  ?.copyWith(fontWeight: FontWeight.w400),
+                  ?.copyWith(fontWeight: FontWeight.w600),
             ),
             const HeightSpace(24),
             Obx(
@@ -72,16 +72,16 @@ class LanguageView extends GetView<LanguageController> {
                     ),
                   )),
             ),
-            const HeightSpace(40),
+            const HeightSpace(35),
             Text(
               "changeLater".tr,
               style: context.textTheme.headlineLarge?.copyWith(
-                  fontWeight: FontWeight.w400, color: ColorManager.darkGrey),
+                  fontWeight: FontWeight.w500, color: ColorManager.darkGrey),
             ),
-            const HeightSpace(200),
+            const HeightSpace(180),
             AppElevatedButton(
                 onPressed: () {
-                  Get.toNamed('/loginPage');
+                  controller.onContinue();
                 },
                 text: 'continue')
           ]),
