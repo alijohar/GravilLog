@@ -1063,7 +1063,14 @@ class Translation extends Translations {
     "password_restricts":
         "Min 8 Characters, 1 lower case, upper case , one number and one special cahrecter",
     "i_accept_to": "I Accept To",
-    "terms_and_conditions": "Terms & Conditions"
+    "terms_and_conditions": "Terms & Conditions",
+    "send_reset_link": "Send Reset Link",
+    "we_will_send_reset_link": '''No worries  Enter your email below and we’ll
+send you a link to reset it.''',
+    "forget_your_password": "Forget your password?",
+    "check_you_email":"Check your email",
+    "we_sent_reset_link": "We’ve sent a password reset link to your email address. Check your inbox and follow the instructions",
+    "back_to_login": "Back to Login",
   };
   final Map<String, String> _newArTranslations = {
     "sing_in_here": "تسجيل الدخول",
@@ -1073,6 +1080,12 @@ class Translation extends Translations {
     "password_restricts":
         "الحد الأدنى 8 أحرف، حرف صغير واحد، حرف كبير واحد، رقم واحد وحرف خاص واحد",
     "i_accept_to": "اوافق علي",
-    "terms_and_conditions": "الشروط و الأحكام"
+    "terms_and_conditions": "الشروط و الأحكام",
+    "send_reset_link": "أرسل رابط إعادة الضبط",
+    "we_will_send_reset_link": "لا تقلقى، أدخلى بريدك الإلكتروني أدناه وسنرسل لك رابطًا لإعادة تعيينه.",
+    "forget_your_password": "نسيت كلمة المرور؟",
+    "check_you_email": "تحققى من بريدك الإلكتروني",
+    "we_sent_reset_link": "لقد أرسلنا رابط إعادة تعيين كلمة المرور إلى بريدك الإلكتروني. تحققى من بريدك الوارد واتبعى التعليمات.",
+    "back_to_login": "العودة إلى تسجيل الدخول",
   };
 }
