@@ -1065,12 +1065,15 @@ class Translation extends Translations {
     "i_accept_to": "I Accept To",
     "terms_and_conditions": "Terms & Conditions",
     "send_reset_link": "Send Reset Link",
-    "we_will_send_reset_link": '''No worries  Enter your email below and we’ll
-send you a link to reset it.''',
+    "we_will_send_reset_link":
+        '''No worries  Enter your email below and we’ll send you a link to reset it.''',
     "forget_your_password": "Forget your password?",
-    "check_you_email":"Check your email",
-    "we_sent_reset_link": "We’ve sent a password reset link to your email address. Check your inbox and follow the instructions",
+    "check_you_email": "Check your email",
+    "we_sent_reset_link":
+        "We’ve sent a password reset link to your email address. Check your inbox and follow the instructions",
     "back_to_login": "Back to Login",
+    "create_new_password":"Create new password",
+    "must_use_different_password": "Your password must be different from previously used password",
   };
   final Map<String, String> _newArTranslations = {
     "sing_in_here": "تسجيل الدخول",
@@ -1082,10 +1085,14 @@ send you a link to reset it.''',
     "i_accept_to": "اوافق علي",
     "terms_and_conditions": "الشروط و الأحكام",
     "send_reset_link": "أرسل رابط إعادة الضبط",
-    "we_will_send_reset_link": "لا تقلقى، أدخلى بريدك الإلكتروني أدناه وسنرسل لك رابطًا لإعادة تعيينه.",
+    "we_will_send_reset_link":
+        "لا تقلقى، أدخلى بريدك الإلكتروني أدناه وسنرسل لك رابطًا لإعادة تعيينه.",
     "forget_your_password": "نسيت كلمة المرور؟",
     "check_you_email": "تحققى من بريدك الإلكتروني",
-    "we_sent_reset_link": "لقد أرسلنا رابط إعادة تعيين كلمة المرور إلى بريدك الإلكتروني. تحققى من بريدك الوارد واتبعى التعليمات.",
+    "we_sent_reset_link":
+        "لقد أرسلنا رابط إعادة تعيين كلمة المرور إلى بريدك الإلكتروني. تحققى من بريدك الوارد واتبعى التعليمات.",
     "back_to_login": "العودة إلى تسجيل الدخول",
+    "create_new_password": "إنشاء كلمة مرور جديدة",
+    "must_use_different_password": "يجب أن تكون كلمة المرور الخاصة بك مختلفة عن كلمة المرور المستخدمة سابقًا",
   };
 }

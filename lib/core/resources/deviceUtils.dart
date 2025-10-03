@@ -5,6 +5,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:get/get.dart';
 import 'package:gravilog_2025/core/resources/app_theme.dart';
@@ -115,6 +116,7 @@ class Deviceutils {
           required String bodyText,
           required String buttonText,
           bool isDismissible = true,
+          String? leadingSvgImagePath,
           required void Function()? buttonAction}) =>
       showDialog(
           context: context,
@@ -123,13 +125,28 @@ class Deviceutils {
             return AlertDialog(
               shape: const RoundedRectangleBorder(
                   borderRadius: BorderRadius.all(Radius.circular(10))),
-              title: Text(
-                title,
-                textAlign: TextAlign.center,
-                style: context.textStyles.bodyMedium!.copyWith(
-                  color: context.pinkSherbet,
-                  fontWeight: FontWeight.bold,
-                ),
+              title: Column(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  if (leadingSvgImagePath != null) ...[
+                    SvgPicture.asset(
+                      leadingSvgImagePath,
+                      width: 70,
+                      height: 70,
+                    ),
+                    const SizedBox(
+                      height: 10,
+                    ),
+                  ],
+                  Text(
+                    title,
+                    textAlign: TextAlign.center,
+                    style: context.textStyles.bodyMedium!.copyWith(
+                      color: context.pinkSherbet,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                ],
               ),
               content: Text(
                 bodyText,

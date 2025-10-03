@@ -68,6 +68,10 @@ class LoginController extends GetxController {
     Get.toNamed(Routes.forgetPasswordRoute);
   }
 
+  void navigateToResetPassword() {
+    Get.toNamed(Routes.resetPasswordRoute);
+  }
+
   void patientLoginWithEmail() {
     String email = emailController.text.trim();
     String password = passwordController.text.trim();

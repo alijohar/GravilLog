@@ -21,6 +21,9 @@ class ImageAssets {
 
   // auth images
   static const String authLeadingImage = '$imagePath/auth_header_image.png';
+
+  //done
+  static const String doneImage = '$imagePath/done.svg';
 }
 
 class IconAssets {

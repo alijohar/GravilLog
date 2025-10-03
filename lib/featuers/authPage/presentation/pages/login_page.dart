@@ -85,7 +85,7 @@ class LoginView extends StatelessWidget {
                               "forgot_password".tr,
                               style: context.textStyles.labelLarge!.copyWith(
                                   color: context.pinkSherbet,
-                                  fontWeight: FontWeight.w700),
+                                  fontWeight: FontWeight.w700), 
                             ),
                           ),
                         ),
