@@ -7,12 +7,11 @@ import 'package:gravilog_2025/featuers/authPage/presentation/pages/privacy_polic
 import 'package:gravilog_2025/featuers/authPage/presentation/pages/signup_page.dart';
 import 'package:gravilog_2025/featuers/authPage/presentation/pages/terms_of_use_page.dart';
 import 'package:gravilog_2025/featuers/questions/presentation/pages/pregnet_page.dart';
-import 'package:gravilog_2025/featuers/splash/presentation/pages/splash_page.dart';
-
+import 'package:gravilog_2025/featuers/splash/presentation/controllers/splash_controller.dart';
+import 'package:gravilog_2025/featuers/splash/presentation/pages/splash_screen.dart';
 import '../../featuers/authPage/presentation/pages/login_page.dart';
 import '../../featuers/questions/presentation/pages/expect_delivery_page.dart';
 import '../../featuers/questions/presentation/pages/menstrual_period_page.dart';
-
 
 class Routes {
   static const String splashRoute = "/";
@@ -26,41 +25,36 @@ class Routes {
   static const String pregnantQuestionRoute = "/pregnantQuestion";
   static const String menstrualPeriodRoute = "/menstrualPeriod";
   static const String expectDeliveryRoute = "/expectDelivery";
-
-
-
-
-
-
-
-
-
-
-
 }
 
 class RouteGenerator {
   static List<GetPage<dynamic>> getPages() {
     return [
-
-      GetPage(name: Routes.splashRoute, page: () => const SplashView()),
+      GetPage(
+        name: Routes.splashRoute,
+        page: () => const SplashView(),
+        binding: BindingsBuilder(() {
+          Get.put(SplashController());
+        }),
+      ),
       GetPage(name: Routes.loginRoute, page: () => const LoginView()),
       GetPage(name: Routes.languageRoute, page: () => const LanguageView()),
       GetPage(name: Routes.onboardingRoute, page: () => OnboardView()),
       GetPage(name: Routes.signUpRoute, page: () => const SignupView()),
       GetPage(name: Routes.privacyPolicyRoute, page: () => PrivacyPolicyView()),
       GetPage(name: Routes.termsOfUseRoute, page: () => TermsOfUseView()),
-      GetPage(name: Routes.forgetPasswordRoute, page: () => const ForgetPasswordView()),
-      GetPage(name: Routes.pregnantQuestionRoute, page: () => const PregnantQuestionView()),
-      GetPage(name: Routes.menstrualPeriodRoute, page: () => MenstrualPeriodView()),
-      GetPage(name: Routes.expectDeliveryRoute, page: () => ExpectDeliveryView()),
-
-
-
-
+      GetPage(
+          name: Routes.forgetPasswordRoute,
+          page: () => const ForgetPasswordView()),
+      GetPage(
+          name: Routes.pregnantQuestionRoute,
+          page: () => const PregnantQuestionView()),
+      GetPage(
+          name: Routes.menstrualPeriodRoute, page: () => MenstrualPeriodView()),
+      GetPage(
+          name: Routes.expectDeliveryRoute, page: () => ExpectDeliveryView()),
     ];
   }
-
 
   static unDefinedPage() {
     return Scaffold(
