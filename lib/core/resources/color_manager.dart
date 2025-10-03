@@ -40,7 +40,7 @@ class ColorManager {
   static const Color cardBackground = Color(0xFFFFFFFF);
 
   // Text Colors
-  static const Color textPrimary = Color(0xFF000201);
+  static const Color textPrimary = Color(0xFF031117);
   static const Color textSecondary = Color(0xFF545555);
   static const Color textTertiary = Color(0xFF808080);
 
