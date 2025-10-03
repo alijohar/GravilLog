@@ -19,8 +19,6 @@ class SplashController extends GetxController {
 
   @override
   void onInit() async {
-    log("========================");
-
     super.onInit();
     _initLocalData().then((_) => _startDelay());
   }
