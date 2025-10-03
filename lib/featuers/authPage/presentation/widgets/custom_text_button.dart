@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:gravilog_2025/core/resources/app_theme.dart';
 
 class CustomTextButton extends StatelessWidget {
   const CustomTextButton({
@@ -6,14 +7,14 @@ class CustomTextButton extends StatelessWidget {
     required this.btnText,
     this.textUnderLine = true,
     this.fontSize = 10,
-    this.textColor = const Color(0xffFFC436),
+    this.textColor,
     this.icon,
     required this.onPressed,
   });
 
   final String btnText;
   final bool textUnderLine;
-  final Color textColor;
+  final Color? textColor;
   final double fontSize;
   final IconData? icon;
   final void Function()? onPressed;
@@ -38,12 +39,10 @@ class CustomTextButton extends StatelessWidget {
       label: Text(
         ' $btnText',
         style: Theme.of(context).textTheme.labelLarge!.copyWith(
-              color: textColor,
+              color: context.pinkSherbet,
               fontWeight: FontWeight.bold,
               fontSize: fontSize,
-              decoration: textUnderLine ? TextDecoration.underline : null,
-              decorationColor: textColor,
-              decorationThickness: 2,
+              decorationColor: context.pinkSherbet,
             ),
       ),
     );

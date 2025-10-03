@@ -28,45 +28,48 @@ class SignUpBasePage extends StatelessWidget {
           backgroundColor: context.gradientStart,
         ),
         body: SafeArea(
-            child: SingleChildScrollView(
-          padding: const EdgeInsets.symmetric(horizontal: 20),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: [
-              AuthLeadingWidget(
-                label: leadingLabel,
-              ),
-              const SizedBox(
-                height: 20,
-              ),
-              formBody,
-              button,
-              // SSO
-              const SizedBox(height: 20),
-              if (Platform.isAndroid && controller.ssoEnabledAndroid) ...[
-                SSOUi(
-                  googleOnPressed: () => controller.googleSignUp(),
-                  facebookOnPressed: () => controller.facebookSignUp,
+            child: Column(
+          children: [
+            Expanded(
+              child: SingleChildScrollView(
+                padding: const EdgeInsets.symmetric(horizontal: 20),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: [
+                    AuthLeadingWidget(
+                      label: leadingLabel,
+                    ),
+                    const SizedBox(
+                      height: 20,
+                    ),
+                    formBody,
+                    button,
+                    // SSO
+                    const SizedBox(height: 20),
+                    if (Platform.isAndroid && controller.ssoEnabledAndroid) ...[
+                      SSOUi(
+                        googleOnPressed: () => controller.googleSignUp(),
+                        facebookOnPressed: () => controller.facebookSignUp,
+                      ),
+                    ],
+                    if (Platform.isIOS && controller.ssoEnabledIos) ...[
+                      SSOUi(
+                        googleOnPressed: () => controller.googleSignUp(),
+                        facebookOnPressed: () => controller.facebookSignUp,
+                        appleOnPressed: () => controller.appleSignUp(),
+                      ),
+                    ],
+                    const SizedBox(height: 20),
+                  ],
                 ),
-              ],
-              if (Platform.isIOS && controller.ssoEnabledIos) ...[
-                SSOUi(
-                  googleOnPressed: () => controller.googleSignUp(),
-                  facebookOnPressed: () => controller.facebookSignUp,
-                  appleOnPressed: () => controller.appleSignUp(),
-                ),
-              ],
-              const SizedBox(height: 20),
-              SizedBox(
-                height: MediaQuery.of(context).size.height / 6,
               ),
-              TextWithButtonWidget(
-                buttonAction: () => controller.navigateToLogin(),
-                buttonText: "sing_in_here".tr,
-                leadingText: "already_have_an_account".tr,
-              ),
-            ],
-          ),
+            ),
+            TextWithButtonWidget(
+              buttonAction: () => controller.navigateToLogin(),
+              buttonText: "sing_in_here".tr,
+              leadingText: "already_have_an_account".tr,
+            ),
+          ],
         )));
   }
 }

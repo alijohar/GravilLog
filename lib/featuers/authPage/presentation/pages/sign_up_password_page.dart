@@ -1,16 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:gravilog_2025/core/resources/app_theme.dart';
 import 'package:gravilog_2025/featuers/authPage/presentation/pages/sign_up_base_page.dart';
 import 'package:gravilog_2025/featuers/authPage/presentation/widgets/auth_elevated_button.dart';
-import 'package:gravilog_2025/featuers/authPage/presentation/widgets/custom_country_code_picker.dart';
+import 'package:gravilog_2025/featuers/authPage/presentation/widgets/custom_text_button.dart';
 import '../../../../core/resources/assets_manager.dart';
 
 import '../controllers/signup_controller.dart';
+import '../widgets/check_box_tile/check_box_tile.dart';
 import '../widgets/form_text_field/custom_text_fiels.dart';
 import '../widgets/form_text_field/text_field_icon.dart';
 
-class SignupView extends StatelessWidget {
-  const SignupView({super.key});
+class SignupPasswordsView extends StatelessWidget {
+  const SignupPasswordsView({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -22,56 +24,72 @@ class SignupView extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            CustomTextFormField(
-              controller: controller.nameController,
-              hintText: "full_name".tr,
-              keyboardType: TextInputType.name,
-              prefixIcon:
-                  const TextFieldIconImage(assetImage: IconAssets.userIcon),
-              onChanged: (value) => controller.hasName.value = value.isNotEmpty,
-            ),
+            Obx(() => CustomTextFormField(
+                  controller: controller.passwordController,
+                  hintText: "password".tr,
+                  obscureText: controller.isObscured.value,
+                  prefixIcon:
+                      const TextFieldIconImage(assetImage: IconAssets.lockIcon),
+                  suffixIcon: GestureDetector(
+                    onTap: () => controller.isObscured.toggle(),
+                    child: TextFieldIconImage(
+                      assetImage: controller.isObscured.value
+                          ? IconAssets.eyeIcon
+                          : IconAssets.eyeSlashIcon,
+                    ),
+                  ),
+                  onChanged: (value) =>
+                      controller.hasPassword.value = value.isNotEmpty,
+                )),
+            const SizedBox(height: 10),
+            Text('password_restricts'.tr),
             const SizedBox(height: 16),
-            CustomTextFormField(
-              controller: controller.emailController,
-              hintText: "email".tr,
-              keyboardType: TextInputType.emailAddress,
-              prefixIcon:
-                  const TextFieldIconImage(assetImage: IconAssets.mailIcon),
-              onChanged: (value) =>
-                  controller.hasEmail.value = value.isNotEmpty,
-            ),
-            const SizedBox(height: 16),
+            Obx(() => CustomTextFormField(
+                  controller: controller.confirmPasswordController,
+                  hintText: "confirm_password".tr,
+                  obscureText: controller.isObscured.value,
+                  prefixIcon:
+                      const TextFieldIconImage(assetImage: IconAssets.lockIcon),
+                  suffixIcon: GestureDetector(
+                    onTap: () => controller.isObscured.toggle(),
+                    child: TextFieldIconImage(
+                      assetImage: controller.isObscured.value
+                          ? IconAssets.eyeIcon
+                          : IconAssets.eyeSlashIcon,
+                    ),
+                  ),
+                  onChanged: (value) =>
+                      controller.passwordConfirmed.value = value.isNotEmpty,
+                )),
+            const SizedBox(height: 5),
             Row(
+              mainAxisAlignment: MainAxisAlignment.start,
               children: [
-                Expanded(
-                  flex: 1,
-                  child: CustomCountryCodePicker(onChanged: (country) {}),
+                CircularCheckboxTile(
+                  onChanged: (value) => controller.isChecked.value = value,
+                  label: "i_accept_to".tr,
+                  
                 ),
-                const SizedBox(
-                  width: 10,
-                ),
-                Expanded(
-                    flex: 3,
-                    child: CustomTextFormField(
-                        hintText: 'phone_number'.tr,
-                        keyboardType: TextInputType.phone,
-                        onChanged: (value) {
-                          controller.hasPhone.value = value.isNotEmpty;
-                        },
-                        controller: controller.phoneController)),
+                CustomTextButton(
+                    btnText: 'terms_and_conditions'.tr,
+                    fontSize: 14,
+                    onPressed: () => controller.navigateToTermsOfUseView),
               ],
             ),
-            const SizedBox(height: 16),
+            const SizedBox(height: 20),
           ],
         ),
       ),
       button: Obx(() => AuthElevatedButton(
-          onPressed: controller.hasEmail.value &&
-                  controller.hasName.value &&
-                  controller.hasPhone.value
-              ? () {}
-              : null,
-          child: Text("sign_up_now".tr))),
+          onPressed: controller.canCreateAccount ? () {} : null,
+          child: Text(
+            "sign_up_now".tr,
+            style: context.textStyles.bodyLarge!.copyWith(
+                color: controller.canCreateAccount
+                    ? context.surfaceColor
+                    : context.pinkSherbet,
+                fontWeight: FontWeight.bold),
+          ))),
       controller: controller,
     );
   }

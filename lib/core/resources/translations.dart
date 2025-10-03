@@ -1059,10 +1059,20 @@ class Translation extends Translations {
     "sing_in_here": "Sign In",
     "have_no_account": "Don't have an account?",
     "sign_up_here": "Sign Up",
+    "confirm_password": "Confirm Password",
+    "password_restricts":
+        "Min 8 Characters, 1 lower case, upper case , one number and one special cahrecter",
+    "i_accept_to": "I Accept To",
+    "terms_and_conditions": "Terms & Conditions"
   };
   final Map<String, String> _newArTranslations = {
     "sing_in_here": "تسجيل الدخول",
     "have_no_account": "ليس لديك حساب؟",
     "sign_up_here": "سجلي الان",
+    "confirm_password": "تأكيد كلمة المرور",
+    "password_restricts":
+        "الحد الأدنى 8 أحرف، حرف صغير واحد، حرف كبير واحد، رقم واحد وحرف خاص واحد",
+    "i_accept_to": "اوافق علي",
+    "terms_and_conditions": "الشروط و الأحكام"
   };
 }

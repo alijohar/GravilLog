@@ -23,18 +23,25 @@ class SignupController extends GetxController {
   var hasName = false.obs;
   var hasPhone = false.obs;
   var hasPassword = false.obs;
+  var passwordConfirmed = false.obs;
   var loading = false.obs;
   var isChecked = false.obs;
+  bool get canMoveToNextPage =>
+      hasEmail.value && hasName.value && hasPhone.value;
 
+  bool get canCreateAccount => passwordAccepted && isChecked.value;
+
+  bool get passwordAccepted => hasPassword.value && passwordConfirmed.value;
   late AuthRepositoryImpl authRepositoryImpl;
 
   late LocalPreferences localDataSource;
 
-  TextEditingController emailController = TextEditingController();
-  TextEditingController nameController = TextEditingController();
-  TextEditingController passwordController = TextEditingController();
-  TextEditingController countryCodeController = TextEditingController();
-  TextEditingController phoneController = TextEditingController();
+  final emailController = TextEditingController();
+  final nameController = TextEditingController();
+  final passwordController = TextEditingController();
+  final confirmPasswordController = TextEditingController();
+  final countryCodeController = TextEditingController();
+  final phoneController = TextEditingController();
 
   bool ssoEnabledAndroid = true;
   bool ssoEnabledIos = true;
@@ -64,6 +71,10 @@ class SignupController extends GetxController {
 
   navigateToLogin() {
     Get.toNamed(Routes.loginRoute);
+  }
+
+  navigateToSignUpPasswords() {
+    Get.toNamed(Routes.signUpPasswordsRoute);
   }
 
   void navigateToForgotPassword() {

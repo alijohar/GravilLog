@@ -36,7 +36,7 @@ class CircularCheckboxTile extends StatelessWidget {
                       : BoxBorder.all(),
                   color: _checkBoxTileController.checked.value
                       ? context.pinkSherbet
-                      : Colors.grey.shade300,
+                      : Colors.transparent,
                 ),
                 child: Icon(
                   Icons.check,

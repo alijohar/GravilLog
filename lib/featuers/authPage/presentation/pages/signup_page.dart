@@ -67,18 +67,15 @@ class SignupView extends StatelessWidget {
           ),
         ),
         button: Obx(() => AuthElevatedButton(
-            onPressed: controller.hasEmail.value &&
-                    controller.hasName.value &&
-                    controller.hasPhone.value
-                ? () {}
+            onPressed: controller.canMoveToNextPage
+                ? () => controller.navigateToSignUpPasswords()
                 : null,
             child: Text(
               "sign_up_now".tr,
               style: context.textStyles.bodyLarge!.copyWith(
-                  color:
-                      controller.hasEmail.value && controller.hasPassword.value
-                          ? context.surfaceColor
-                          : context.pinkSherbet,
+                  color: controller.canMoveToNextPage
+                      ? context.surfaceColor
+                      : context.pinkSherbet,
                   fontWeight: FontWeight.bold),
             ))),
         controller: controller);
