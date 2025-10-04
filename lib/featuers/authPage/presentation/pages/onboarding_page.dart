@@ -1,11 +1,10 @@
 import 'package:carousel_slider/carousel_slider.dart';
-import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 import 'package:gravilog_2025/core/resources/app_theme.dart';
 import 'package:gravilog_2025/featuers/authPage/presentation/controllers/onboarding_controller.dart';
-import 'package:sizer/sizer.dart';
-import 'package:url_launcher/url_launcher.dart';
 
 import '../../../../core/resources/color_manager.dart';
 
@@ -14,197 +13,218 @@ class OnboardView extends StatelessWidget {
 
   final OnboardingController onboardingController = Get.find();
 
-
-
   @override
   Widget build(BuildContext context) {
     return context.gradientScaffold(
+      // arrow back button in app bar
+      appBar: AppBar(
+        leading: IconButton(
+          padding: EdgeInsets.symmetric(horizontal: 20.w, vertical: 16.h),
+          icon: Icon(
+            Icons.arrow_back,
+            color: context.textPrimary,
+            size: 24.sp,
+          ),
+          onPressed: () => Get.back(),
+        ),
+      ),
       extendBody: true,
       extendBodyBehindAppBar: true,
       body: SafeArea(
-        child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 20.0),
-          child: Column(
-            children: [
-              Obx(() => Image.asset(
-                onboardingController.onboardImages[onboardingController.currentIndex.value],
-                width: double.infinity,
-                height: MediaQuery.of(context).size.height / 4,
-                fit: BoxFit.contain,
-              )),
-
-            _buildIndicator(context),
-
-              Expanded(
-                child: CarouselSlider.builder(
-                  itemCount:  onboardingController.onboardImages.length,
-                  options: CarouselOptions(
-                    enlargeCenterPage: false,
-                    enableInfiniteScroll: true,
-                    height: double.infinity,
-                    autoPlay: true,
-                    autoPlayAnimationDuration: const Duration(milliseconds: 800),
-                    viewportFraction: 1,
-                    onPageChanged: (index, reason) {
-                      onboardingController.currentIndex.value = index;
-                    },
+        child: Column(
+          // get all available width
+          crossAxisAlignment: CrossAxisAlignment.stretch,
+          // space between indicator and image and bottom section
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            const Spacer(),
+            Obx(() => Container(
+                  // margin to apply figma design
+                  margin:
+                      EdgeInsets.symmetric(horizontal: 20.w, vertical: 32.h),
+                  child: SvgPicture.asset(
+                    onboardingController
+                        .onboardImages[onboardingController.currentIndex.value],
+                    width: 1.sw,
+                    // this height to show full image without overflow
+                    height: 333.h,
+                    clipBehavior: Clip.none,
+                    fit: BoxFit.contain,
                   ),
-                  itemBuilder: (context, index, realIndex) {
-                    return _buildOnboardingContent(index, context);
-                  },
+                )),
+            // build indicator
+            _buildIndicator(context),
+            // save space
+            SizedBox(height: 14.h),
+            // bottom section container and decoration
+            Container(
+              width: 1.sw,
+              height: 202.h,
+              padding: EdgeInsets.symmetric(horizontal: 20.w, vertical: 16.h),
+              decoration: BoxDecoration(
+                color: ColorManager.white,
+                borderRadius: BorderRadius.only(
+                  topLeft: Radius.circular(16.r),
+                  topRight: Radius.circular(16.r),
                 ),
               ),
-            ],
-          ),
+              // bottom section with onboarding text and continue button
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                crossAxisAlignment: CrossAxisAlignment.stretch,
+                children: [
+                  // build carousel slider for onboarding text as Expanded to take all available space
+                  Expanded(
+                    child: CarouselSlider.builder(
+                      itemCount: onboardingController.onboardImages.length,
+                      options: CarouselOptions(
+                        enlargeCenterPage: false,
+                        enableInfiniteScroll: true,
+                        autoPlay: true,
+                        autoPlayAnimationDuration:
+                            const Duration(milliseconds: 800),
+                        viewportFraction: 1,
+                        onPageChanged: (index, reason) {
+                          onboardingController.currentIndex.value = index;
+                        },
+                      ),
+                      itemBuilder: (context, index, realIndex) {
+                        // to build onboarding text based on index and make it Slidable
+                        return _buildOnboardingTextSwitching(index, context);
+                      },
+                    ),
+                  ),
+                  // save space
+                  SizedBox(height: 24.h),
+                  // build continue button stabled at bottom
+                  ElevatedButton(
+                    onPressed: () {
+                      onboardingController.localDataSource
+                          .setOnBoardingScreenViewed();
+                      onboardingController.navigateToLogin();
+                    },
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: ColorManager.pinkSherbet,
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(8.r),
+                      ),
+                      minimumSize: Size(1.sw, 48.h),
+                    ),
+                    child: Text(
+                      "continue".tr,
+                      style: context.textStyles.bodyMedium
+                          ?.copyWith(color: context.onPrimaryColor),
+                    ),
+                  ),
+                ],
+              ),
+            ),
+          ],
         ),
       ),
     );
   }
 
-  Widget _buildOnboardingContent(int index, BuildContext context) {
-    final model = onboardingController; // controller replaces ViewModel
+// build onboarding text based on index
+  Widget _buildOnboardingTextSwitching(int index, BuildContext context) {
+    //final model = onboardingController; // controller replaces ViewModel
     switch (index) {
       case 0:
-        return _buildPage(
+        return _buildOnboardingText(
           context: context,
           image: onboardingController.onboardImages[0],
           title: "onboard1_title".tr,
-          description: RichText(
-            text: TextSpan(
-              style: context.textStyles.bodyMedium,
-              children: [
-                TextSpan(text: "onboard1_description".tr),
-                TextSpan(
-                  text: "with_gravilog_we_turn_pregnancy_best_months".tr,
-                  style: context.textStyles.bodyMedium?.copyWith(color: context.royalBlue),
-                ),
-              ],
-            ),
-          ),
+          description: _richTextBulider(context, "onboard1_description"),
         );
       case 1:
-        return _buildPage(
+        return _buildOnboardingText(
           context: context,
           image: onboardingController.onboardImages[1],
           title: "onboard2_title".tr,
-          description: RichText(
-            text: TextSpan(
-              style: context.textStyles.bodyMedium,
-              children: [
-                TextSpan(text: "onboard2_description".tr),
-              ],
-            ),
-          ),
+          description: _richTextBulider(context, "onboard2_description"),
         );
       case 2:
-        const url = 'www.gravilog.com';
-        return _buildPage(
+        return _buildOnboardingText(
           context: context,
           image: onboardingController.onboardImages[2],
           title: "onboard3_title".tr,
-          description: RichText(
-            text: TextSpan(
-              style: context.textStyles.bodyMedium,
-              children: [
-                TextSpan(text: "${"onboard3_description".tr}\t"),
-                TextSpan(
-                  text: url,
-                  style: context.textStyles.bodyMedium?.copyWith(color: context.royalBlue),
-                  recognizer: TapGestureRecognizer()
-                    ..onTap = () => launch('https://$url'),
-                ),
-              ],
-            ),
-          ),
-          showButtons: true,
+          description: _richTextBulider(context, "onboard3_description"),
         );
       default:
         return Container();
     }
   }
 
-  Widget _buildPage({
+// build rich text for description
+  RichText _richTextBulider(BuildContext context, String descriptionKey) {
+    return RichText(
+      textAlign: TextAlign.center,
+      softWrap: true,
+      text: TextSpan(
+        style: context.textStyles.bodyMedium,
+        children: [
+          TextSpan(text: descriptionKey.tr),
+        ],
+      ),
+    );
+  }
+
+// Build onboarding text widget
+  Widget _buildOnboardingText({
     required BuildContext context,
     required String image,
     required String title,
     required RichText description,
-    bool showButtons = false,
   }) {
     return Column(
       mainAxisAlignment: MainAxisAlignment.start,
       crossAxisAlignment: CrossAxisAlignment.stretch,
-      mainAxisSize: MainAxisSize.max,
+      mainAxisSize: MainAxisSize.min,
       children: [
         Text(
-         title,
-          style: context.textStyles.headlineLarge?.copyWith(color: context.hotPink),
+          title,
+          style: context.textStyles.headlineLarge
+              ?.copyWith(color: context.hotPink),
           textAlign: TextAlign.center,
         ),
-        const SizedBox(height: 4),
+        SizedBox(height: 8.h),
         description,
-        if (showButtons) ...[
-          const SizedBox(height: 16),
-          _buildButtons(context),
-        ],
-      ],
-    );
-  }
-
-  Widget _buildButtons(BuildContext context) {
-    return Column(
-      mainAxisAlignment: MainAxisAlignment.end,
-      crossAxisAlignment: CrossAxisAlignment.stretch,
-      children: [
-        ElevatedButton(
-          onPressed: () => onboardingController.navigateToLogin(),
-          style: ElevatedButton.styleFrom(
-            backgroundColor: ColorManager.pinkSherbet,
-            shape: const BeveledRectangleBorder(),
-            minimumSize: const Size(double.infinity, 50),
-          ),
-          child: Text(
-            "sign_in".tr,
-            style: context.textStyles.bodyMedium?.copyWith(color: context.onPrimaryColor),
-          ),
-        ),
-        const SizedBox(height: 12),
-        ElevatedButton(
-          onPressed: () => onboardingController.navigateToSignup(),
-          style: ElevatedButton.styleFrom(
-            backgroundColor: context.surfaceColor,
-            shape: BeveledRectangleBorder(
-              side: BorderSide(color: context.pinkSherbet, width: 0.5),
-            ),
-            minimumSize: const Size(double.infinity, 50),
-          ),
-          child: Text(
-            "create_new_account".tr,
-            style: context.textStyles.bodyMedium?.copyWith(color: context.pinkSherbet),
-          ),
-        ),
       ],
     );
   }
 
   Widget _buildIndicator(BuildContext context) {
     return Obx(() => Row(
-      mainAxisAlignment: MainAxisAlignment.center,
-      children: onboardingController.onboardImages.asMap().entries.map((entry) {
-        return Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 1.0),
-          child: Container(
-            width: 8.0,
-            height: 8.0,
-            margin: const EdgeInsets.symmetric(horizontal: 2.0),
-            decoration: BoxDecoration(
-              shape: BoxShape.circle,
-              color: onboardingController.currentIndex.value == entry.key
-                  ? context.secondaryColor
-                  : context.onSurfaceColor.withOpacity(0.10),
-            ),
-          ),
-        );
-      }).toList(),
-    ));
+          mainAxisAlignment: MainAxisAlignment.center,
+          children:
+              onboardingController.onboardImages.asMap().entries.map((entry) {
+            return Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 1.0),
+              child: Container(
+                // change width and shape based on current index
+                width: onboardingController.currentIndex.value == entry.key
+                    ? 32.0
+                    : 8.0,
+                height: 8.0,
+                margin: const EdgeInsets.symmetric(horizontal: 2.0),
+                decoration: BoxDecoration(
+                  // change shape based on current index
+                  shape: onboardingController.currentIndex.value == entry.key
+                      ? BoxShape.rectangle
+                      : BoxShape.circle,
+                  // change border radius based on current index
+                  borderRadius:
+                      onboardingController.currentIndex.value == entry.key
+                          ? BorderRadius.circular(8.r)
+                          : null,
+                  // change color based on current index
+                  color: onboardingController.currentIndex.value == entry.key
+                      ? ColorManager.pinkSherbet
+                      : ColorManager.white,
+                ),
+              ),
+            );
+          }).toList(),
+        ));
   }
 }
