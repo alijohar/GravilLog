@@ -40,7 +40,8 @@ dependencies:
   data_connection_checker_tv:
   get: ^4.6.6
   pretty_dio_logger:
-  flutter_svg: ^2.0.10+1
+  ## to support svg images view in the app
+  flutter_svg: ^2.2.0
   json_serializable: ^6.1.4
   permission_handler: ^11.3.1
   device_info_plus: ^11.1.0
@@ -54,6 +55,8 @@ dependencies:
   date_picker_plus: ^4.2.0
   dropdown_button2: ^2.3.9
   intl: ^0.19.0
+  ## to support responsive design
+  flutter_screenutil: ^5.9.3
 
 
 
