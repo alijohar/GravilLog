@@ -1,6 +1,5 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 import 'package:gravilog_2025/core/resources/app_theme.dart';
@@ -31,8 +30,13 @@ class OnboardView extends StatelessWidget {
             ),
             // Carousel slider for SlidableContent and support fill Screen.
             // to build onboarding text based on index and make it Slidable
-            _sliderBuilder((index) =>
-                Positioned.fill(child: _slidableContant(context, index))),
+            _sliderBuilder(
+                (index) => Positioned.fill(
+                        child: _slidableContant(
+                      context,
+                      index,
+                    )),
+                context),
           ],
         ),
       ),
@@ -41,7 +45,7 @@ class OnboardView extends StatelessWidget {
       // Continue button at the bottom center and Stable .
       floatingActionButton: Container(
         // margin to apply figma design
-        margin: EdgeInsets.symmetric(horizontal: 20.w, vertical: 24.h),
+        margin: const EdgeInsets.symmetric(horizontal: 20, vertical: 24),
         child: _continueButton(context),
       ),
     );
@@ -50,12 +54,11 @@ class OnboardView extends StatelessWidget {
   // back button with arrow style and action
   IconButton _backButtonWithArrow(BuildContext context) {
     return IconButton(
-      
-      padding: EdgeInsets.symmetric(horizontal: 20.w),
+      padding: const EdgeInsets.symmetric(horizontal: 20),
       icon: Icon(
         Icons.arrow_back,
         color: context.textPrimary,
-        size: 24.sp,
+        size: 24,
       ),
       onPressed: () => Get.back(),
     );
@@ -66,33 +69,37 @@ class OnboardView extends StatelessWidget {
     return Column(
       children: [
         const Spacer(),
-        SizedBox(height: 32.h),
+        const SizedBox(height: 32),
         _buildIndicator(context),
-        SizedBox(height: 14.h),
+        const SizedBox(height: 14),
         Container(
-          width: 1.sw,
-          height: 202.h,
-          // padding: EdgeInsets.symmetric(horizontal: 20.w, vertical: 16.h),
-          decoration: BoxDecoration(
+          width: context.width,
+          height: 202,
+          padding: const EdgeInsets.symmetric(horizontal: 22, vertical: 24),
+          // margin to apply figma design
+          decoration: const BoxDecoration(
             color: ColorManager.white,
             borderRadius: BorderRadius.only(
-              topLeft: Radius.circular(16.r),
-              topRight: Radius.circular(16.r),
+              topLeft: Radius.circular(16),
+              topRight: Radius.circular(16),
             ),
           ),
+          child: Obx(() => _buildOnboardingTextSwitching(
+              onboardingController.currentIndex.value, context)),
         ),
       ],
     );
   }
 
-  CarouselSlider _sliderBuilder(Widget Function(int index) contant) {
+  CarouselSlider _sliderBuilder(
+      Widget Function(int index) contant, BuildContext context) {
     return CarouselSlider.builder(
       itemCount: onboardingController.onboardImages.length,
       options: CarouselOptions(
         enlargeCenterPage: true,
         enableInfiniteScroll: true,
         autoPlay: true,
-        height: 1.sh,
+        height: context.height,
         autoPlayCurve: Curves.elasticInOut,
         autoPlayAnimationDuration: const Duration(milliseconds: 500),
         viewportFraction: 1,
@@ -117,9 +124,9 @@ class OnboardView extends StatelessWidget {
       style: ElevatedButton.styleFrom(
         backgroundColor: ColorManager.pinkSherbet,
         shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(8.r),
+          borderRadius: BorderRadius.circular(8),
         ),
-        minimumSize: Size(1.sw, 48.h),
+        minimumSize: Size(context.width, 48),
       ),
       child: Text(
         "continue".tr,
@@ -142,30 +149,32 @@ class OnboardView extends StatelessWidget {
         // image section with Obx to update image based on current index
         Container(
           // margin to apply figma design
-          margin: EdgeInsets.symmetric(horizontal: 20.w),
+          margin: const EdgeInsets.symmetric(horizontal: 20),
           child: SvgPicture.asset(
             // image is based on current index
             onboardingController.onboardImages[index],
-            width: 1.sw,
+            width: context.width,
             // this height to show full image without overflow
-            height: 333.h,
+            height: 333,
             clipBehavior: Clip.none,
             fit: BoxFit.contain,
           ),
         ),
 
         // space between image and texts
-        SizedBox(height: 78.h),
+        const SizedBox(height: 78),
         // space between texts and bottom section.
-        SizedBox(height: 24.h),
+        /*
+        const SizedBox(height: 24),
         // bottom section texts content with margin
         // to support Slidable Content
         Container(
-            margin: EdgeInsets.symmetric(
-              horizontal: 20.w,
+            width: context.width,
+            margin: const EdgeInsets.symmetric(
+              horizontal: 20,
             ),
             // texts section with Obx to update texts based on current index.
-            child: _buildOnboardingTextSwitching(index, context)),
+            child: ),*/
         // save space for bottom section
         const Spacer(),
       ],
@@ -234,7 +243,7 @@ class OnboardView extends StatelessWidget {
               ?.copyWith(color: context.hotPink),
           textAlign: TextAlign.center,
         ),
-        SizedBox(height: 8.h),
+        const SizedBox(height: 8),
         description,
       ],
     );
@@ -262,7 +271,7 @@ class OnboardView extends StatelessWidget {
                   // change border radius based on current index
                   borderRadius:
                       onboardingController.currentIndex.value == entry.key
-                          ? BorderRadius.circular(8.r)
+                          ? BorderRadius.circular(8)
                           : null,
                   // change color based on current index
                   color: onboardingController.currentIndex.value == entry.key
