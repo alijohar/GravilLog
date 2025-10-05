@@ -18,110 +18,157 @@ class OnboardView extends StatelessWidget {
     return context.gradientScaffold(
       // arrow back button in app bar
       appBar: AppBar(
-        leading: IconButton(
-          padding: EdgeInsets.symmetric(horizontal: 20.w, vertical: 16.h),
-          icon: Icon(
-            Icons.arrow_back,
-            color: context.textPrimary,
-            size: 24.sp,
-          ),
-          onPressed: () => Get.back(),
-        ),
+        leading: _backButtonWithArrow(context),
       ),
       extendBody: true,
       extendBodyBehindAppBar: true,
       body: SafeArea(
-        child: Column(
-          // get all available width
-          crossAxisAlignment: CrossAxisAlignment.stretch,
-          // space between indicator and image and bottom section
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        child: Stack(
           children: [
-            const Spacer(),
-            Obx(() => Container(
-                  // margin to apply figma design
-                  margin:
-                      EdgeInsets.symmetric(horizontal: 20.w, vertical: 32.h),
-                  child: SvgPicture.asset(
-                    onboardingController
-                        .onboardImages[onboardingController.currentIndex.value],
-                    width: 1.sw,
-                    // this height to show full image without overflow
-                    height: 333.h,
-                    clipBehavior: Clip.none,
-                    fit: BoxFit.contain,
-                  ),
-                )),
-            // build indicator
-            _buildIndicator(context),
-            // save space
-            SizedBox(height: 14.h),
-            // bottom section container and decoration
-            Container(
-              width: 1.sw,
-              height: 202.h,
-              padding: EdgeInsets.symmetric(horizontal: 20.w, vertical: 16.h),
-              decoration: BoxDecoration(
-                color: ColorManager.white,
-                borderRadius: BorderRadius.only(
-                  topLeft: Radius.circular(16.r),
-                  topRight: Radius.circular(16.r),
-                ),
-              ),
-              // bottom section with onboarding text and continue button
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                crossAxisAlignment: CrossAxisAlignment.stretch,
-                children: [
-                  // build carousel slider for onboarding text as Expanded to take all available space
-                  Expanded(
-                    child: CarouselSlider.builder(
-                      itemCount: onboardingController.onboardImages.length,
-                      options: CarouselOptions(
-                        enlargeCenterPage: false,
-                        enableInfiniteScroll: true,
-                        autoPlay: true,
-                        autoPlayAnimationDuration:
-                            const Duration(milliseconds: 800),
-                        viewportFraction: 1,
-                        onPageChanged: (index, reason) {
-                          onboardingController.currentIndex.value = index;
-                        },
-                      ),
-                      itemBuilder: (context, index, realIndex) {
-                        // to build onboarding text based on index and make it Slidable
-                        return _buildOnboardingTextSwitching(index, context);
-                      },
-                    ),
-                  ),
-                  // save space
-                  SizedBox(height: 24.h),
-                  // build continue button stabled at bottom
-                  ElevatedButton(
-                    onPressed: () {
-                      onboardingController.localDataSource
-                          .setOnBoardingScreenViewed();
-                      onboardingController.navigateToLogin();
-                    },
-                    style: ElevatedButton.styleFrom(
-                      backgroundColor: ColorManager.pinkSherbet,
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(8.r),
-                      ),
-                      minimumSize: Size(1.sw, 48.h),
-                    ),
-                    child: Text(
-                      "continue".tr,
-                      style: context.textStyles.bodyMedium
-                          ?.copyWith(color: context.onPrimaryColor),
-                    ),
-                  ),
-                ],
-              ),
+            // stable bottom section with indicator .
+            Positioned.fill(
+              child: _stableContant(context),
             ),
+            // Carousel slider for SlidableContent and support fill Screen.
+            // to build onboarding text based on index and make it Slidable
+            _sliderBuilder((index) =>
+                Positioned.fill(child: _slidableContant(context, index))),
           ],
         ),
       ),
+      // floating action button location to center docked
+      floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
+      // Continue button at the bottom center and Stable .
+      floatingActionButton: Container(
+        // margin to apply figma design
+        margin: EdgeInsets.symmetric(horizontal: 20.w, vertical: 24.h),
+        child: _continueButton(context),
+      ),
+    );
+  }
+
+  // back button with arrow style and action
+  IconButton _backButtonWithArrow(BuildContext context) {
+    return IconButton(
+      
+      padding: EdgeInsets.symmetric(horizontal: 20.w),
+      icon: Icon(
+        Icons.arrow_back,
+        color: context.textPrimary,
+        size: 24.sp,
+      ),
+      onPressed: () => Get.back(),
+    );
+  }
+
+  // stable content builder
+  Column _stableContant(BuildContext context) {
+    return Column(
+      children: [
+        const Spacer(),
+        SizedBox(height: 32.h),
+        _buildIndicator(context),
+        SizedBox(height: 14.h),
+        Container(
+          width: 1.sw,
+          height: 202.h,
+          // padding: EdgeInsets.symmetric(horizontal: 20.w, vertical: 16.h),
+          decoration: BoxDecoration(
+            color: ColorManager.white,
+            borderRadius: BorderRadius.only(
+              topLeft: Radius.circular(16.r),
+              topRight: Radius.circular(16.r),
+            ),
+          ),
+        ),
+      ],
+    );
+  }
+
+  CarouselSlider _sliderBuilder(Widget Function(int index) contant) {
+    return CarouselSlider.builder(
+      itemCount: onboardingController.onboardImages.length,
+      options: CarouselOptions(
+        enlargeCenterPage: true,
+        enableInfiniteScroll: true,
+        autoPlay: true,
+        height: 1.sh,
+        autoPlayCurve: Curves.elasticInOut,
+        autoPlayAnimationDuration: const Duration(milliseconds: 500),
+        viewportFraction: 1,
+        onPageChanged: (index, reason) {
+          onboardingController.currentIndex.value = index;
+        },
+      ),
+      itemBuilder: (context, index, realIndex) {
+        // return contant based on index
+        return contant(index);
+      },
+    );
+  }
+
+  // Continue button Builder with style and action.
+  ElevatedButton _continueButton(BuildContext context) {
+    return ElevatedButton(
+      onPressed: () {
+        onboardingController.localDataSource.setOnBoardingScreenViewed();
+        onboardingController.navigateToLogin();
+      },
+      style: ElevatedButton.styleFrom(
+        backgroundColor: ColorManager.pinkSherbet,
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(8.r),
+        ),
+        minimumSize: Size(1.sw, 48.h),
+      ),
+      child: Text(
+        "continue".tr,
+        style: context.textStyles.bodyMedium
+            ?.copyWith(color: context.onPrimaryColor),
+      ),
+    );
+  }
+
+  // slidable content builder
+  /// return Column with image and texts.
+  /// image is based on current index.
+  /// texts are based on current index.
+  Column _slidableContant(BuildContext context, int index) {
+    return Column(
+      children: [
+        // save space for app bar
+        const Spacer(),
+        // onboarding image section supporting Slidable Content
+        // image section with Obx to update image based on current index
+        Container(
+          // margin to apply figma design
+          margin: EdgeInsets.symmetric(horizontal: 20.w),
+          child: SvgPicture.asset(
+            // image is based on current index
+            onboardingController.onboardImages[index],
+            width: 1.sw,
+            // this height to show full image without overflow
+            height: 333.h,
+            clipBehavior: Clip.none,
+            fit: BoxFit.contain,
+          ),
+        ),
+
+        // space between image and texts
+        SizedBox(height: 78.h),
+        // space between texts and bottom section.
+        SizedBox(height: 24.h),
+        // bottom section texts content with margin
+        // to support Slidable Content
+        Container(
+            margin: EdgeInsets.symmetric(
+              horizontal: 20.w,
+            ),
+            // texts section with Obx to update texts based on current index.
+            child: _buildOnboardingTextSwitching(index, context)),
+        // save space for bottom section
+        const Spacer(),
+      ],
     );
   }
 
