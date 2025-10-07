@@ -6,6 +6,7 @@ class HeightSpace extends StatelessWidget {
     this.height, {
     super.key,
   });
+
   final double height;
 
   @override
@@ -17,7 +18,9 @@ class HeightSpace extends StatelessWidget {
 }
 
 class WidthSpace extends StatelessWidget {
-  const WidthSpace(this.width,{super.key,});
+  const WidthSpace(this.width,{
+    super.key,});
+
   final double width;
 
   @override
