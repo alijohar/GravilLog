@@ -15,8 +15,7 @@ import 'featuers/authPage/presentation/controllers/language_controller.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
-
-  // await ScreenUtil.ensureScreenSize();
+  await ScreenUtil.ensureScreenSize();
 
   final sharedPrefs = await SharedPreferences.getInstance();
   Get.put(LocalPreferences(sharedPrefs), permanent: true);
@@ -32,41 +31,35 @@ class MyApp extends GetView<LanguageController> {
   Widget build(BuildContext context) {
     log("================${controller.currentLanguage.value}===========");
 
-    return
-      // ScreenUtilInit(
-      // minTextAdapt: true,
-      //
-      // designSize: const Size(375, 812),
-      //
-      // splitScreenMode: true,
-      //
-      // builder: (context, child) =>
-          Obx(()
-      => GetMaterialApp(
-        title: 'MEMO',
-        debugShowCheckedModeBanner: false,
-        initialBinding: MainBindings(),
-        theme: AppTheme.lightTheme(controller.currentLanguage.value),
-        locale: Locale(controller.currentLanguage.value), // Default language
-        fallbackLocale: const Locale(AppConstants.englishLanguage, 'US'),
-        supportedLocales: const [
-          Locale(AppConstants.englishLanguage, 'US'),
-          Locale(AppConstants.arabicLanguage, 'SA'),
-        ],
-        localizationsDelegates: const [
-          CountryLocalizations.delegate, // For country_picker
-          GlobalMaterialLocalizations.delegate,
-          GlobalWidgetsLocalizations.delegate,
-          GlobalCupertinoLocalizations.delegate,
-        ],
-        translations: Translation(),
-        unknownRoute: GetPage(
-            name: '/notfound', page: () => RouteGenerator.unDefinedPage()),
-        getPages: RouteGenerator.getPages(),
-        initialRoute: Routes.languageRoute,
+    return ScreenUtilInit(
+      designSize: const Size(375, 812),
+      minTextAdapt: true,
+      splitScreenMode: true,
+      builder: (context, child) => Obx(
+        () => GetMaterialApp(
+          title: 'MEMO',
+          debugShowCheckedModeBanner: false,
+          initialBinding: MainBindings(),
+          theme: AppTheme.lightTheme(controller.currentLanguage.value),
+          locale: Locale(controller.currentLanguage.value), // Default language
+          fallbackLocale: const Locale(AppConstants.englishLanguage, 'US'),
+          supportedLocales: const [
+            Locale(AppConstants.englishLanguage, 'US'),
+            Locale(AppConstants.arabicLanguage, 'SA'),
+          ],
+          localizationsDelegates: const [
+            CountryLocalizations.delegate, // For country_picker
+            GlobalMaterialLocalizations.delegate,
+            GlobalWidgetsLocalizations.delegate,
+            GlobalCupertinoLocalizations.delegate,
+          ],
+          translations: Translation(),
+          unknownRoute: GetPage(
+              name: '/notfound', page: () => RouteGenerator.unDefinedPage()),
+          getPages: RouteGenerator.getPages(),
+          initialRoute: Routes.languageRoute,
+        ),
       ),
-      );
-
-    // );
+    );
   }
 }

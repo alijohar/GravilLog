@@ -46,7 +46,7 @@ class AppTheme {
         centerTitle: true,
         titleTextStyle: TextStyle(
           color: ColorManager.textPrimary,
-          fontSize: 18.sp,
+          fontSize:18.sp ,
           fontWeight: FontWeight.w600,
         ),
         iconTheme: const IconThemeData(
@@ -60,12 +60,12 @@ class AppTheme {
           backgroundColor: ColorManager.pinkSherbet,
           foregroundColor: ColorManager.white,
           shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(8.r),
+            borderRadius:BorderRadius.circular(8.r),
           ),
           elevation: 0,
-          minimumSize: Size(double.infinity, 50.h),
+          minimumSize: Size(double.infinity,50.h),
           textStyle: TextStyle(
-            fontSize: 16.sp,
+            fontSize:16.sp,
             fontWeight: FontWeight.w800,
           ),
         ),
@@ -87,30 +87,30 @@ class AppTheme {
         filled: true,
         fillColor: ColorManager.cardBackground,
         border: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(8),
+          borderRadius: BorderRadius.circular(8.r),
           borderSide: const BorderSide(color: ColorManager.lightGrey),
         ),
         enabledBorder: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(8),
+          borderRadius: BorderRadius.circular(8.r),
           borderSide: const BorderSide(color: ColorManager.lightGrey),
         ),
         focusedBorder: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(8),
-          borderSide: const BorderSide(color: ColorManager.primary, width: 2),
+          borderRadius: BorderRadius.circular(8.r),
+          borderSide: const BorderSide(color: ColorManager.primary,),
         ),
         errorBorder: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(8),
+          borderRadius: BorderRadius.circular(8.r),
           borderSide: const BorderSide(color: ColorManager.error),
         ),
         contentPadding:
-            const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
-        hintStyle: const TextStyle(
+             EdgeInsets.symmetric(horizontal: 16.w, vertical: 12.h),
+        hintStyle:  TextStyle(
           color: ColorManager.textTertiary,
-          fontSize: 14,
+          fontSize: 14.sp,
         ),
-        labelStyle: const TextStyle(
+        labelStyle:  TextStyle(
           color: ColorManager.textSecondary,
-          fontSize: 14,
+          fontSize: 14.sp,
         ),
       ),
 
@@ -131,43 +131,43 @@ class AppTheme {
       textTheme:  TextTheme(
         displayLarge: TextStyle(
           color: ColorManager.textPrimary,
-          fontSize: 24.sp,
+          fontSize:24.sp ,
           fontWeight: FontWeight.w700,
         ),
         displayMedium: TextStyle(
           color: ColorManager.textPrimary,
-          fontSize: 20.sp,
+          fontSize:20.sp ,
           fontWeight: FontWeight.w600,
         ),
         displaySmall: TextStyle(
           color: ColorManager.textPrimary,
-          fontSize: 18.sp,
+          fontSize:18.sp ,
           fontWeight: FontWeight.w600,
         ),
         headlineLarge: TextStyle(
           color: ColorManager.textPrimary,
-          fontSize: 16.sp,
+          fontSize:16.sp ,
           fontWeight: FontWeight.w600,
         ),
         headlineMedium: TextStyle(
           color: ColorManager.textPrimary,
-          fontSize: 14.sp,
+          fontSize:14.sp,
           fontWeight: FontWeight.w500,
         ),
         bodyLarge: TextStyle(
           color: ColorManager.textPrimary,
-          fontSize: 16.sp,
+          fontSize:16.sp ,
           fontWeight: FontWeight.w400,
         ),
         bodyMedium: TextStyle(
           color: ColorManager.textPrimary,
-          fontSize: 14.sp,
+          fontSize:14.sp ,
           fontFamily: AppConstants.arabicFontFamily,
           fontWeight: FontWeight.w400,
         ),
         bodySmall: TextStyle(
           color: ColorManager.textSecondary,
-          fontSize: 12.sp,
+          fontSize:12.sp ,
           fontWeight: FontWeight.w400,
         ),
       ),
