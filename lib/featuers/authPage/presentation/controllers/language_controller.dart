@@ -1,7 +1,6 @@
 import 'dart:developer';
 import 'dart:ui';
 import 'package:get/get.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 import '../../../../core/local_preferences/local_preferences.dart';
 import '../../../../core/resources/routes_manager.dart';
 
@@ -10,11 +9,11 @@ class LanguageController extends GetxController {
   var currentLanguage = "en".obs;
 
   @override
-  void onInit() async {
+  void onInit() {
     super.onInit();
-    localDataSource = LocalPreferences(await SharedPreferences.getInstance());
+    localDataSource = Get.find<LocalPreferences>();
     currentLanguage.value = getDeviceLanguage();
-    log("currentLanguage ist ${currentLanguage.value}");
+    log("currentLanguage is ${currentLanguage.value}");
   }
 
   Future<void> onContinue() async {

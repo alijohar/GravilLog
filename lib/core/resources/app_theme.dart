@@ -1,10 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:gravilog_2025/core/resources/constants_manager.dart';
 import 'color_manager.dart';
 
 class AppTheme {
-  static ThemeData get lightTheme {
+  static ThemeData  lightTheme(String languageCode) {
     return ThemeData(
+      fontFamily:languageCode==AppConstants.englishLanguage?
+      AppConstants.englishFontFamily:AppConstants.arabicFontFamily,
       useMaterial3: true,
       colorScheme: ColorScheme.fromSeed(
         seedColor: ColorManager.primary,
@@ -159,6 +162,7 @@ class AppTheme {
         bodyMedium: TextStyle(
           color: ColorManager.textPrimary,
           fontSize: 14.sp,
+          fontFamily: AppConstants.arabicFontFamily,
           fontWeight: FontWeight.w400,
         ),
         bodySmall: TextStyle(

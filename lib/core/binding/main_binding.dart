@@ -17,8 +17,15 @@ import '../local_preferences/local_preferences.dart';
 
 class MainBindings extends Bindings {
   @override
-  Future<void> dependencies() async {
-    await _initLocalPreferences();
+  void dependencies()  {
+
+
+    Get.putAsync<LocalPreferences>(() async {
+      final sharedPrefs = await SharedPreferences.getInstance();
+      return LocalPreferences(sharedPrefs);
+    });
+
+
     Get.lazyPut(()=> LoginController(),fenix: true);
 
     Get.lazyPut(()=> SplashController(),fenix: true);
@@ -27,7 +34,6 @@ class MainBindings extends Bindings {
 
     Get.lazyPut(()=> OnboardingController(),fenix: true);
 
-    Get.lazyPut(()=> OnboardingController(),fenix: true);
 
     Get.lazyPut(()=> SignupController(),fenix: true);
 
@@ -48,8 +54,4 @@ class MainBindings extends Bindings {
 
   }
 
-  Future<void> _initLocalPreferences() async {
-    final sharedPreferences = await SharedPreferences.getInstance();
-    Get.put(LocalPreferences(sharedPreferences), permanent: true);
-  }
 }
