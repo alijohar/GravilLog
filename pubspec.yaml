@@ -69,13 +69,13 @@ flutter:
   fonts:
      - family: Poppins
        fonts:
-         - asset: assets/font/poppins/Poppins-Regular.ttf
+         - asset: assets/font/Poppins/Poppins-Regular.ttf
            weight: 400
-         - asset: assets/font/poppins/Poppins-Medium.ttf
+         - asset: assets/font/Poppins/Poppins-Medium.ttf
            weight: 500
-         - asset: assets/font/poppins/Poppins-SemiBold.ttf
+         - asset: assets/font/Poppins/Poppins-SemiBold.ttf
            weight: 600
-         - asset: assets/font/poppins/Poppins-Bold.ttf
+         - asset: assets/font/Poppins/Poppins-Bold.ttf
            weight: 700
      - family: Almarai
        fonts:
