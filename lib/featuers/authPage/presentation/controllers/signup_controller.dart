@@ -20,7 +20,6 @@ import '../../data/datasources/auth_remote_data_source.dart';
 import '../../data/models/auth_result_model.dart';
 import '../../data/repositories/auth_repository_impl.dart';
 
-
 class SignupController extends GetxController {
   var isObscured = true.obs;
   var hasEmail = false.obs;
@@ -28,32 +27,39 @@ class SignupController extends GetxController {
   var loading = false.obs;
   var isChecked = false.obs;
 
+  //?needed variables for ui
+  var hasName = false.obs;
+  var hasPhone = false.obs;
+  var passwordConfirmed = false.obs;
+  bool get canMoveToNextPage =>
+      hasEmail.value && hasName.value && hasPhone.value;
+
+  bool get canCreateAccount => passwordAccepted && isChecked.value;
+
+  bool get passwordAccepted => hasPassword.value && passwordConfirmed.value;
   late AuthRepositoryImpl authRepositoryImpl;
 
   late LocalPreferences localDataSource;
-
 
   TextEditingController emailController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
   TextEditingController countryCodeController = TextEditingController();
   TextEditingController phoneController = TextEditingController();
-
-  
-
+  final nameController = TextEditingController();
+  final confirmPasswordController = TextEditingController();
 
   bool ssoEnabledAndroid = true;
   bool ssoEnabledIos = true;
 
   GestureTapCallback? get navigateToTermsOfUseView =>
-          () => Get.toNamed(Routes.termsOfUseRoute);
+      () => Get.toNamed(Routes.termsOfUseRoute);
 
   GestureTapCallback get navigateToPrivacyPolicyView =>
-          () => Get.toNamed(Routes.privacyPolicyRoute);
+      () => Get.toNamed(Routes.privacyPolicyRoute);
   @override
-  Future<void> onInit() async {
-    localDataSource = LocalPreferences(
-      await SharedPreferences.getInstance(),
-    );
+  void onInit() {
+    super.onInit();
+    localDataSource = Get.find<LocalPreferences>();
     authRepositoryImpl = AuthRepositoryImpl(
       remoteDataSource: AuthRemoteDataSourceImpl(),
       localDataSource: localDataSource,
@@ -61,20 +67,22 @@ class SignupController extends GetxController {
         DataConnectionChecker(),
       ),
     );
-    super.onInit();
   }
 
   void toggleObscure() => isObscured.toggle();
 
-  void navigateToSignup() {
-    // Navigation zu SignUp
+   navigateToLogin() {
+    Get.toNamed(Routes.loginRoute);
   }
 
-
+  navigateToSignUpPasswords() {
+    Get.toNamed(Routes.signUpPasswordsRoute);
+  }
 
   void navigateToForgotPassword() {
     Get.toNamed(Routes.forgetPasswordRoute);
   }
+
   patientSignupWithEmail(BuildContext context) {
     String email = emailController.text.trim();
     String password = passwordController.text.trim();
@@ -88,7 +96,8 @@ class SignupController extends GetxController {
     }
 
     if (!_isValidEmail(email)) {
-      Deviceutils.showToastMessage("kindly_enter_valid_email_address".tr, context);
+      Deviceutils.showToastMessage(
+          "kindly_enter_valid_email_address".tr, context);
       return;
     }
 
@@ -98,11 +107,15 @@ class SignupController extends GetxController {
     }
 
     if (password.length < 6) {
-      Deviceutils.showToastMessage("kindly_enter_character_password".tr, context);
+      Deviceutils.showToastMessage(
+          "kindly_enter_character_password".tr, context);
       return;
     }
-    eitherFailureOrSignUp(AuthParams.register(password:password , phoneNumber:phoneNumber, email: email,countryCode: countryCode));
-
+    eitherFailureOrSignUp(AuthParams.register(
+        password: password,
+        phoneNumber: phoneNumber,
+        email: email,
+        countryCode: countryCode));
   }
 
   Future<void> facebookLogin() async {}
@@ -111,45 +124,43 @@ class SignupController extends GetxController {
 
   Future<void> appleLogin() async {}
 
-
   void eitherFailureOrSignUp(AuthParams authParams) async {
     loading.value = true;
-    final failureOrSignup = await Signup(authRepository:authRepositoryImpl).call(
+    final failureOrSignup =
+        await Signup(authRepository: authRepositoryImpl).call(
       authParams: authParams,
     );
 
-
     failureOrSignup.fold(
-          (Failure newFailure) {
-            loading.value = false;
+      (Failure newFailure) {
+        loading.value = false;
 
-            Deviceutils.showToastMessage("error_occurred_try_again".tr, Get.context!);
-
+        Deviceutils.showToastMessage(
+            "error_occurred_try_again".tr, Get.context!);
       },
-          (AuthResultModel authResultModel) {
-            loading.value = false;
+      (AuthResultModel authResultModel) {
+        loading.value = false;
 
-            if (authResultModel.token?.isEmpty == true) {
-              Deviceutils.showToastMessage("please_verify_your_account".tr, Get.context!);
-            }
+        if (authResultModel.token?.isEmpty == true) {
+          Deviceutils.showToastMessage(
+              "please_verify_your_account".tr, Get.context!);
+        }
 
-            if (authResultModel.error == AppConstants.SIGNUP_DUPLICATE) {
-              Deviceutils.showToastMessage("already_account_created".tr, Get.context!);
-            }
+        if (authResultModel.error == AppConstants.SIGNUP_DUPLICATE) {
+          Deviceutils.showToastMessage(
+              "already_account_created".tr, Get.context!);
+        }
 
-            Timer(Duration(seconds: 5), () {
-              Get.offAllNamed(Routes.loginRoute);
-            });
-
-
-
+        Timer(Duration(seconds: 5), () {
+          Get.offAllNamed(Routes.loginRoute);
+        });
       },
     );
   }
+
   bool _isValidEmail(String email) {
     return RegExp(
-        r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+")
+            r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+")
         .hasMatch(email);
   }
-
 }

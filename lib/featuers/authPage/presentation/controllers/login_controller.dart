@@ -46,10 +46,9 @@ class LoginController extends GetxController {
   bool ssoEnabledIos = true;
 
   @override
-  Future<void> onInit() async {
-    localDataSource = LocalPreferences(
-      await SharedPreferences.getInstance(),
-    );
+  void onInit() {
+    super.onInit();
+    localDataSource = Get.find<LocalPreferences>();
     authRepositoryImpl = AuthRepositoryImpl(
       remoteDataSource: AuthRemoteDataSourceImpl(),
       localDataSource: localDataSource,
@@ -57,7 +56,6 @@ class LoginController extends GetxController {
         DataConnectionChecker(),
       ),
     );
-    super.onInit();
   }
 
   void toggleObscure() => isObscured.toggle();

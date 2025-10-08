@@ -34,14 +34,12 @@ class ForgetPasswordController extends GetxController {
   }
 
   @override
-  Future<void> onInit() async {
+  void onInit() {
     super.onInit();
     emailController.addListener(() {
       hasEmail.value = emailController.text.isNotEmpty;
     });
-    localDataSource = LocalPreferences(
-        await SharedPreferences.getInstance(),
-    );
+    localDataSource = Get.find<LocalPreferences>();
     _loadUserLanguage();
 
     authRepositoryImpl = AuthRepositoryImpl(
@@ -54,8 +52,8 @@ class ForgetPasswordController extends GetxController {
 
   }
 
-  Future<void> _loadUserLanguage() async {
-    selectLanguage.value = await localDataSource.getLanguage()??Get.deviceLocale?.languageCode??'en';
+  void _loadUserLanguage() {
+    selectLanguage.value = localDataSource.getLanguage()??Get.deviceLocale?.languageCode??'en';
   }
 
   Future<void> resetPassword(BuildContext context) async {

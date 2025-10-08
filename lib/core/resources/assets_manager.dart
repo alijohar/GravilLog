@@ -17,12 +17,24 @@ class ImageAssets {
   static const String pregnant = "$imagePath/pregnant.png";
   static const String notPregnant = "$imagePath/not_pregnant.png";
   static const String pregnantNotPregnant = "$imagePath/pregnent_notpregnent.png";
+
+  // auth images
+  static const String authLeadingImage = '$imagePath/auth_header_image.png';
+
+  //done
+  static const String doneImage = '$imagePath/done.svg';
 }
 
 class IconAssets {
   // Social Media Icons
   static const String googleIcon = "$iconPath/ic_google.svg";
   static const String facebookIcon = "$iconPath/ic_facebook.svg";
+
+  static const String eyeSlashIcon = "$iconPath/eye-slash.svg";
+  static const String eyeIcon = "$iconPath/eye.svg";
+  static const String lockIcon = "$iconPath/lock.svg";
+  static const String mailIcon = "$iconPath/mail.svg";
+  static const String userIcon = "$iconPath/user.svg";
 }
 
 class JsonAssets {

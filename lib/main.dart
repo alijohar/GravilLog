@@ -1,16 +1,21 @@
 import 'package:country_code_picker/country_code_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
-import 'package:get/get_navigation/src/root/get_material_app.dart';
-import 'package:get/get_navigation/src/routes/get_route.dart';
+import 'package:get/get.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 import 'core/binding/main_binding.dart';
+import 'core/local_preferences/local_preferences.dart';
 import 'core/resources/app_theme.dart';
 import 'core/resources/routes_manager.dart';
 import 'core/resources/translations.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
+
+  // Initialize LocalPreferences before app starts
+  final sharedPreferences = await SharedPreferences.getInstance();
+  Get.put(LocalPreferences(sharedPreferences), permanent: true);
 
   runApp(const MyApp(languageCode: "en"));
 }
