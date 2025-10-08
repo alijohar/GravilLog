@@ -403,6 +403,7 @@ class Translation extends Translations {
           "ksa_timing": "KSA timing",
           "booking_confirmed": "Booking Confirmed!",
           "nutrition_session_has_been_successfully_booked": "Your nutrition session has been successfully booked! Our team will contact you soon for further coordination. For any questions, reach out to support@gravilog.com"
+,          ..._newEnTranslations,
 
 
 
@@ -806,7 +807,60 @@ class Translation extends Translations {
           "ksa_timing": "بتوقيت السعودية",
           "booking_confirmed": "تم تأكيد الحجز!",
           "nutrition_session_has_been_successfully_booked": "تم حجز جلستك مع أخصائية التغذية بنجاح! سيتواصل معك فريقنا قريبًا للتنسيق. لأي استفسارات، يرجى التواصل معنا على support@gravilog.com",
+          ..._newArTranslations,
 
         }
       };
+      //?this is my new translations, i will use to avoid mistaks.
+  final Map<String, String> _newEnTranslations = {
+    "ready_to_begin":"ready to begin",
+    "full_name":"Full Name",
+    "sign_up_now":"Sign Up",
+    "or_continuo_with":"Or continue with",
+    "sing_in_here": "Sign In",
+    "have_no_account": "Don't have an account?",
+    "sign_up_here": "Sign Up",
+    "confirm_password": "Confirm Password",
+    "password_restricts":
+        "Min 8 Characters, 1 lower case, upper case , one number and one special cahrecter",
+    "i_accept_to": "I Accept To",
+    "terms_and_conditions": "Terms & Conditions",
+    "send_reset_link": "Send Reset Link",
+    "we_will_send_reset_link":
+        '''No worries  Enter your email below and we’ll send you a link to reset it.''',
+    "forget_your_password": "Forget your password?",
+    "check_you_email": "Check your email",
+    "we_sent_reset_link":
+        "We’ve sent a password reset link to your email address. Check your inbox and follow the instructions",
+    "back_to_login": "Back to Login",
+    "create_new_password": "Create new password",
+    "must_use_different_password":
+        "Your password must be different from previously used password",
+  };
+  final Map<String, String> _newArTranslations = {
+    "ready_to_begin": "مستعدة للبدء",
+    "full_name": "الاسم الكامل",
+    "sign_up_now": "اشتراك",
+    "or_continuo_with": "أو الاستمرار مع",
+    "sing_in_here": "تسجيل الدخول",
+    "have_no_account": "ليس لديك حساب؟",
+    "sign_up_here": "سجلي الان",
+    "confirm_password": "تأكيد كلمة المرور",
+    "password_restricts":
+        "الحد الأدنى 8 أحرف، حرف صغير واحد، حرف كبير واحد، رقم واحد وحرف خاص واحد",
+    "i_accept_to": "اوافق علي",
+    "terms_and_conditions": "الشروط و الأحكام",
+    "send_reset_link": "أرسل رابط إعادة الضبط",
+    "we_will_send_reset_link":
+        "لا تقلقى، أدخلى بريدك الإلكتروني أدناه وسنرسل لك رابطًا لإعادة تعيينه.",
+    "forget_your_password": "نسيت كلمة المرور؟",
+    "check_you_email": "تحققى من بريدك الإلكتروني",
+    "we_sent_reset_link":
+        "لقد أرسلنا رابط إعادة تعيين كلمة المرور إلى بريدك الإلكتروني. تحققى من بريدك الوارد واتبعى التعليمات.",
+    "back_to_login": "العودة إلى تسجيل الدخول",
+    "create_new_password": "إنشاء كلمة مرور جديدة",
+    "must_use_different_password":
+        "يجب أن تكون كلمة المرور الخاصة بك مختلفة عن كلمة المرور المستخدمة سابقًا",
+  };
+
 }
