@@ -39,7 +39,7 @@ class ExpectDeliveryController extends GetxController {
   late LocalPreferences localDataSource;
 
   @override
-  Future<void> onInit() async {
+  void onInit() {
     super.onInit();
     pregnantData1 = Get.arguments['pregnantData'] as Pregnant;
     deliveryDate1 = Get.arguments['deliveryDate'] as DateTime;
@@ -48,9 +48,7 @@ class ExpectDeliveryController extends GetxController {
     deliveryDate = deliveryDate1.obs;
     lastMenstrualDate = deliveryDate1.obs;
 
-    localDataSource = LocalPreferences(
-        await SharedPreferences.getInstance(),
-    );
+    localDataSource = Get.find<LocalPreferences>();
     questionRepositoryImpl = QuestionRepositoryImpl(
     remoteDataSource: QuestionRemoteDataSourceImpl(),
     localDataSource: localDataSource,
