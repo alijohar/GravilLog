@@ -50,10 +50,9 @@ class SignupController extends GetxController {
   GestureTapCallback get navigateToPrivacyPolicyView =>
           () => Get.toNamed(Routes.privacyPolicyRoute);
   @override
-  Future<void> onInit() async {
-    localDataSource = LocalPreferences(
-      await SharedPreferences.getInstance(),
-    );
+  void onInit() {
+    super.onInit();
+    localDataSource = Get.find<LocalPreferences>();
     authRepositoryImpl = AuthRepositoryImpl(
       remoteDataSource: AuthRemoteDataSourceImpl(),
       localDataSource: localDataSource,
@@ -61,7 +60,6 @@ class SignupController extends GetxController {
         DataConnectionChecker(),
       ),
     );
-    super.onInit();
   }
 
   void toggleObscure() => isObscured.toggle();

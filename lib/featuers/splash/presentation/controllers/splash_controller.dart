@@ -1,23 +1,16 @@
-import 'dart:convert';
-
-import 'package:data_connection_checker_tv/data_connection_checker.dart';
-import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 import '../../../../core/local_preferences/local_preferences.dart';
 import '../../../../core/resources/routes_manager.dart';
-import '../../../../main.dart';
 
 
 class SplashController extends GetxController {
   late LocalPreferences localDataSource;
 
-
-  Future<void> onInit() async {
+  @override
+  void onInit() {
     super.onInit();
-    localDataSource = LocalPreferences(
-      await SharedPreferences.getInstance(),
-    );
+    // Get the already initialized LocalPreferences from MainBindings
+    localDataSource = Get.find<LocalPreferences>();
   }
 
   checkUserStatus() async {
