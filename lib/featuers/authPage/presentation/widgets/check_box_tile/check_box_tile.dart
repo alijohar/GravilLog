@@ -33,7 +33,7 @@ class CircularCheckboxTile extends StatelessWidget {
                   shape: BoxShape.circle,
                   border: _checkBoxTileController.checked.value
                       ? null
-                      : BoxBorder.all(),
+                      : Border.all(),
                   color: _checkBoxTileController.checked.value
                       ? context.pinkSherbet
                       : Colors.transparent,
@@ -42,8 +42,8 @@ class CircularCheckboxTile extends StatelessWidget {
                   Icons.check,
                   size: 15,
                   color: _checkBoxTileController.checked.value
-                      ? Colors.white
-                      : Colors.grey.shade600,
+                      ? context.onPrimaryColor
+                      : context.textTertiary,
                 ),
               ),
               const SizedBox(width: 8),

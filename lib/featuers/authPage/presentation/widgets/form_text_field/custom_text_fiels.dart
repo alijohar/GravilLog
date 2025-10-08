@@ -25,7 +25,7 @@ class CustomTextFormField extends StatelessWidget {
   Widget build(BuildContext context) {
     return TextFormField(
       controller: controller,
-      cursorColor: Colors.black,
+      cursorColor: context.textPrimary,
       obscureText: obscureText,
       decoration: InputDecoration(
           constraints: BoxConstraints.loose(const Size(double.infinity, 50)),
