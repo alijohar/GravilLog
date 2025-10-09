@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'color_manager.dart';
 
 class AppTheme {
@@ -35,17 +36,17 @@ class AppTheme {
       ),
       
       // App Bar Theme
-      appBarTheme: const AppBarTheme(
+      appBarTheme: AppBarTheme(
         backgroundColor: Colors.transparent,
         elevation: 0,
         scrolledUnderElevation: 0,
         centerTitle: true,
         titleTextStyle: TextStyle(
           color: ColorManager.textPrimary,
-          fontSize: 18,
+          fontSize:18.sp ,
           fontWeight: FontWeight.w600,
         ),
-        iconTheme: IconThemeData(
+        iconTheme: const IconThemeData(
           color: ColorManager.textPrimary,
         ),
       ),
@@ -55,12 +56,14 @@ class AppTheme {
         style: ElevatedButton.styleFrom(
           backgroundColor: ColorManager.pinkSherbet,
           foregroundColor: ColorManager.white,
+          shape: RoundedRectangleBorder(
+            borderRadius:BorderRadius.circular(8.r),
+          ),
           elevation: 0,
-          shape: const BeveledRectangleBorder(),
-          minimumSize: const Size(double.infinity, 50),
-          textStyle: const TextStyle(
-            fontSize: 15,
-            fontWeight: FontWeight.w600,
+          minimumSize: Size(double.infinity,50.h),
+          textStyle: TextStyle(
+            fontSize:16.sp,
+            fontWeight: FontWeight.w800,
           ),
         ),
       ),
@@ -69,98 +72,99 @@ class AppTheme {
       textButtonTheme: TextButtonThemeData(
         style: TextButton.styleFrom(
           foregroundColor: ColorManager.azure,
-          textStyle: const TextStyle(
-            fontSize: 14,
+          textStyle: TextStyle(
+            fontSize: 14.sp,
             fontWeight: FontWeight.w500,
           ),
         ),
       ),
-      
+
+
       // Input Decoration Theme
       inputDecorationTheme: InputDecorationTheme(
         filled: true,
         fillColor: ColorManager.cardBackground,
         border: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(8),
+          borderRadius: BorderRadius.circular(8.r),
           borderSide: const BorderSide(color: ColorManager.lightGrey),
         ),
         enabledBorder: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(8),
+          borderRadius: BorderRadius.circular(8.r),
           borderSide: const BorderSide(color: ColorManager.lightGrey),
         ),
         focusedBorder: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(8),
-          borderSide: const BorderSide(color: ColorManager.primary, width: 2),
+          borderRadius: BorderRadius.circular(8.r),
+          borderSide: const BorderSide(color: ColorManager.primary,),
         ),
         errorBorder: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(8),
+          borderRadius: BorderRadius.circular(8.r),
           borderSide: const BorderSide(color: ColorManager.error),
         ),
-        contentPadding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
-        hintStyle: const TextStyle(
+        contentPadding:
+        EdgeInsets.symmetric(horizontal: 16.w, vertical: 12.h),
+        hintStyle:  TextStyle(
           color: ColorManager.textTertiary,
-          fontSize: 14,
+          fontSize: 14.sp,
         ),
-        labelStyle: const TextStyle(
+        labelStyle:  TextStyle(
           color: ColorManager.textSecondary,
-          fontSize: 14,
+          fontSize: 14.sp,
         ),
       ),
-      
+
       // Card Theme
-      //TODO: you must to return it as it was
-      cardTheme: CardThemeData(
+      cardTheme: CardTheme(
         color: ColorManager.cardBackground,
         elevation: 2,
         shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(12),
+          borderRadius: BorderRadius.circular(12.r),
         ),
-        margin: const EdgeInsets.all(8),
+        margin: EdgeInsets.all(8.r),
       ),
-      
-        // Scaffold Background - Use transparent for gradient
-        scaffoldBackgroundColor: Colors.transparent,
-      
+
+      // Scaffold Background - Use transparent for gradient
+      scaffoldBackgroundColor: Colors.transparent,
+
       // Text Theme
-      textTheme: const TextTheme(
+      textTheme:  TextTheme(
         displayLarge: TextStyle(
           color: ColorManager.textPrimary,
-          fontSize: 24,
+          fontSize:24.sp ,
           fontWeight: FontWeight.w700,
         ),
         displayMedium: TextStyle(
           color: ColorManager.textPrimary,
-          fontSize: 20,
+          fontSize:20.sp ,
           fontWeight: FontWeight.w600,
         ),
         displaySmall: TextStyle(
           color: ColorManager.textPrimary,
-          fontSize: 18,
+          fontSize:18.sp ,
           fontWeight: FontWeight.w600,
         ),
         headlineLarge: TextStyle(
           color: ColorManager.textPrimary,
-          fontSize: 16,
+          fontSize:16.sp ,
           fontWeight: FontWeight.w600,
         ),
         headlineMedium: TextStyle(
           color: ColorManager.textPrimary,
-          fontSize: 14,
+          fontSize:14.sp,
           fontWeight: FontWeight.w500,
         ),
         bodyLarge: TextStyle(
           color: ColorManager.textPrimary,
-          fontSize: 16,
+          fontSize:16.sp ,
           fontWeight: FontWeight.w400,
         ),
         bodyMedium: TextStyle(
           color: ColorManager.textPrimary,
-          fontSize: 14,
+          fontSize:14.sp ,
           fontWeight: FontWeight.w400,
         ),
         bodySmall: TextStyle(
           color: ColorManager.textSecondary,
-          fontSize: 12,
+          fontSize:12.sp ,
           fontWeight: FontWeight.w400,
         ),
       ),
