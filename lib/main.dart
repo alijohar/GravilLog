@@ -1,6 +1,7 @@
 import 'package:country_code_picker/country_code_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -12,6 +13,7 @@ import 'core/resources/translations.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  await ScreenUtil.ensureScreenSize();
 
   // Initialize LocalPreferences before app starts
   final sharedPreferences = await SharedPreferences.getInstance();
@@ -32,7 +34,11 @@ class MyApp extends StatefulWidget {
 class _MyAppState extends State<MyApp> {
   @override
   Widget build(BuildContext context) {
-    return GetMaterialApp(
+    return ScreenUtilInit(
+      designSize: const Size(375, 812),
+      minTextAdapt: true,
+      splitScreenMode: true,
+      builder: (context, child)=>GetMaterialApp(
       title: 'MEMO',
       debugShowCheckedModeBanner: false,
       initialBinding: MainBindings(),
@@ -54,6 +60,7 @@ class _MyAppState extends State<MyApp> {
           name: '/notfound', page: () => RouteGenerator.unDefinedPage()),
       getPages: RouteGenerator.getPages(),
       initialRoute: Routes.splashRoute,
+    ),
     );
   }
 }
