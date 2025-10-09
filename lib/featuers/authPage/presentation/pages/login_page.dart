@@ -56,29 +56,13 @@ class LoginView extends StatelessWidget {
                           ),
                           const SizedBox(height: 16),
                           Obx(() => CustomTextFormField(
-                                controller: controller.passwordController,
-                                hintText: "password".tr,
-                                obscureText: controller.isObscured.value,
-                                prefixIcon: const TextFieldIconImage(
-                                    assetImage: IconAssets.lockIcon),
-                                suffixIcon: GestureDetector(
-                                  onTap: () => controller.isObscured.toggle(),
-                                  child: TextFieldIconImage(
-                                    assetImage: controller.isObscured.value
-                                        ? IconAssets.eyeIcon
-                                        : IconAssets.eyeSlashIcon,
-                                  ),
-                                ),
-                                onChanged: (value) => controller
-                                    .hasPassword.value = value.isNotEmpty,
-                              )),
-                          const SizedBox(height: 10),
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              CircularCheckboxTile(
-                                onChanged: (value) {},
-                                label: "remember_me".tr,
+                            controller: controller.passwordController,
+                            hintText: "password".tr,
+                            obscureText: controller.isObscured.value,
+                            suffixIcon: IconButton(
+                              icon: Icon(
+                                controller.isObscured.value ? Icons.visibility_off : Icons.visibility,
+                                color: context.peachyPink,
                               ),
                               Center(
                                 child: TextButton(
