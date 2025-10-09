@@ -20,6 +20,7 @@ class ImageAssets {
 
   // auth images
   static const String authLeadingImage = '$imagePath/auth_header_image.png';
+  static const String pregnantIcon = "$imagePath/pregnant_icon.png";
 
   //done
   static const String doneImage = '$imagePath/done.svg';
@@ -29,6 +30,7 @@ class IconAssets {
   // Social Media Icons
   static const String googleIcon = "$iconPath/ic_google.svg";
   static const String facebookIcon = "$iconPath/ic_facebook.svg";
+  static const String dropDownIcon = "$iconPath/ic_drop_down.svg";
 
   static const String eyeSlashIcon = "$iconPath/eye-slash.svg";
   static const String eyeIcon = "$iconPath/eye.svg";
