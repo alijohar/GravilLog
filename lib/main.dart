@@ -8,8 +8,10 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'core/binding/main_binding.dart';
 import 'core/local_preferences/local_preferences.dart';
 import 'core/resources/app_theme.dart';
+import 'core/resources/constants_manager.dart';
 import 'core/resources/routes_manager.dart';
 import 'core/resources/translations.dart';
+import 'featuers/authPage/presentation/controllers/language_controller.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -18,37 +20,30 @@ Future<void> main() async {
   // Initialize LocalPreferences before app starts
   final sharedPreferences = await SharedPreferences.getInstance();
   Get.put(LocalPreferences(sharedPreferences), permanent: true);
+  Get.put(LanguageController());
 
-  runApp(const MyApp(languageCode: "en"));
+  runApp(const MyApp());
 }
 
-class MyApp extends StatefulWidget {
-  final String languageCode;
+class MyApp extends GetView<LanguageController> {
 
-  const MyApp({super.key, required this.languageCode});
+  const MyApp({super.key,});
 
   @override
-  State<MyApp> createState() => _MyAppState();
-}
-
-class _MyAppState extends State<MyApp> {
-  @override
-
   Widget build(BuildContext context) {
-    return ScreenUtilInit(
-      designSize: const Size(375, 812),
-      minTextAdapt: true,
-      splitScreenMode: true,
-      builder: (context, child)=>GetMaterialApp(
+    return
+      Obx(
+            () =>
+            GetMaterialApp(
       title: 'MEMO',
       debugShowCheckedModeBanner: false,
       initialBinding: MainBindings(),
-      theme: AppTheme.lightTheme,
-      locale: Locale(widget.languageCode), // Default language
-      fallbackLocale: const Locale('en', 'US'),
+      theme: AppTheme.lightTheme(controller.currentLanguage.value),
+      locale: Locale(controller.currentLanguage.value), // Default language
+      fallbackLocale: const Locale(AppConstants.englishLanguage, 'US'),
       supportedLocales: const [
-        Locale('en', 'US'),
-        Locale('ar', 'SA'),
+        Locale(AppConstants.englishLanguage, 'US'),
+        Locale(AppConstants.arabicLanguage, 'SA'),
       ],
       localizationsDelegates: const [
         CountryLocalizations.delegate, // For country_picker
@@ -61,7 +56,7 @@ class _MyAppState extends State<MyApp> {
           name: '/notfound', page: () => RouteGenerator.unDefinedPage()),
       getPages: RouteGenerator.getPages(),
       initialRoute: Routes.splashRoute,
-    ),
+            )
     );
   }
 }

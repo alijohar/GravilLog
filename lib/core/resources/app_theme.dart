@@ -2,11 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'app_text_styles.dart';
 import 'color_manager.dart';
-part 'package:gravilog_2025/core/resources/extensions.dart';
-class AppTheme {
+import 'constants_manager.dart';
 
-  static ThemeData get lightTheme {
+class AppTheme {
+  static ThemeData  lightTheme(String languageCode) {
     return ThemeData(
+      fontFamily:languageCode==AppConstants.englishLanguage?
+      AppConstants.englishFontFamily:AppConstants.arabicFontFamily,
       useMaterial3: true,
       colorScheme: ColorScheme.fromSeed(
         seedColor: ColorManager.primary,
