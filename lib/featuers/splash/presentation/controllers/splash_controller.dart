@@ -15,7 +15,6 @@ enum SplashStates {
 
 class SplashController extends GetxController {
   late LocalPreferences localDataSource;
-  late Timer _timer;
 
   @override
   void onInit() async {
@@ -28,8 +27,10 @@ class SplashController extends GetxController {
   }
 
   void _startDelay() {
-    _timer = Timer(
-        const Duration(seconds: AppConstants.splashDelay), checkUserStatus);
+    // Add a small delay to ensure UI is ready before navigation
+    Future.delayed(const Duration(seconds: AppConstants.splashDelay), () {
+      checkUserStatus();
+    });
   }
 
   Future<void> checkUserStatus() async {
@@ -52,16 +53,16 @@ class SplashController extends GetxController {
 
     switch (state) {
       case SplashStates.loggedInCompleted:
-      //navigate to home screen
-      // Get.offAllNamed(Routes.mainRoute);
-        break;
+        //navigate to home screen
+        // Get.offAllNamed(Routes.mainRoute);
+        // break;
       case SplashStates.loggedInButNotCompletedProfile:
-      //navigate to complete profile screen
-      // Get.offAllNamed(Routes.completeProfileRoute);
+        //navigate to complete profile screen
+        // Get.offAllNamed(Routes.completeProfileRoute);
         break;
       case SplashStates.onBoardingViewedButNotLoggedIn:
-      //navigate to complete login screen
-      // Get.offAllNamed(Routes.loginRoute);
+        //navigate to complete login screen
+        Get.offAllNamed(Routes.loginRoute);
         break;
       case SplashStates.firstVisit:
         Get.offAllNamed(Routes.languageRoute);
@@ -71,7 +72,6 @@ class SplashController extends GetxController {
 
   @override
   void onClose() {
-    _timer.cancel();
     super.onClose();
   }
 

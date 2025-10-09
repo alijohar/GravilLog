@@ -60,7 +60,7 @@ class Deviceutils {
 
   static String getDeviceLanguage() {
     // Get the device's locale
-    Locale deviceLocale = window.locale;
+    Locale deviceLocale = PlatformDispatcher.instance.locale;
 
     // Access the language code (e.g., "en", "ar")
     return deviceLocale.languageCode;

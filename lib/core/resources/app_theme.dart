@@ -4,6 +4,8 @@ import 'app_text_styles.dart';
 import 'color_manager.dart';
 import 'constants_manager.dart';
 
+part 'extensions.dart';
+
 class AppTheme {
   static ThemeData  lightTheme(String languageCode) {
     return ThemeData(
@@ -54,10 +56,9 @@ class AppTheme {
           backgroundColor: ColorManager.pinkSherbet,
           foregroundColor: ColorManager.white,
           shape: RoundedRectangleBorder(
-            borderRadius:BorderRadius.circular(8.r),
+            borderRadius: BorderRadius.circular(8.r),
           ),
           elevation: 0,
-          shape:RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(8.r),),),
           minimumSize:  Size(double.infinity, 50.h),
           textStyle: AppTextStyles.textStyle15Weight600
         ),
