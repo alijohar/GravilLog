@@ -1,9 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:gravilog_2025/core/resources/app_theme.dart';
-import 'package:gravilog_2025/core/resources/color_manager.dart';
+import 'package:gravilog_2025/featuers/authPage/presentation/widgets/auth_elevated_button.dart';
+import 'package:gravilog_2025/featuers/authPage/presentation/widgets/form_text_field/custom_text_fiels.dart';
+import 'package:gravilog_2025/featuers/authPage/presentation/widgets/widgets.dart';
 
+import '../../../../core/resources/assets_manager.dart';
 import '../controllers/forget_password_controller.dart';
+import '../widgets/form_text_field/text_field_icon.dart';
 import '../widgets/loader.dart';
 
 class ForgetPasswordView extends StatelessWidget {
@@ -11,46 +15,47 @@ class ForgetPasswordView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-     ForgetPasswordController controller = Get.find();
+    ForgetPasswordController controller = Get.find();
 
     return context.gradientScaffold(
+      appBar: AppBar(
+        backgroundColor: context.gradientStart,
+      ),
       body: SafeArea(
         child: Column(
           children: [
+            AuthLeadingWidget(
+              label: "forget_your_password".tr,
+            ),
+            const SizedBox(
+              height: 15,
+            ),
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 20.0),
+              child: Text(
+                'we_will_send_reset_link'.tr,
+                textAlign: TextAlign.center,
+              ),
+            ),
             Expanded(
               child: SingleChildScrollView(
                 padding: const EdgeInsets.symmetric(horizontal: 20),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Text(
-                      "forgot_password".tr,
-                      style: context.textStyles.displayMedium,
-                    ),
-                    const SizedBox(height: 50),
+                    const SizedBox(height: 30),
                     Form(
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          Text(
-                            "email".tr,
-                            style: context.textStyles.displayMedium,
-                          ),
-                          const SizedBox(height: 10),
-                          TextFormField(
+                          CustomTextFormField(
                             controller: controller.emailController,
-                            cursorColor: Colors.black,
-                            decoration: InputDecoration(
-                              hintStyle: TextStyle(
-                                fontWeight: Theme.of(context).textTheme.bodyMedium?.fontWeight,
-                                fontSize: 14,
-                                letterSpacing: 14 * 0.02,
-                              ),
-                              filled: true,
-                              fillColor: const Color(0xFFF8F7F7),
-                              border: InputBorder.none,
-                            ),
+                            hintText: "email".tr,
                             keyboardType: TextInputType.emailAddress,
+                            prefixIcon: const TextFieldIconImage(
+                                assetImage: IconAssets.mailIcon),
+                            onChanged: (value) =>
+                                controller.hasEmail.value = value.isNotEmpty,
                           ),
                           const SizedBox(height: 16),
                         ],
@@ -63,25 +68,20 @@ class ForgetPasswordView extends StatelessWidget {
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 20),
               child: Obx(
-                    () => ElevatedButton(
+                () => AuthElevatedButton(
                   onPressed: controller.hasEmail.value
                       ? () => controller.resetPassword(context)
                       : null,
-                  style: ElevatedButton.styleFrom(
-                    backgroundColor: ColorManager.pinkSherbet,
-                    shape: const BeveledRectangleBorder(),
-                    minimumSize: const Size(double.infinity, 50),
-                  ),
                   child: controller.loading.value
                       ? const Loader(duration: Duration(milliseconds: 600))
                       : Text(
-                    "continue".tr,
-                    style: TextStyle(
-                      color: Colors.white,
-                      fontSize: 15,
-                      fontWeight: Theme.of(context).textTheme.displayMedium?.fontWeight,
-                    ),
-                  ),
+                          "send_reset_link".tr,
+                          style: context.textStyles.bodyLarge!.copyWith(
+                              color: controller.hasEmail.value
+                                  ? context.surfaceColor
+                                  : context.pinkSherbet,
+                              fontWeight: FontWeight.bold),
+                        ),
                 ),
               ),
             ),

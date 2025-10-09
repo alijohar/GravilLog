@@ -190,7 +190,18 @@ class OnboardView extends StatelessWidget {
           context: context,
           image: onboardingController.onboardImages[0],
           title: "onboard1_title".tr,
-          description: _richTextBulider(context, "onboard1_description"),
+          description: RichText(
+            text: TextSpan(
+              style: context.textStyles.bodyMedium,
+              children: [
+                TextSpan(text: "onboard1_description".tr),
+                TextSpan(
+                  text: "with_gravilog_we_turn_pregnancy_best_months".tr,
+                  style: context.textStyles.bodyMedium?.copyWith(color: context.peachyPink),
+                ),
+              ],
+            ),
+          ),
         );
       case 1:
         return _buildOnboardingText(
@@ -204,7 +215,21 @@ class OnboardView extends StatelessWidget {
           context: context,
           image: onboardingController.onboardImages[2],
           title: "onboard3_title".tr,
-          description: _richTextBulider(context, "onboard3_description"),
+          description: RichText(
+            text: TextSpan(
+              style: context.textStyles.bodyMedium,
+              children: [
+                TextSpan(text: "${"onboard3_description".tr}\t"),
+                TextSpan(
+                  text: url,
+                  style: context.textStyles.bodyMedium?.copyWith(color: context.peachyPink),
+                  recognizer: TapGestureRecognizer()
+                    ..onTap = () => launch('https://$url'),
+                ),
+              ],
+            ),
+          ),
+          showButtons: true,
         );
       default:
         return Container();

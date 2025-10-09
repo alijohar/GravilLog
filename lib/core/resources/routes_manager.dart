@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:gravilog_2025/featuers/authPage/presentation/controllers/language_controller.dart';
 import 'package:gravilog_2025/featuers/authPage/presentation/pages/forget_password_page.dart';
 import 'package:gravilog_2025/featuers/authPage/presentation/pages/language_page.dart';
 import 'package:gravilog_2025/featuers/authPage/presentation/pages/onboarding_page.dart';
@@ -7,6 +8,7 @@ import 'package:gravilog_2025/featuers/authPage/presentation/pages/privacy_polic
 import 'package:gravilog_2025/featuers/authPage/presentation/pages/signup_page.dart';
 import 'package:gravilog_2025/featuers/authPage/presentation/pages/terms_of_use_page.dart';
 import 'package:gravilog_2025/featuers/questions/presentation/pages/pregnet_page.dart';
+import 'package:gravilog_2025/featuers/splash/presentation/controllers/splash_controller.dart';
 import 'package:gravilog_2025/featuers/splash/presentation/pages/splash_page.dart';
 
 import '../../featuers/authPage/presentation/pages/login_page.dart';
@@ -32,7 +34,12 @@ class Routes {
 class RouteGenerator {
   static List<GetPage<dynamic>> getPages() {
     return [
-      GetPage(name: Routes.splashRoute, page: () => const SplashView()),
+      GetPage(
+          name: Routes.splashRoute,
+          page: () => const SplashView(),
+          binding: BindingsBuilder(() {
+            Get.put(SplashController());
+          })),
       GetPage(name: Routes.loginRoute, page: () => const LoginView()),
       GetPage(name: Routes.languageRoute, page: () => const LanguageView()),
       GetPage(name: Routes.onboardingRoute, page: () => OnboardView()),
