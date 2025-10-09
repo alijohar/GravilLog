@@ -111,7 +111,7 @@ class PregnantQuestionView extends StatelessWidget {
             height: 50,
             decoration: BoxDecoration(
               shape: BoxShape.circle,
-              color: selected ? context.royalBlue : context.grey,
+              color: selected ? context.peachyPink : context.grey,
             ),
             child: const Center(
               child: Icon(Icons.check, color: Colors.white),
