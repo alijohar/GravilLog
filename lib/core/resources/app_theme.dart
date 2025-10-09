@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
+import 'app_text_styles.dart';
 import 'color_manager.dart';
-
+part 'package:gravilog_2025/core/resources/extensions.dart';
 class AppTheme {
   static ThemeData get lightTheme {
     return ThemeData(
@@ -12,19 +13,16 @@ class AppTheme {
         // Primary Colors
         primary: ColorManager.primary,
         primaryContainer: ColorManager.primaryLight,
-        secondary: ColorManager.secondary,
-        
+
         // Surface Colors
         surface: ColorManager.cardBackground,
         surfaceContainerHighest: ColorManager.lightBackground,
-        background: ColorManager.backgroundColor,
-        
+
         // Text Colors
         onPrimary: ColorManager.white,
         onSecondary: ColorManager.white,
         onSurface: ColorManager.textPrimary,
-        onBackground: ColorManager.textPrimary,
-        
+
         // Status Colors
         error: ColorManager.error,
         onError: ColorManager.white,
@@ -68,7 +66,7 @@ class AppTheme {
       // Text Button Theme
       textButtonTheme: TextButtonThemeData(
         style: TextButton.styleFrom(
-          foregroundColor: ColorManager.azure,
+          foregroundColor: ColorManager.primary,
           textStyle: const TextStyle(
             fontSize: 14,
             fontWeight: FontWeight.w500,
@@ -122,47 +120,16 @@ class AppTheme {
         scaffoldBackgroundColor: Colors.transparent,
       
       // Text Theme
+      //first font size second font fontWeight
       textTheme: const TextTheme(
-        displayLarge: TextStyle(
-          color: ColorManager.textPrimary,
-          fontSize: 24,
-          fontWeight: FontWeight.w700,
-        ),
-        displayMedium: TextStyle(
-          color: ColorManager.textPrimary,
-          fontSize: 20,
-          fontWeight: FontWeight.w600,
-        ),
-        displaySmall: TextStyle(
-          color: ColorManager.textPrimary,
-          fontSize: 18,
-          fontWeight: FontWeight.w600,
-        ),
-        headlineLarge: TextStyle(
-          color: ColorManager.textPrimary,
-          fontSize: 16,
-          fontWeight: FontWeight.w600,
-        ),
-        headlineMedium: TextStyle(
-          color: ColorManager.textPrimary,
-          fontSize: 14,
-          fontWeight: FontWeight.w500,
-        ),
-        bodyLarge: TextStyle(
-          color: ColorManager.textPrimary,
-          fontSize: 16,
-          fontWeight: FontWeight.w400,
-        ),
-        bodyMedium: TextStyle(
-          color: ColorManager.textPrimary,
-          fontSize: 14,
-          fontWeight: FontWeight.w400,
-        ),
-        bodySmall: TextStyle(
-          color: ColorManager.textSecondary,
-          fontSize: 12,
-          fontWeight: FontWeight.w400,
-        ),
+        displayLarge:AppTextStyles.kTextStyle24displayLarge700,
+        displayMedium:AppTextStyles.textStyle20displayMedium600,
+        displaySmall: AppTextStyles.textStyle18displaySmall600,
+        headlineLarge:AppTextStyles.textStyle16headlineLarge600,
+        headlineMedium: AppTextStyles.textStyle14headlineMedium500,
+        bodyLarge:AppTextStyles.textStyle16bodyLarge400,
+        bodyMedium:AppTextStyles.textStyle14bodyMedium400,
+        bodySmall:AppTextStyles.textStyle12bodySmall400,
       ),
     );
   }
@@ -172,97 +139,3 @@ class AppTheme {
   static TextTheme textStyles(BuildContext context) => Theme.of(context).textTheme;
 }
 
-// Extension for easy access to custom colors and text styles
-extension AppColors on BuildContext {
-  // Text Styles
-  TextTheme get textStyles => Theme.of(this).textTheme;
-  
-  // Primary Colors
-  Color get primaryColor => Theme.of(this).colorScheme.primary;
-  Color get primaryContainer => Theme.of(this).colorScheme.primaryContainer;
-  Color get secondaryColor => Theme.of(this).colorScheme.secondary;
-  
-  // Surface Colors
-  Color get surfaceColor => Theme.of(this).colorScheme.surface;
-  Color get backgroundColor => Theme.of(this).colorScheme.background;
-  
-  // Text Colors
-  Color get onPrimaryColor => Theme.of(this).colorScheme.onPrimary;
-  Color get onSurfaceColor => Theme.of(this).colorScheme.onSurface;
-  Color get textPrimary => ColorManager.textPrimary;
-  Color get textSecondary => ColorManager.textSecondary;
-  Color get textTertiary => ColorManager.textTertiary;
-  
-  // Status Colors
-  Color get errorColor => Theme.of(this).colorScheme.error;
-  Color get onErrorColor => Theme.of(this).colorScheme.onError;
-  
-  // Custom App Colors (still accessible via ColorManager)
-  Color get pinkSherbet => ColorManager.pinkSherbet;
-  Color get royalBlue => ColorManager.royalBlue;
-  Color get azure => ColorManager.azure;
-  Color get hotPink => ColorManager.hotPink;
-  Color get mintCream => ColorManager.mintCream;
-  Color get peachyPink => ColorManager.peachyPink;
-  Color get skyBlue => ColorManager.skyBlue;
-  
-  // Grey Colors
-  Color get darkGrey => ColorManager.darkGrey;
-  Color get grey => ColorManager.grey;
-  Color get lightGrey => ColorManager.lightGrey;
-  Color get lightGreyShade200 => ColorManager.lightGreyShade200;
-  
-  // Status Colors
-  Color get successColor => ColorManager.success;
-  Color get warningColor => ColorManager.warning;
-  
-  // Additional Material Colors
-  Color get outlineColor => Theme.of(this).colorScheme.outline;
-  Color get outlineVariant => Theme.of(this).colorScheme.outlineVariant;
-  Color get surfaceVariant => Theme.of(this).colorScheme.surfaceVariant;
-  Color get onSurfaceVariant => Theme.of(this).colorScheme.onSurfaceVariant;
-  
-  // Gradient Colors
-  Color get gradientStart => ColorManager.gradientStart;
-  Color get gradientEnd => ColorManager.gradientEnd;
-  
-  // Background Gradient
-  LinearGradient get backgroundGradient => const LinearGradient(
-    begin: Alignment.topCenter,
-    end: Alignment.bottomCenter,
-    colors: [
-      ColorManager.gradientStart, // #FDE5EF
-      ColorManager.gradientEnd,   // #DCE9EF
-    ],
-  );
-  
-  // Helper method to create gradient scaffold
-  Widget gradientScaffold({
-    required Widget body,
-    PreferredSizeWidget? appBar,
-    Widget? bottomNavigationBar,
-    Widget? floatingActionButton,
-    FloatingActionButtonLocation? floatingActionButtonLocation,
-    Widget? drawer,
-    Widget? endDrawer,
-    bool extendBody = false,
-    bool extendBodyBehindAppBar = false,
-  }) {
-    return Scaffold(
-      extendBody: extendBody,
-      extendBodyBehindAppBar: extendBodyBehindAppBar,
-      appBar: appBar,
-      body: Container(
-        decoration: BoxDecoration(
-          gradient: backgroundGradient,
-        ),
-        child: body,
-      ),
-      bottomNavigationBar: bottomNavigationBar,
-      floatingActionButton: floatingActionButton,
-      floatingActionButtonLocation: floatingActionButtonLocation,
-      drawer: drawer,
-      endDrawer: endDrawer,
-    );
-  }
-}
