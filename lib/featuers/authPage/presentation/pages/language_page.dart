@@ -15,22 +15,24 @@ class LanguageView extends GetView<LanguageController> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: AppBackGround(
-        child: Padding(
-          padding: EdgeInsets.symmetric(horizontal: 20.0.w),
-          child: Column(mainAxisAlignment: MainAxisAlignment.center, children: [
-            const HeightSpace(200),
+        child: SafeArea(
+          child: SingleChildScrollView(
+            child: Padding(
+              padding: EdgeInsets.symmetric(horizontal: 20.0.w),
+              child: Column(mainAxisAlignment: MainAxisAlignment.center, children: [
+                HeightSpace(100.h),
             Image.asset(
               ImageAssets.pregnantIcon,
               height: 65.h,
               width: 65.w,
             ),
-            const HeightSpace(40.h),
+            HeightSpace(40.h),
             Text(
               "chooseLanguage".tr,
               style: context.textTheme.displayMedium?.copyWith(
                   color: ColorManager.hotPink, fontWeight: FontWeight.w400),
             ),
-            const HeightSpace(8),
+            HeightSpace(8.h),
             Text(
               "selectLanguage".tr,
               style: context.textTheme.headlineLarge
@@ -72,19 +74,22 @@ class LanguageView extends GetView<LanguageController> {
                     ),
                   )),
             ),
-            const HeightSpace(35),
+            HeightSpace(35.h),
             Text(
               "changeLater".tr,
               style: context.textTheme.headlineLarge?.copyWith(
                   fontWeight: FontWeight.w500, color: ColorManager.darkGrey),
             ),
-            const HeightSpace(180),
+            HeightSpace(80.h),
             AppElevatedButton(
                 onPressed: () {
                   controller.onContinue();
                 },
-                text: 'continue')
-          ]),
+                text: 'continue'),
+            HeightSpace(40.h),
+              ]),
+            ),
+          ),
         ),
       ),
     );

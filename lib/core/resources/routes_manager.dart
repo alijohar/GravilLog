@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:gravilog_2025/featuers/authPage/presentation/controllers/language_controller.dart';
 import 'package:gravilog_2025/featuers/authPage/presentation/pages/forget_password_page.dart';
 import 'package:gravilog_2025/featuers/authPage/presentation/pages/language_page.dart';
 import 'package:gravilog_2025/featuers/authPage/presentation/pages/onboarding_page.dart';
