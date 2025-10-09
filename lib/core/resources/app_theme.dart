@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'app_text_styles.dart';
 import 'color_manager.dart';
 part 'package:gravilog_2025/core/resources/extensions.dart';
@@ -33,17 +34,13 @@ class AppTheme {
       ),
       
       // App Bar Theme
-      appBarTheme: const AppBarTheme(
+      appBarTheme:AppBarTheme(
         backgroundColor: Colors.transparent,
         elevation: 0,
         scrolledUnderElevation: 0,
         centerTitle: true,
-        titleTextStyle: TextStyle(
-          color: ColorManager.textPrimary,
-          fontSize: 18,
-          fontWeight: FontWeight.w600,
-        ),
-        iconTheme: IconThemeData(
+        titleTextStyle:AppTextStyles.textStyle18displaySmall600,
+        iconTheme:const IconThemeData(
           color: ColorManager.textPrimary,
         ),
       ),
@@ -54,12 +51,9 @@ class AppTheme {
           backgroundColor: ColorManager.pinkSherbet,
           foregroundColor: ColorManager.white,
           elevation: 0,
-          shape: const BeveledRectangleBorder(),
-          minimumSize: const Size(double.infinity, 50),
-          textStyle: const TextStyle(
-            fontSize: 15,
-            fontWeight: FontWeight.w600,
-          ),
+          shape:RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(8.r),),),
+          minimumSize:  Size(double.infinity, 50.h),
+          textStyle: AppTextStyles.textStyle15Weight600
         ),
       ),
       
@@ -67,10 +61,7 @@ class AppTheme {
       textButtonTheme: TextButtonThemeData(
         style: TextButton.styleFrom(
           foregroundColor: ColorManager.primary,
-          textStyle: const TextStyle(
-            fontSize: 14,
-            fontWeight: FontWeight.w500,
-          ),
+          textStyle:AppTextStyles.textStyle14headlineMedium500
         ),
       ),
       
@@ -79,29 +70,29 @@ class AppTheme {
         filled: true,
         fillColor: ColorManager.cardBackground,
         border: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(8),
-          borderSide: const BorderSide(color: ColorManager.lightGrey),
+          borderRadius: BorderRadius.circular(8.r),
+          borderSide: const BorderSide(color: ColorManager.white),
         ),
         enabledBorder: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(8),
-          borderSide: const BorderSide(color: ColorManager.lightGrey),
+          borderRadius: BorderRadius.circular(8.r),
+          borderSide: const BorderSide(color: ColorManager.white),
         ),
         focusedBorder: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(8),
-          borderSide: const BorderSide(color: ColorManager.primary, width: 2),
+          borderRadius: BorderRadius.circular(8.r),
+          borderSide: const BorderSide(color: ColorManager.white),
         ),
         errorBorder: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(8),
+          borderRadius: BorderRadius.circular(8.r),
           borderSide: const BorderSide(color: ColorManager.error),
         ),
-        contentPadding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
-        hintStyle: const TextStyle(
+        contentPadding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 12.h),
+        hintStyle:  TextStyle(
           color: ColorManager.textTertiary,
-          fontSize: 14,
+          fontSize: 14.sp,
         ),
-        labelStyle: const TextStyle(
+        labelStyle:  TextStyle(
           color: ColorManager.textSecondary,
-          fontSize: 14,
+          fontSize: 14.sp,
         ),
       ),
       
@@ -111,9 +102,9 @@ class AppTheme {
         color: ColorManager.cardBackground,
         elevation: 2,
         shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(12),
+          borderRadius: BorderRadius.circular(12.r),
         ),
-        margin: const EdgeInsets.all(8),
+        margin:  EdgeInsets.all(8.r),
       ),
       
         // Scaffold Background - Use transparent for gradient
@@ -121,7 +112,7 @@ class AppTheme {
       
       // Text Theme
       //first font size second font fontWeight
-      textTheme: const TextTheme(
+      textTheme:  TextTheme(
         displayLarge:AppTextStyles.kTextStyle24displayLarge700,
         displayMedium:AppTextStyles.textStyle20displayMedium600,
         displaySmall: AppTextStyles.textStyle18displaySmall600,
