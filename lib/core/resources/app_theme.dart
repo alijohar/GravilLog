@@ -53,6 +53,9 @@ class AppTheme {
         style: ElevatedButton.styleFrom(
           backgroundColor: ColorManager.pinkSherbet,
           foregroundColor: ColorManager.white,
+          shape: RoundedRectangleBorder(
+            borderRadius:BorderRadius.circular(8.r),
+          ),
           elevation: 0,
           shape:RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(8.r),),),
           minimumSize:  Size(double.infinity, 50.h),
@@ -67,7 +70,8 @@ class AppTheme {
           textStyle:AppTextStyles.textStyle14headlineMedium500
         ),
       ),
-      
+
+
       // Input Decoration Theme
       inputDecorationTheme: InputDecorationTheme(
         filled: true,
@@ -98,10 +102,9 @@ class AppTheme {
           fontSize: 14.sp,
         ),
       ),
-      
+
       // Card Theme
-      //TODO: you must to return it as it was
-      cardTheme: CardThemeData(
+      cardTheme: CardTheme(
         color: ColorManager.cardBackground,
         elevation: 2,
         shape: RoundedRectangleBorder(
@@ -109,10 +112,10 @@ class AppTheme {
         ),
         margin:  EdgeInsets.all(8.r),
       ),
-      
-        // Scaffold Background - Use transparent for gradient
-        scaffoldBackgroundColor: Colors.transparent,
-      
+
+      // Scaffold Background - Use transparent for gradient
+      scaffoldBackgroundColor: Colors.transparent,
+
       // Text Theme
       //first font size second font fontWeight
       textTheme:  TextTheme(
