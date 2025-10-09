@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
 import 'color_manager.dart';
+import 'constants_manager.dart';
 
 class AppTheme {
-  static ThemeData get lightTheme {
+  static ThemeData  lightTheme(String languageCode) {
     return ThemeData(
+      fontFamily:languageCode==AppConstants.englishLanguage?
+      AppConstants.englishFontFamily:AppConstants.arabicFontFamily,
       useMaterial3: true,
       colorScheme: ColorScheme.fromSeed(
         seedColor: ColorManager.primary,
