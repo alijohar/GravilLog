@@ -4,6 +4,7 @@ import 'package:gravilog_2025/core/resources/color_manager.dart';
 
 class AppTextStyles{
 
+
   static get kTextStyle24displayLarge700 => TextStyle(
     color: ColorManager.textPrimary,
     fontSize: 24.sp,

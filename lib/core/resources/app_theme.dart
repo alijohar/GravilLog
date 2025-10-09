@@ -4,6 +4,7 @@ import 'app_text_styles.dart';
 import 'color_manager.dart';
 part 'package:gravilog_2025/core/resources/extensions.dart';
 class AppTheme {
+
   static ThemeData get lightTheme {
     return ThemeData(
       useMaterial3: true,
