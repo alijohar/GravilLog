@@ -197,10 +197,6 @@ class OnboardView extends StatelessWidget {
               style: context.textStyles.bodyMedium,
               children: [
                 TextSpan(text: "onboard1_description".tr),
-                TextSpan(
-                  text: "with_gravilog_we_turn_pregnancy_best_months".tr,
-                  style: context.textStyles.bodyMedium?.copyWith(color: context.peachyPink),
-                ),
               ],
             ),
           ),
@@ -223,12 +219,6 @@ class OnboardView extends StatelessWidget {
               style: context.textStyles.bodyMedium,
               children: [
                 TextSpan(text: "${"onboard3_description".tr}\t"),
-                TextSpan(
-                  text: url,
-                  style: context.textStyles.bodyMedium?.copyWith(color: context.peachyPink),
-                  recognizer: TapGestureRecognizer()
-                    ..onTap = () => launch('https://$url'),
-                ),
               ],
             ),
           ),
