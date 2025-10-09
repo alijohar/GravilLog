@@ -1,9 +1,11 @@
 import 'package:carousel_slider/carousel_slider.dart';
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 import 'package:gravilog_2025/core/resources/app_theme.dart';
 import 'package:gravilog_2025/featuers/authPage/presentation/controllers/onboarding_controller.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 import '../../../../core/resources/color_manager.dart';
 
@@ -211,6 +213,7 @@ class OnboardView extends StatelessWidget {
           description: _richTextBulider(context, "onboard2_description"),
         );
       case 2:
+        const String url = 'gravilog.com';
         return _buildOnboardingText(
           context: context,
           image: onboardingController.onboardImages[2],
@@ -229,7 +232,6 @@ class OnboardView extends StatelessWidget {
               ],
             ),
           ),
-          showButtons: true,
         );
       default:
         return Container();
