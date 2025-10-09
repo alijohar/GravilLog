@@ -95,7 +95,7 @@ class LoginView extends StatelessWidget {
                             suffixIcon: IconButton(
                               icon: Icon(
                                 controller.isObscured.value ? Icons.visibility_off : Icons.visibility,
-                                color: context.royalBlue,
+                                color: context.peachyPink,
                               ),
                               onPressed: () => controller.isObscured.toggle(),
                             ),

@@ -1,10 +1,10 @@
-import 'dart:ui';
-
-import 'package:flutter/material.dart';
-
 class AppConstants {
   static const String PREFS_KEY_LANGUAGE = 'prefs_key_language';
   static const int splashDelay = 2;
+  static const String arabicLanguage = "ar";
+  static const String englishLanguage = "en";
+  static const String englishFontFamily = "Almarai";
+  static const String arabicFontFamily = "Poppins";
   static const BASE_URL = "https://gravilog.com/json-rpc";
   static const LOGIN = "login";
   static const RESET_PASSWORD = "resetPassword";
