@@ -59,25 +59,32 @@ class LoginView extends StatelessWidget {
                             controller: controller.passwordController,
                             hintText: "password".tr,
                             obscureText: controller.isObscured.value,
+                            prefixIcon: const TextFieldIconImage(
+                                assetImage: IconAssets.lockIcon),
                             suffixIcon: IconButton(
                               icon: Icon(
                                 controller.isObscured.value ? Icons.visibility_off : Icons.visibility,
                                 color: context.peachyPink,
                               ),
-                              Center(
-                                child: TextButton(
-                                  onPressed: () =>
-                                      controller.navigateToForgotPassword(),
-                                  child: Text(
-                                    "forgot_password".tr,
-                                    style: context.textStyles.labelLarge!
-                                        .copyWith(
-                                            color: context.pinkSherbet,
-                                            fontWeight: FontWeight.w700),
-                                  ),
-                                ),
+                              onPressed: () => controller.toggleObscure(),
+                            ),
+                            onChanged: (value) =>
+                                controller.hasPassword.value = value.isNotEmpty,
+                          )),
+                          const SizedBox(height: 12),
+                          Align(
+                            alignment: Alignment.centerRight,
+                            child: TextButton(
+                              onPressed: () =>
+                                  controller.navigateToForgotPassword(),
+                              child: Text(
+                                "forgot_password".tr,
+                                style: context.textStyles.labelLarge!
+                                    .copyWith(
+                                        color: context.pinkSherbet,
+                                        fontWeight: FontWeight.w700),
                               ),
-                            ],
+                            ),
                           ),
                           const SizedBox(
                             height: 20,
