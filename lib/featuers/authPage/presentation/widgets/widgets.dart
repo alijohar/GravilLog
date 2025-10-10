@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:gravilog_2025/core/resources/app_theme.dart';
 import 'package:gravilog_2025/core/resources/assets_manager.dart';
 
@@ -18,8 +19,8 @@ class AuthLeadingWidget extends StatelessWidget {
           child: ClipOval(
             child: Image.asset(
               ImageAssets.authLeadingImage,
-              height: 62,
-              width: 62,
+              height: 62.h,
+              width: 62.h,
             ),
           ),
         ),
@@ -28,9 +29,8 @@ class AuthLeadingWidget extends StatelessWidget {
         ),
         Text(
           label,
-          style: context.textStyles.displayLarge!.copyWith(
-            color: context.pinkSherbet,
-          ),
+          style: context.textStyles.displayLarge!
+              .copyWith(color: context.pinkSherbet, fontSize: 20),
         ),
       ],
     );

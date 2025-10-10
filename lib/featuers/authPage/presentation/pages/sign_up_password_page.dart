@@ -42,7 +42,10 @@ class SignupPasswordsView extends StatelessWidget {
                       controller.hasPassword.value = value.isNotEmpty,
                 )),
             const SizedBox(height: 10),
-            Text('password_restricts'.tr),
+            Text(
+              'password_restricts'.tr,
+              style: context.textStyles.bodySmall,
+            ),
             const SizedBox(height: 16),
             Obx(() => CustomTextFormField(
                   controller: controller.confirmPasswordController,
@@ -68,7 +71,6 @@ class SignupPasswordsView extends StatelessWidget {
                 CircularCheckboxTile(
                   onChanged: (value) => controller.isChecked.value = value,
                   label: "i_accept_to".tr,
-                  
                 ),
                 CustomTextButton(
                     btnText: 'terms_and_conditions'.tr,
