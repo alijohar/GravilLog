@@ -56,35 +56,44 @@ class LoginView extends StatelessWidget {
                           ),
                           const SizedBox(height: 16),
                           Obx(() => CustomTextFormField(
-                            controller: controller.passwordController,
-                            hintText: "password".tr,
-                            obscureText: controller.isObscured.value,
-                            prefixIcon: const TextFieldIconImage(
-                                assetImage: IconAssets.lockIcon),
-                            suffixIcon: IconButton(
-                              icon: Icon(
-                                controller.isObscured.value ? Icons.visibility_off : Icons.visibility,
-                                color: context.peachyPink,
-                              ),
-                              onPressed: () => controller.toggleObscure(),
-                            ),
-                            onChanged: (value) =>
-                                controller.hasPassword.value = value.isNotEmpty,
-                          )),
+                                controller: controller.passwordController,
+                                hintText: "password".tr,
+                                obscureText: controller.isObscured.value,
+                                prefixIcon: const TextFieldIconImage(
+                                    assetImage: IconAssets.lockIcon),
+                                suffixIcon: GestureDetector(
+                                  onTap: () => controller.isObscured.toggle(),
+                                  child: TextFieldIconImage(
+                                    assetImage: controller.isObscured.value
+                                        ? IconAssets.eyeIcon
+                                        : IconAssets.eyeSlashIcon,
+                                  ),
+                                ),
+                                onChanged: (value) => controller
+                                    .hasPassword.value = value.isNotEmpty,
+                              )),
                           const SizedBox(height: 12),
-                          Align(
-                            alignment: Alignment.centerRight,
-                            child: TextButton(
-                              onPressed: () =>
-                                  controller.navigateToForgotPassword(),
-                              child: Text(
-                                "forgot_password".tr,
-                                style: context.textStyles.labelLarge!
-                                    .copyWith(
-                                        color: context.pinkSherbet,
-                                        fontWeight: FontWeight.w700),
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              CircularCheckboxTile(
+                                onChanged: (value) {},
+                                label: "remember_me".tr,
                               ),
-                            ),
+                              Center(
+                                child: TextButton(
+                                  onPressed: () =>
+                                      controller.navigateToForgotPassword(),
+                                  child: Text(
+                                    "forgot_password".tr,
+                                    style: context.textStyles.labelLarge!
+                                        .copyWith(
+                                            color: context.pinkSherbet,
+                                            fontWeight: FontWeight.w700),
+                                  ),
+                                ),
+                              ),
+                            ],
                           ),
                           const SizedBox(
                             height: 20,

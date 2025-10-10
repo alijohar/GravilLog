@@ -417,7 +417,7 @@ class Translation extends Translations {
           "next_visit": "Next Visit",
           "no_doctor_calls": "No doctor calls",
           "doctor_call_deleted": "Doctor call deleted!",
-          "forgot_password": "Forgot password",
+          "forgot_password": "Forgot password?",
           "please_check_your_inbox_reset_password":
               "Please check your inbox to reset the password",
           "patient_not_found_please_check_email":
@@ -525,8 +525,8 @@ class Translation extends Translations {
           "ksa_timing": "KSA timing",
           "booking_confirmed": "Booking Confirmed!",
           "nutrition_session_has_been_successfully_booked":
-          "Your nutrition session has been successfully booked! Our team will contact you soon for further coordination. For any questions, reach out to support@gravilog.com",
-          "ready_to_begin": "ready to begin",
+              "Your nutrition session has been successfully booked! Our team will contact you soon for further coordination. For any questions, reach out to support@gravilog.com",
+          "ready_to_begin": "Ready To Begin",
           "full_name": "Full Name",
           "sign_up_now": "Sign Up",
           "sing_in_here": "Sign In",
@@ -551,6 +551,8 @@ class Translation extends Translations {
           "chooseLanguage": "Choose Your Language",
           "selectLanguage": "Select your preferred language to continue",
           "changeLater": "You can change this later in settings",
+              "remember_me": "Remember me ?",
+
         },
         'ar_SA': {
           "chooseLanguage": "اختر لغتك",
@@ -949,7 +951,7 @@ class Translation extends Translations {
           "next_visit": "الزيارة القادمة",
           "no_doctor_calls": "لا يوجد طبيب يدعو",
           "doctor_call_deleted": "تم حذف مكالمة الطبيب!",
-          "forgot_password": "هل نسيت كلمة السر",
+          "forgot_password": "نسيت كلمة المرور؟",
           "please_check_your_inbox_reset_password":
               "يرجى التحقق من صندوق الوارد الخاص بك لإعادة تعيين كلمة المرور",
           "patient_not_found_please_check_email":
@@ -1084,8 +1086,10 @@ class Translation extends Translations {
           "sign_up": "اشتراك",
           "create_new_account": "إنشاء حساب جديد",
           "create_free_account": "إنشاء حساب مجاني",
-          "already_have_an_account": "هل لديك حساب؟",
+          "already_have_an_account": "هل لديك حساب؟",    "remember_me": "تذكرنى ؟",
+
         }
       };
 
+ 
 }

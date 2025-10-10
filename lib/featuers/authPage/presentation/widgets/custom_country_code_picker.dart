@@ -29,7 +29,6 @@ class CustomCountryCodePicker extends StatelessWidget {
           showFlag: true,
           showFlagMain: true,
           textStyle: const TextStyle(color: Colors.black, fontSize: 10),
-          flagWidth: 25,
           alignLeft: true,
           padding: EdgeInsets.zero,
         ),
