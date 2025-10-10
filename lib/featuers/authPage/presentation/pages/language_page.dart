@@ -8,6 +8,7 @@ import 'package:gravilog_2025/core/resources/app_spaces.dart';
 import 'package:gravilog_2025/core/resources/assets_manager.dart';
 import 'package:gravilog_2025/core/resources/color_manager.dart';
 import 'package:gravilog_2025/featuers/authPage/presentation/controllers/language_controller.dart';
+import '../../../../core/resources/app_text_styles.dart';
 
 class LanguageView extends GetView<LanguageController> {
   const LanguageView({super.key});
@@ -29,26 +30,24 @@ class LanguageView extends GetView<LanguageController> {
             HeightSpace(40.h),
             Text(
               "chooseLanguage".tr,
-              style: context.textTheme.displayMedium?.copyWith(
-                  color: ColorManager.hotPink, fontWeight: FontWeight.w400),
+                style: AppTextStyles.kTextStyle20Pink700,
             ),
             HeightSpace(8.h),
             Text(
               "selectLanguage".tr,
-              style: context.textTheme.headlineLarge
-                  ?.copyWith(fontWeight: FontWeight.w600),
+              style: AppTextStyles.textStyle16bodyLarge400,
+              textAlign: TextAlign.center,
             ),
             const HeightSpace(24),
             Obx(
                   () => Container(
-                  height: 70.h,
                   width: double.infinity,
                   decoration: BoxDecoration(
                       color: Colors.white,
                       borderRadius: BorderRadius.circular(10.r),
                       border: Border.all(color: ColorManager.pinkSherbet)),
                   padding:
-                  EdgeInsets.symmetric(horizontal: 24.w, vertical: 18.h),
+                  EdgeInsets.symmetric(horizontal: 24.w, vertical: 10.h),
                   child: DropdownButtonHideUnderline(
                     child: DropdownButton<String>(
                       value: controller.currentLanguage.value,
@@ -77,8 +76,7 @@ class LanguageView extends GetView<LanguageController> {
             HeightSpace(35.h),
             Text(
               "changeLater".tr,
-              style: context.textTheme.headlineLarge?.copyWith(
-                  fontWeight: FontWeight.w500, color: ColorManager.darkGrey),
+              style:AppTextStyles.kTextStyle16Grey400,
             ),
             HeightSpace(80.h),
             AppElevatedButton(

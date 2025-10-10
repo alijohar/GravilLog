@@ -10,6 +10,16 @@ class AppTextStyles{
     fontSize: 24.sp,
     fontWeight: FontWeight.w700,
   );
+  static get kTextStyle20Pink700 => TextStyle(
+    color: ColorManager.primary,
+    fontSize: 20.sp,
+    fontWeight: FontWeight.w700,
+  );
+  static get kTextStyle16Grey400 => TextStyle(
+    color: ColorManager.darkGrey,
+    fontSize: 16.sp,
+    fontWeight: FontWeight.w400,
+  );
   static get textStyle20displayMedium600 => TextStyle(
     color: ColorManager.textPrimary,
     fontSize: 20.sp,
