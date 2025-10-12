@@ -70,6 +70,8 @@ flutter:
           weight: 600
         - asset: assets/font/Poppins/Poppins-Bold.ttf
           weight: 700
+        - asset: assets/font/Poppins/Poppins-ExtraBold.ttf
+          weight: 800
     - family: Almarai
       fonts:
         - asset: assets/font/Almarai/Almarai-Regular.ttf
