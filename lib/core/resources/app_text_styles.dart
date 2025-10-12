@@ -11,7 +11,7 @@ class AppTextStyles{
     fontWeight: FontWeight.w700,
   );
   static get kTextStyle16ButtonText800 => TextStyle(
-    color: ColorManager.textPrimary,
+    color: ColorManager.white,
     fontSize: 16.sp,
     fontWeight: FontWeight.w800,
   );
