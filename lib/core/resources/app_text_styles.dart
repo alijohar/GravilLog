@@ -10,6 +10,11 @@ class AppTextStyles{
     fontSize: 24.sp,
     fontWeight: FontWeight.w700,
   );
+  static get kTextStyle16ButtonText800 => TextStyle(
+    color: ColorManager.textPrimary,
+    fontSize: 16.sp,
+    fontWeight: FontWeight.w800,
+  );
   static get kTextStyle20Pink700 => TextStyle(
     color: ColorManager.primary,
     fontSize: 20.sp,
