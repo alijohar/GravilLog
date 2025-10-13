@@ -26,15 +26,12 @@ class StepProgressBarWidget extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         // The top text "Step 1/5"
-        Text(
-          'Step $currentStepValue/$totalStepsValue',
-          style: TextStyle(
-            color: progressBarColor,
-            fontWeight: FontWeight.bold,
-            fontSize: 16.sp,
-          ),
-        ),
-        SizedBox(height: 8.h),
+        Text('Step $currentStepValue/$totalStepsValue',
+            style: Theme.of(context).textTheme.bodyMedium!.copyWith(
+                  color: ColorManager.hotPink,
+                )),
+
+        SizedBox(height: 12.h),
 
         // Here, we build the progress bar itself
         LayoutBuilder(
@@ -48,7 +45,7 @@ class StepProgressBarWidget extends StatelessWidget {
                 // The background progress bar (the light pink one)
                 Container(
                   width: maxWidth,
-                  height: 15.h,
+                  height: 8.h,
                   decoration: BoxDecoration(
                     color: backgroundProgressBarColor,
                     borderRadius: BorderRadius.circular(10.r),
@@ -59,7 +56,7 @@ class StepProgressBarWidget extends StatelessWidget {
                 AnimatedContainer(
                   duration: const Duration(milliseconds: 400),
                   width: progressWidth,
-                  height: 15.h,
+                  height: 8.h,
                   decoration: BoxDecoration(
                     color: progressBarColor,
                     borderRadius: BorderRadius.circular(10.r),
