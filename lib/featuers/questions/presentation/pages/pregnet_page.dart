@@ -1,125 +1,99 @@
 import 'package:flutter/material.dart';
-
-import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:gravilog_2025/core/resources/app_theme.dart';
+import 'package:gravilog_2025/core/resources/color_manager.dart';
+import 'package:gravilog_2025/featuers/questions/data/models/pregnant_info_model.dart';
+import 'package:gravilog_2025/featuers/questions/presentation/widgets/steps_progress_bar.dart';
 
-import '../../data/models/pregnant_info_model.dart';
 import '../controllers/pregnet_controller.dart';
-
 
 class PregnantQuestionView extends StatelessWidget {
   const PregnantQuestionView({super.key});
 
   @override
   Widget build(BuildContext context) {
-    // Initialize the controller
-    PregnantQuestionController controller = Get.find();
+    final PregnantQuestionController controller = Get.find();
     controller.startupLogic();
 
-    return context.gradientScaffold(
+    return context.secondaryGradientScaffold(
       body: SafeArea(
-        child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 20),
+        child: Container(
+          margin: EdgeInsets.symmetric(horizontal: 20.h),
           child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
+            spacing: 24.h,
+            mainAxisAlignment: MainAxisAlignment.start,
+            crossAxisAlignment: CrossAxisAlignment.center,
             children: [
+              SizedBox(height: 36.h),
+              const StepProgressBarWidget(
+                  currentStepValue: 1, totalStepsValue: 5),
               Text(
-                "are_you".tr,
-                style: TextStyle(
-                  fontWeight: Theme.of(context).textTheme.displayMedium?.fontWeight,
-                  fontSize: 20,
-                  letterSpacing: 20 * 0.08,
-                ),
+                "are_you_pregnant".tr,
+                style: Theme.of(context).textTheme.headlineLarge!.copyWith(
+                      fontWeight: FontWeight.bold,
+                    ),
               ),
-              const SizedBox(height: 50),
-
-              // Pregnant options
-              Obx(() => Row(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              Text(
+                "pregnant_question_hint".tr,
+                textAlign: TextAlign.center,
+                style: Theme.of(context).textTheme.bodyMedium!.copyWith(
+                      color: ColorManager.darkGrey,
+                    ),
+              ),
+              Column(
+                crossAxisAlignment: CrossAxisAlignment.stretch,
+                mainAxisAlignment: MainAxisAlignment.start,
+                spacing: 16.h,
                 children: [
-                  _buildOption(
-                    context,
-                    image: 'assets/images/pregnant.png',
-                    label: "pregnant".tr.toUpperCase(),
-                    selected: controller.isPregnant.value == Pregnant.Is_Pregnant,
-                    onTap: () => controller.setPregnant(Pregnant.Is_Pregnant),
+                  ElevatedButton(
+                    onPressed: () {
+                      controller.setPregnant(Pregnant.Is_Pregnant);
+                      controller.onConfirm();
+                    },
+                    style: ElevatedButton.styleFrom(
+                      minimumSize: Size(1.sw, 48.h),
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.all(Radius.circular(8.r)),
+                      ),
+                      backgroundColor: ColorManager.hotPink,
+                    ),
+                    child: Text(
+                      "yes".tr,
+                      style:
+                          Theme.of(context).textTheme.headlineMedium!.copyWith(
+                                fontWeight: FontWeight.w600,
+                                color: ColorManager.white,
+                              ),
+                    ),
                   ),
-                  _buildOption(
-                    context,
-                    image: 'assets/images/not_pregnant.png',
-                    label: "not_pregnant".tr.toUpperCase(),
-                    selected: controller.isPregnant.value == Pregnant.Not_Pregnant,
-                    onTap: () => controller.setPregnant(Pregnant.Not_Pregnant),
+                  OutlinedButton(
+                    onPressed: () {
+                      controller.setPregnant(Pregnant.Not_Pregnant);
+                      controller.onNotPregnant();
+                    },
+                    style: OutlinedButton.styleFrom(
+                      minimumSize: Size(1.sw, 48.h),
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.all(Radius.circular(8.r)),
+                      ),
+                      side: const BorderSide(color: ColorManager.hotPink),
+                    ),
+                    child: Text(
+                      "no".tr,
+                      style:
+                          Theme.of(context).textTheme.headlineMedium!.copyWith(
+                                fontWeight: FontWeight.w600,
+                                color: ColorManager.hotPink,
+                              ),
+                    ),
                   ),
                 ],
-              )),
-              const Spacer(),
-
-              // Confirm button
-              ElevatedButton(
-                onPressed: controller.onConfirm,
-                style: ElevatedButton.styleFrom(
-                  backgroundColor: context.pinkSherbet,
-                  shape: const BeveledRectangleBorder(),
-                  padding: const EdgeInsets.symmetric(vertical: 10),
-                  minimumSize: const Size(double.infinity, 50),
-                ),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Text(
-                      "confirm".tr,
-                      style: const TextStyle(
-                        color: Colors.white,
-                        fontSize: 20,
-                        fontWeight: FontWeight.w700,
-                      ),
-                    ),
-                  ],
-                ),
-              ),
+              )
             ],
           ),
         ),
       ),
     );
   }
-
-  Widget _buildOption(BuildContext context,
-      {required String image,
-        required String label,
-        required bool selected,
-        required VoidCallback onTap}) {
-    return GestureDetector(
-      onTap: onTap,
-      child: Column(
-        children: [
-          Image.asset(image, fit: BoxFit.cover),
-          const SizedBox(height: 10),
-          Text(
-            label,
-            style: TextStyle(
-              fontWeight: Theme.of(context).textTheme.displayMedium?.fontWeight,
-              fontSize: 14,
-              letterSpacing: 20 * 0.08,
-            ),
-          ),
-          const SizedBox(height: 30),
-          Container(
-            width: 50,
-            height: 50,
-            decoration: BoxDecoration(
-              shape: BoxShape.circle,
-              color: selected ? context.peachyPink : context.grey,
-            ),
-            child: const Center(
-              child: Icon(Icons.check, color: Colors.white),
-            ),
-          ),
-        ],
-      ),
-    );
-  }
 }
-
