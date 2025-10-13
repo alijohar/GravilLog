@@ -5,6 +5,7 @@ import 'package:gravilog_2025/featuers/authPage/presentation/controllers/login_c
 import 'package:gravilog_2025/featuers/authPage/presentation/controllers/onboarding_controller.dart';
 import 'package:gravilog_2025/featuers/authPage/presentation/controllers/privacy_policy_controller.dart';
 import 'package:gravilog_2025/featuers/authPage/presentation/controllers/term_of_use_controller.dart';
+import 'package:gravilog_2025/featuers/questions/presentation/controllers/due_date_controller.dart';
 import 'package:gravilog_2025/featuers/questions/presentation/controllers/pregnet_controller.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -40,5 +41,6 @@ class MainBindings extends Bindings {
     Get.lazyPut(()=> MenstrualPeriodController(),fenix: true);
 
     Get.lazyPut(()=> ExpectDeliveryController(),fenix: true);
+    Get.lazyPut(() => DueDateController(), fenix: true);
   }
 }

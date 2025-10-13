@@ -7,6 +7,7 @@ import 'package:gravilog_2025/featuers/authPage/presentation/pages/onboarding_pa
 import 'package:gravilog_2025/featuers/authPage/presentation/pages/privacy_policy_page.dart';
 import 'package:gravilog_2025/featuers/authPage/presentation/pages/signup_page.dart';
 import 'package:gravilog_2025/featuers/authPage/presentation/pages/terms_of_use_page.dart';
+import 'package:gravilog_2025/featuers/questions/presentation/pages/due_date_page.dart';
 import 'package:gravilog_2025/featuers/questions/presentation/pages/pregnet_page.dart';
 import 'package:gravilog_2025/featuers/splash/presentation/controllers/splash_controller.dart';
 import 'package:gravilog_2025/featuers/splash/presentation/pages/splash_page.dart';
@@ -29,6 +30,7 @@ class Routes {
   static const String pregnantQuestionRoute = "/pregnantQuestion";
   static const String menstrualPeriodRoute = "/menstrualPeriod";
   static const String expectDeliveryRoute = "/expectDelivery";
+  static const String duePeriodRoute = "/duePeriod";
 }
 
 class RouteGenerator {
@@ -57,6 +59,7 @@ class RouteGenerator {
           page: () => const PregnantQuestionView()),
       GetPage(
           name: Routes.menstrualPeriodRoute, page: () => MenstrualPeriodView()),
+      GetPage(name: Routes.duePeriodRoute, page: () => DueDateView()),
       GetPage(
           name: Routes.expectDeliveryRoute, page: () => ExpectDeliveryView()),
     ];
