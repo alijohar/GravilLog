@@ -4,6 +4,12 @@ class Translation extends Translations {
   @override
   Map<String, Map<String, String>> get keys => {
         'en_US': {
+          // news values
+          "menstrual_period_hint":
+              "We’ll help you track your next cycle starting from August 11, 2025.",
+          "due_date_question": "When is your due date?",
+          "help_calculate": "I don’t know / Help me calculate",
+          // end news value
           "onboard1_title": "Life with the app",
           "onboard1_description":
               "Pregnancy is a journey.We help you feel supported and confident every step of the way.",
@@ -30,13 +36,15 @@ class Translation extends Translations {
           "dont_have_account": "Don’t have account?",
           "or": "or",
           "or_continuo_with": "Or continue with",
-          "are_you": "Are you?",
+          "are_you_pregnant": "Are you pregnant?",
+          "pregnant_question_hint":
+              "We’ll personalize your experience based on your answer.",
           "pregnant": "Pregnant",
           "not_pregnant": "Not Pregnant",
           "confirm": "Confirm",
           "please_select_menstrual_period":
-              "Please Select Your 1st day in Menstrual period",
-          "cycle_length": "Cycle Length",
+              "The first day of your last period?",
+          "cycle_length": "Average cycle length",
           "days": "{s} days",
           "calculate": "Calculate",
           "best_time_to_pregnant": "Best Time to get Pregnant",
@@ -551,10 +559,15 @@ class Translation extends Translations {
           "chooseLanguage": "Choose Your Language",
           "selectLanguage": "Select your preferred language to continue",
           "changeLater": "You can change this later in settings",
-              "remember_me": "Remember me ?",
-
+          "remember_me": "Remember me ?",
         },
         'ar_SA': {
+          // new values
+          "menstrual_period_hint":
+              "سنساعدك في تتبع دورتك الشهرية القادمة بدءًا من 11 أغسطس 2025.",
+            "due_date_question":"متى موعد ولادتك؟",
+            "help_calculate":"لا أعرف / ساعدني في الحساب",
+              // end new values
           "chooseLanguage": "اختر لغتك",
           "selectLanguage": "حدد اللغة المفضلة لديك للمتابعة",
           "changeLater": "يمكنك تغيير ذلك لاحقًا في الإعدادات",
@@ -573,11 +586,12 @@ class Translation extends Translations {
           "dont_have_account": "ليس لديك حساب؟",
           "or": "أو",
           "or_continuo_with": "أو الاستمرار مع",
-          "are_you": "هل انت؟",
-          "pregnant": "حامل",
-          "not_pregnant": "غير حامل",
+          "are_you_pregnant": "هل أنت حامل؟",
+          "pregnant_qustion_hint": "سوف نقوم بتخصيص تجربتك بناءً على إجابتك.",
+          "yes": "نعم",
+          "no": "لا",
           "confirm": "تأكيد",
-          "please_select_menstrual_period": "ادخلي تاريخ أول يوم في اخر دورة",
+          "please_select_menstrual_period": "أول يوم من آخر دورة شهرية",
           "cycle_length": "طول الدورة",
           "days": "{s} يوم",
           "calculate": "احسب",
@@ -1086,10 +1100,8 @@ class Translation extends Translations {
           "sign_up": "اشتراك",
           "create_new_account": "إنشاء حساب جديد",
           "create_free_account": "إنشاء حساب مجاني",
-          "already_have_an_account": "هل لديك حساب؟",    "remember_me": "تذكرنى ؟",
-
+          "already_have_an_account": "هل لديك حساب؟",
+          "remember_me": "تذكرنى ؟",
         }
       };
-
- 
 }
