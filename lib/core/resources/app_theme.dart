@@ -60,7 +60,7 @@ class AppTheme {
           ),
           elevation: 0,
           minimumSize:  Size(double.infinity, 50.h),
-          textStyle: AppTextStyles.textStyle15Weight600
+          textStyle: AppTextStyles.kTextStyle16ButtonText800
         ),
       ),
       
