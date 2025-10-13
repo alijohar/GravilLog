@@ -11,6 +11,9 @@ export  '../../../../core/resources/assets_manager.dart';
 export  '../pages/pregnancy_info_page.dart';
 export  '../../../../core/resources/app_back_ground.dart';
 export  '../pages/about_you_page.dart';
+export  'package:get/get.dart';
+export  '../../../../core/resources/constants_manager.dart';
+
 
 
 
