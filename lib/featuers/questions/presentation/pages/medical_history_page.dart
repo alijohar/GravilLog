@@ -28,6 +28,7 @@ class MedicalHistoryView extends StatelessWidget {
       const HeightSpace(16),
       ContainerWithShadowColor(
         child: CustomTextFormField(
+          keyboardType: TextInputType.number,
           controller: TextEditingController(),
           hintText: "0",
         ),

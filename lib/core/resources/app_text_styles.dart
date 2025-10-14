@@ -60,11 +60,7 @@ class AppTextStyles{
     fontSize: 14.sp,
     fontWeight: FontWeight.w500,
   );
-  static get kTextStyleHead16Weight700 => TextStyle(
-    color: ColorManager.textPrimary,
-    fontSize: 16.sp,
-    fontWeight: FontWeight.w700,
-  );
+
   static get textStyle12bodySmall400 =>TextStyle(
     color: ColorManager.textSecondary,
     fontSize: 12.sp,

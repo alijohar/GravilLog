@@ -29,12 +29,14 @@ class AboutYouView extends StatelessWidget {
         ContainerWithShadowColor(
           child: CustomTextFormField(
             controller: TextEditingController(),
+            keyboardType: TextInputType.number,
             hintText: "height".tr,
           ),
         ),
         const HeightSpace(16),
         ContainerWithShadowColor(
           child: CustomTextFormField(
+            keyboardType: TextInputType.number,
             controller: TextEditingController(),
             hintText: "weight".tr,
           ),
