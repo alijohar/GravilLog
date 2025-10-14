@@ -67,11 +67,29 @@ class AppTheme {
       // Text Button Theme
       textButtonTheme: TextButtonThemeData(
         style: TextButton.styleFrom(
-          foregroundColor: ColorManager.primary,
-          textStyle:AppTextStyles.textStyle14headlineMedium500
-        ),
+            foregroundColor: ColorManager.primary,
+            textStyle: AppTextStyles.textStyle14headlineMedium500),
       ),
-
+      checkboxTheme: CheckboxThemeData(
+        side: WidgetStateBorderSide.resolveWith((states) {
+          if (states.contains(WidgetState.selected)) {
+            return const BorderSide(
+              color: Colors.transparent,
+            );
+          }
+          return const BorderSide(
+            color: ColorManager.mediumGrey,
+            width: 2,
+          );
+        }),
+        fillColor: WidgetStateProperty.resolveWith((states) {
+          if (states.contains(WidgetState.selected)) {
+            return ColorManager.primary;
+          }
+          return Colors.white;
+        }),
+        checkColor: WidgetStateProperty.all(Colors.white),
+      ),
 
       // Input Decoration Theme
       inputDecorationTheme: InputDecorationTheme(
@@ -136,4 +154,3 @@ class AppTheme {
   static ColorScheme colors(BuildContext context) => Theme.of(context).colorScheme;
   static TextTheme textStyles(BuildContext context) => Theme.of(context).textTheme;
 }
-
