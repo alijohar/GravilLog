@@ -9,6 +9,7 @@ import 'package:gravilog_2025/featuers/authPage/presentation/pages/signup_page.d
 import 'package:gravilog_2025/featuers/authPage/presentation/pages/terms_of_use_page.dart';
 import 'package:gravilog_2025/featuers/questions/presentation/pages/due_date_page.dart';
 import 'package:gravilog_2025/featuers/questions/presentation/pages/pregnet_page.dart';
+import 'package:gravilog_2025/featuers/questions/presentation/widgets/nav_question_page.dart';
 import 'package:gravilog_2025/featuers/splash/presentation/controllers/splash_controller.dart';
 import 'package:gravilog_2025/featuers/splash/presentation/pages/splash_page.dart';
 
@@ -29,6 +30,7 @@ class Routes {
   static const String forgetPasswordRoute = "/forgetPassword";
   static const String pregnantQuestionRoute = "/pregnantQuestion";
   static const String menstrualPeriodRoute = "/menstrualPeriod";
+  static const String questionScreenRoute = "/menstrualPeriod";
   static const String expectDeliveryRoute = "/expectDelivery";
   static const String duePeriodRoute = "/duePeriod";
 }
@@ -46,6 +48,7 @@ class RouteGenerator {
       GetPage(name: Routes.languageRoute, page: () => const LanguageView()),
       GetPage(name: Routes.onboardingRoute, page: () => OnboardView()),
       GetPage(name: Routes.signUpRoute, page: () => const SignupView()),
+      GetPage(name: Routes.questionScreenRoute, page: () => const NavQuestionPage()),
       GetPage(
           name: Routes.signUpPasswordsRoute,
           page: () => const SignupPasswordsView()),

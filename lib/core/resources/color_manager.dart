@@ -10,6 +10,7 @@ class ColorManager {
   // Accent Colors
   static const Color hotPink = Color(0xFFEF5E9C);
   static const Color pinkSherbet = Color(0xFFEF5E9C);
+  static const Color skyPink = Color(0xFFF4D2E1);
   static const Color skyBlue = Color(0xFFDCE9EF);
   static const Color mintCream = Color(0xFFD3F3EE);
   static const Color peachyPink = Color(0xFFFDE5EF);
@@ -26,6 +27,9 @@ class ColorManager {
   static const Color lightGreyShade200 = Color(0xFFEEEEEE);
   static const Color grey1 = Color(0xFF707070);
   static const Color grey2 = Color(0xFF797979);
+  static const Color grey3 = Color(0xFF8E8388);
+  static const Color mediumGrey = Color(0xFF818181);
+
 
   // Status Colors
   static const Color success = Color(0xFF0FA049);
@@ -38,7 +42,7 @@ class ColorManager {
   static const Color cardBackground = Color(0xFFFFFFFF);
 
   // Text Colors
-  static const Color textPrimary = Color(0xFF031117);
+  static const Color textPrimary = Color(0xFF30131F);
   static const Color textSecondary = Color(0xFF545555);
   static const Color textTertiary = Color(0xFF808080);
 
