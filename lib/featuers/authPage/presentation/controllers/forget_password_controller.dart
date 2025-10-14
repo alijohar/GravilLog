@@ -68,17 +68,12 @@ class ForgetPasswordController extends GetxController {
           "kindly_enter_valid_email_address".tr, context);
       return;
     }
-    Deviceutils.showCustomDialog(context,
-        title: "check_you_email".tr,
-        bodyText: 'we_sent_reset_link'.tr,
-        buttonText: 'back_to_login'.tr,
-        isDismissible: false,
-        buttonAction: () => _navigateToLogin());
-    eitherFailureOrResetPassword(
+
+    await eitherFailureOrResetPassword(
         AuthParams.resetPassword(email: email, language: selectLanguage.value));
   }
 
-  void eitherFailureOrResetPassword(AuthParams authParams) async {
+  Future eitherFailureOrResetPassword(AuthParams authParams) async {
     loading.value = true;
     final failureOrLogin =
         await Resetpassword(authRepository: authRepositoryImpl).call(
@@ -94,9 +89,12 @@ class ForgetPasswordController extends GetxController {
       (AuthResultModel authResultModel) async {
         loading.value = false;
         if (authResultModel.result == AppConstants.EMAIL_SENT) {
-          Deviceutils.showToastMessage(
-              "please_check_your_inbox_reset_password".tr, Get.context!);
-          Timer(const Duration(seconds: 5), () => Get.back());
+          Deviceutils.showCustomDialog(Get.context!,
+              title: "check_you_email".tr,
+              bodyText: 'we_sent_reset_link'.tr,
+              buttonText: 'back_to_login'.tr,
+              isDismissible: false,
+              buttonAction: () => _navigateToLogin());
         } else if (authResultModel.error == AppConstants.PATIENT_NOT_FOUND) {
           Deviceutils.showToastMessage(
               "patient_not_found_please_check_email".tr, Get.context!);
