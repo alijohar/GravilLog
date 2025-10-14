@@ -1,11 +1,11 @@
 import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:gravilog_2025/core/resources/app_theme.dart';
-import 'package:gravilog_2025/featuers/authPage/presentation/widgets/check_box_tile/check_box_tile.dart';
-import 'package:gravilog_2025/featuers/authPage/presentation/widgets/form_text_field/text_field_icon.dart';
-import 'package:gravilog_2025/featuers/authPage/presentation/widgets/text_with_button_widget.dart';
-import 'package:gravilog_2025/featuers/authPage/presentation/widgets/widgets.dart';
+import '/core/resources/app_theme.dart';
+import '/featuers/authPage/presentation/widgets/check_box_tile/check_box_tile.dart';
+import '/featuers/authPage/presentation/widgets/form_text_field/text_field_icon.dart';
+import '/featuers/authPage/presentation/widgets/text_with_button_widget.dart';
+import '/featuers/authPage/presentation/widgets/widgets.dart';
 
 import '../../../../core/resources/assets_manager.dart';
 import '../controllers/login_controller.dart';
@@ -77,7 +77,9 @@ class LoginView extends StatelessWidget {
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
                               CircularCheckboxTile(
-                                onChanged: (value) {},
+                                onChanged: (value) {
+                                  controller.saveSession.value = value;
+                                },
                                 label: "remember_me".tr,
                               ),
                               Center(
@@ -122,8 +124,9 @@ class LoginView extends StatelessWidget {
                             minimumSize: const Size(double.infinity, 50),
                           ),
                           child: controller.loading.value
-                              ? const Loader(
-                                  duration: Duration(milliseconds: 600))
+                              ? Loader(
+                                  color: context.surfaceColor,
+                                )
                               : Text(
                                   "login_now".tr,
                                   style: context.textStyles.bodyLarge!.copyWith(

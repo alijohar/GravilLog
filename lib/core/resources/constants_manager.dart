@@ -1,5 +1,6 @@
 class AppConstants {
   static const String PREFS_KEY_LANGUAGE = 'prefs_key_language';
+  static const PREFS_KEY_ONBOARDING_SCREEN_VIEWED = 'prefs_key_on_boarding';
   static const int splashDelay = 2;
   static const String arabicLanguage = "ar";
   static const String englishLanguage = "en";
@@ -43,7 +44,4 @@ class AppConstants {
   static const DOCTOR_CALLS = "doctor_calls";
   static const WEIGHT_BMI = "weight_bmi";
   static const HEIGHT_BMI = "height_bmi";
-
-
 }
-
