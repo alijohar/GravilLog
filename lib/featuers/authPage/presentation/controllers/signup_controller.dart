@@ -3,21 +3,15 @@ import 'dart:async';
 import 'package:data_connection_checker_tv/data_connection_checker.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
-import 'package:get/get_state_manager/src/simple/get_controllers.dart';
-import 'package:gravilog_2025/featuers/authPage/business/usecases/signUp.dart';
-import 'package:shared_preferences/shared_preferences.dart';
+import '/featuers/authPage/business/usecases/signUp.dart';
 
 import '../../../../core/connection/network_info.dart';
-import '../../../../core/errors/failure.dart';
 import '../../../../core/local_preferences/local_preferences.dart';
 import '../../../../core/params/params.dart';
 import '../../../../core/resources/constants_manager.dart';
 import '../../../../core/resources/deviceUtils.dart';
 import '../../../../core/resources/routes_manager.dart';
-import '../../business/entities/auth_result_entity.dart';
-import '../../business/usecases/login.dart';
 import '../../data/datasources/auth_remote_data_source.dart';
-import '../../data/models/auth_result_model.dart';
 import '../../data/repositories/auth_repository_impl.dart';
 
 class SignupController extends GetxController {
@@ -71,7 +65,7 @@ class SignupController extends GetxController {
 
   void toggleObscure() => isObscured.toggle();
 
-   navigateToLogin() {
+  navigateToLogin() {
     Get.toNamed(Routes.loginRoute);
   }
 
@@ -88,7 +82,6 @@ class SignupController extends GetxController {
     String password = passwordController.text.trim();
     String countryCode = countryCodeController.text.trim();
     String phoneNumber = phoneController.text.trim();
-
     // Validate email and password before proceeding
     if (email.isEmpty) {
       Deviceutils.showToastMessage("kindly_enter_email_address".tr, context);
@@ -111,11 +104,12 @@ class SignupController extends GetxController {
           "kindly_enter_character_password".tr, context);
       return;
     }
-    eitherFailureOrSignUp(AuthParams.register(
-        password: password,
-        phoneNumber: phoneNumber,
-        email: email,
-        countryCode: countryCode));
+    _eitherFailureOrSignUp(AuthParams.register(
+      password: password,
+      phoneNumber: phoneNumber,
+      email: email,
+      countryCode: countryCode,
+    ));
   }
 
   Future<void> facebookLogin() async {}
@@ -124,36 +118,43 @@ class SignupController extends GetxController {
 
   Future<void> appleLogin() async {}
 
-  void eitherFailureOrSignUp(AuthParams authParams) async {
+  Future _eitherFailureOrSignUp(AuthParams authParams) async {
     loading.value = true;
-    final failureOrSignup =
-        await Signup(authRepository: authRepositoryImpl).call(
+    final failureOrSignup = await Signup(authRepository: authRepositoryImpl)(
       authParams: authParams,
     );
 
     failureOrSignup.fold(
-      (Failure newFailure) {
+      (newFailure) {
         loading.value = false;
 
         Deviceutils.showToastMessage(
             "error_occurred_try_again".tr, Get.context!);
+        return;
       },
-      (AuthResultModel authResultModel) {
+      (authResultModel) {
         loading.value = false;
-
-        if (authResultModel.token?.isEmpty == true) {
-          Deviceutils.showToastMessage(
-              "please_verify_your_account".tr, Get.context!);
-        }
-
         if (authResultModel.error == AppConstants.SIGNUP_DUPLICATE) {
           Deviceutils.showToastMessage(
               "already_account_created".tr, Get.context!);
+          return;
         }
-
-        Timer(Duration(seconds: 5), () {
-          Get.offAllNamed(Routes.loginRoute);
-        });
+        if (authResultModel.token?.isEmpty == true) {
+          // Deviceutils.showToastMessage(
+          //     "please_verify_your_account".tr, Get.context!);
+          Deviceutils.showCustomDialog(Get.context!,
+              title: "check_you_email".tr,
+              bodyText: "please_verify_your_account".tr,
+              buttonText: 'back_to_login'.tr,
+              isDismissible: false,
+              buttonAction: () => Get.offAllNamed(Routes.loginRoute));
+          return;
+        }
+        //?everything works perfectly and used signed up
+        //?i think this case is hard to happened because if an error happened we won't reach this
+        //?case and if every thing went well we also won't get this case because he need to
+        //?verify his email
+        Get.offAllNamed(Routes.loginRoute);
       },
     );
   }
