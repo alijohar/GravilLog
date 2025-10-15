@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'dart:developer';
 
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -13,7 +14,6 @@ import '../../featuers/questions/data/models/pregnant_info_model.dart';
 import '../resources/constants_manager.dart';
 import 'local_storage.dart';
 
-
 class LocalPreferences extends LocalStorage {
   SharedPreferences instance;
   LocalPreferences(this.instance);
@@ -21,14 +21,15 @@ class LocalPreferences extends LocalStorage {
   Rx<UserModel>? getUser() {
     try {
       String? userStr = instance.getString("user");
-      if(userStr == null) return null;
-      var user = UserModel.fromJson(json.decode(userStr),fromLocal: true);
+      if (userStr == null) return null;
+      var user = UserModel.fromJson(json.decode(userStr), fromLocal: true);
       return user.obs;
     } catch (e, t) {
       debugPrint('Fetch local user $e');
       return null;
     }
   }
+
   @override
   setUser(UserModel? user) async {
     if (user == null) {
@@ -48,15 +49,14 @@ class LocalPreferences extends LocalStorage {
 
   @override
   Future<void> setOnBoardingScreenViewed() async {
-    // instance.setBool(AppConstants.PREFS_KEY_ONBOARDING_SCREEN_VIEWED, true);
+    await instance.setBool(
+        AppConstants.PREFS_KEY_ONBOARDING_SCREEN_VIEWED, true);
   }
-
 
   @override
   Future<bool> isOnBoardingScreenViewed() async {
-    return
-      // instance.getBool(AppConstants.PREFS_KEY_ONBOARDING_SCREEN_VIEWED) ??
-          false;
+    return instance.getBool(AppConstants.PREFS_KEY_ONBOARDING_SCREEN_VIEWED) ??
+        false;
   }
 
   @override
@@ -65,11 +65,10 @@ class LocalPreferences extends LocalStorage {
     // instance.setBool(AppConstants.PREFS_KEY_COMPLETE_PROFILE, isOnCompleteProfile);
   }
 
-
   @override
   Future<bool> isOnCompletedProfile() async {
     return
-      // instance.getBool(AppConstants.PREFS_KEY_COMPLETE_PROFILE) ??
+        // instance.getBool(AppConstants.PREFS_KEY_COMPLETE_PROFILE) ??
         false;
   }
 
@@ -79,7 +78,6 @@ class LocalPreferences extends LocalStorage {
   }
 
   @override
-
   String? getLanguage() {
     // Retrieve the language code from shared preferences or persistent storage
     return instance.getString(AppConstants.PREFS_KEY_LANGUAGE);
@@ -88,23 +86,27 @@ class LocalPreferences extends LocalStorage {
   @override
   Future<bool> savePregnancyInfo(GetPregnancyResultModel data) async {
     try {
-      await instance.setString(AppConstants.PREGNANCY_INFO, jsonEncode(data.toJson()));
-    return true;
+      await instance.setString(
+          AppConstants.PREGNANCY_INFO, jsonEncode(data.toJson()));
+      return true;
     } catch (e) {
-    print('Error saving user pregnancy info: $e');
-    return false;
+      print('Error saving user pregnancy info: $e');
+      return false;
     }
   }
 
   @override
   Future<bool> savePatientInfo(PatientInfoResultModel? data) async {
     try {
-      if(data==null) return false;
-      await instance.setString(AppConstants.PATIENT_INFO, jsonEncode(data.toJson()));
-    return true;
-    } catch (e) {
-    print('Error saving user session: $e');
-    return false;
+      if (data == null) return false;
+      await instance.setString(
+          AppConstants.PATIENT_INFO, jsonEncode(data.toJson()));
+      return true;
+    } catch (e, stack) {
+      log('$stack');
+
+      print('Error saving user session: $e');
+      return false;
     }
   }
 
@@ -114,16 +116,18 @@ class LocalPreferences extends LocalStorage {
       final token = data.token;
       if (token != null && token is String) {
         await instance.setString(AppConstants.TOKEN, token);
-    return true;
-    } else {
-    print('Error: Token is null or not a string');
-    return false;
-    }
-    } catch (e) {
-    print('Error saving user session: $e');
-    return false;
+        return true;
+      } else {
+        print('Error: Token is null or not a string');
+        return false;
+      }
+    } catch (e, stack) {
+      log('$stack');
+      print('Error saving user session: $e');
+      return false;
     }
   }
+
   @override
   Future<Pair<bool, String>> getUserSession() async {
     try {
@@ -139,5 +143,4 @@ class LocalPreferences extends LocalStorage {
       return Pair(false, '');
     }
   }
-
 }

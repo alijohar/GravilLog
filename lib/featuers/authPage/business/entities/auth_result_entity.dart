@@ -1,5 +1,5 @@
 class AuthResultEntity {
-  final String? token;
+  final dynamic token;
   final String? error;
   final String? result;
   AuthResultEntity({
@@ -8,5 +8,3 @@ class AuthResultEntity {
     required this.result,
   });
 }
-
-
