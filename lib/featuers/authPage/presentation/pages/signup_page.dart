@@ -47,7 +47,9 @@ class SignupView extends StatelessWidget {
                 children: [
                   Expanded(
                       flex: 1,
-                      child: CustomCountryCodePicker(onChanged: (country) {})),
+                      child: CustomCountryCodePicker(onChanged: (country) {
+                        controller.countryCodeController.text = country.code!;
+                      })),
                   const SizedBox(
                     width: 10,
                   ),

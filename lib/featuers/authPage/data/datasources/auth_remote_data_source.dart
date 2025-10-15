@@ -1,12 +1,8 @@
-import 'dart:developer';
-
-import '../../../../../core/errors/exceptions.dart';
 import '../../../../../core/params/params.dart';
 import '../../../../core/base/base_model.dart';
 import '../../../../core/connection/dio_remote.dart';
 import '../../../../core/errors/failure.dart';
 import '../../../../core/resources/constants_manager.dart';
-import '../../business/entities/auth_result_entity.dart';
 import '../models/auth_result_model.dart';
 import '../models/get_pregnancy_result_model.dart';
 import '../models/patient_info_result_model.dart';
@@ -63,14 +59,14 @@ class AuthRemoteDataSourceImpl implements AuthRemoteDataSource {
           "method": AppConstants.NEW_PATIENT,
           "params": {
             "data": {
-              "first_name": '',
+              "first_name": authParams.name,
               "country_id": 1,
               "email": authParams.email,
               "password": authParams.password,
               "phone": "${authParams.countryCode}${authParams.phoneNumber}",
               // if (deviceAddress != null) "device_address" : deviceAddress,
               // "device_token":"place holder for device token",
-              "device_language": "en"
+              "device_language": authParams.language ?? "en"
             }
           },
           "id": 0,
@@ -130,7 +126,7 @@ class AuthRemoteDataSourceImpl implements AuthRemoteDataSource {
         },
       );
       var response = BaseResModel.fromJson(baseResponse);
-      log('get pregnancy info response: ${response.result}');
+
       var pregnancyResultModel =
           GetPregnancyResultModel.fromJson(response.result);
 

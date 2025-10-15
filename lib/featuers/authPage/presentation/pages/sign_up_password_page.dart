@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:gravilog_2025/core/resources/app_theme.dart';
-import 'package:gravilog_2025/featuers/authPage/presentation/pages/sign_up_base_page.dart';
-import 'package:gravilog_2025/featuers/authPage/presentation/widgets/auth_elevated_button.dart';
-import 'package:gravilog_2025/featuers/authPage/presentation/widgets/custom_text_button.dart';
+import '/core/resources/app_theme.dart';
+import '/featuers/authPage/presentation/pages/sign_up_base_page.dart';
+import '/featuers/authPage/presentation/widgets/auth_elevated_button.dart';
+import '/featuers/authPage/presentation/widgets/custom_text_button.dart';
+import '/featuers/authPage/presentation/widgets/loader.dart';
 import '../../../../core/resources/assets_manager.dart';
 
 import '../controllers/signup_controller.dart';
@@ -83,15 +84,21 @@ class SignupPasswordsView extends StatelessWidget {
         ),
       ),
       button: Obx(() => AuthElevatedButton(
-          onPressed: controller.canCreateAccount ? () {} : null,
-          child: Text(
-            "sign_up_now".tr,
-            style: context.textStyles.bodyLarge!.copyWith(
-                color: controller.canCreateAccount
-                    ? context.surfaceColor
-                    : context.pinkSherbet,
-                fontWeight: FontWeight.bold),
-          ))),
+          onPressed: controller.canCreateAccount
+              ? () => controller.patientSignupWithEmail(context)
+              : null,
+          child: controller.loading.value
+              ? Loader(
+                  color: context.surfaceColor,
+                )
+              : Text(
+                  "sign_up_now".tr,
+                  style: context.textStyles.bodyLarge!.copyWith(
+                      color: controller.canCreateAccount
+                          ? context.surfaceColor
+                          : context.pinkSherbet,
+                      fontWeight: FontWeight.bold),
+                ))),
       controller: controller,
     );
   }
