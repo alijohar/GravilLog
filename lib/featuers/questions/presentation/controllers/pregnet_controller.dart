@@ -21,17 +21,11 @@ class PregnantQuestionController extends GetxController {
   }
 
   void onNotPregnant() {
-    if (kDebugMode) {
-      print("Pregnant: ${isNotPregnant.value}");
-    }
-    Get.toNamed(Routes.menstrualPeriodRoute, arguments: isNotPregnant.value);
+    Get.toNamed(Routes.questionScreenRoute);
   }
 
   void onConfirm() {
-    if (kDebugMode) {
-      print("Pregnant: ${isPregnant.value}");
-    }
-    Get.toNamed(Routes.duePeriodRoute, arguments: isPregnant.value);
+    Get.toNamed(Routes.questionScreenRoute);
   }
 }
 

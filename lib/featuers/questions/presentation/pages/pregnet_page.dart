@@ -4,7 +4,6 @@ import 'package:get/get.dart';
 import 'package:gravilog_2025/core/resources/app_theme.dart';
 import 'package:gravilog_2025/core/resources/color_manager.dart';
 import 'package:gravilog_2025/featuers/questions/data/models/pregnant_info_model.dart';
-import 'package:gravilog_2025/featuers/questions/presentation/widgets/steps_progress_bar.dart';
 
 import '../controllers/pregnet_controller.dart';
 
@@ -25,9 +24,9 @@ class PregnantQuestionView extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.start,
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              SizedBox(height: 36.h),
-              const StepProgressBarWidget(
-                  currentStepValue: 1, totalStepsValue: 5),
+              SizedBox(
+                height: 1.h,
+              ),
               Text(
                 "are_you_pregnant".tr,
                 style: Theme.of(context).textTheme.headlineLarge!.copyWith(
@@ -48,7 +47,7 @@ class PregnantQuestionView extends StatelessWidget {
                 children: [
                   ElevatedButton(
                     onPressed: () {
-                      controller.setPregnant(Pregnant.Is_Pregnant);
+                     // controller.setPregnant(Pregnant.Is_Pregnant);
                       controller.onConfirm();
                     },
                     style: ElevatedButton.styleFrom(
@@ -69,7 +68,7 @@ class PregnantQuestionView extends StatelessWidget {
                   ),
                   OutlinedButton(
                     onPressed: () {
-                      controller.setPregnant(Pregnant.Not_Pregnant);
+                      //controller.setPregnant(Pregnant.Not_Pregnant);
                       controller.onNotPregnant();
                     },
                     style: OutlinedButton.styleFrom(

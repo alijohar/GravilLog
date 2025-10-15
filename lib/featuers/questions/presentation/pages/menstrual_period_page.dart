@@ -6,83 +6,60 @@ import 'package:get/get.dart';
 import 'package:gravilog_2025/core/resources/app_theme.dart';
 import 'package:gravilog_2025/core/resources/color_manager.dart';
 import 'package:gravilog_2025/core/resources/deviceUtils.dart';
-import 'package:gravilog_2025/featuers/questions/presentation/widgets/steps_progress_bar.dart';
-import '../controllers/menstrual_period_controller.dart';
 
-class MenstrualPeriodView extends StatelessWidget {
-  MenstrualPeriodView({super.key});
-
-  final MenstrualPeriodController controller = Get.find();
+class MenstrualPeriodView extends StatefulWidget {
+  const MenstrualPeriodView({super.key});
 
   @override
+  State<MenstrualPeriodView> createState() => _MenstrualPeriodViewState();
+}
+
+class _MenstrualPeriodViewState extends State<MenstrualPeriodView> {
+  final List<int> menstrualLength = List.generate(15, (index) => 21 + index);
+  var selectedDate = DateTime.now().obs;
+  var selectedMenstrualCycle = 28.obs; // Defaultwert
+  var selectedValue = RxnString();
+  @override
   Widget build(BuildContext context) {
-    return context.secondaryGradientScaffold(
-      appBar: AppBar(
-        backgroundColor: ColorManager.secondaryGradientStart,
-        elevation: 0,
-        leading: IconButton(
-          padding: const EdgeInsets.symmetric(horizontal: 20),
-          icon: Icon(
-            Icons.arrow_back,
-            color: context.textPrimary,
-            size: 24,
-          ),
-          onPressed: () => Get.back(),
-        ),
-      ),
-      body: SafeArea(
-        child: Container(
-          margin: EdgeInsets.symmetric(horizontal: 20.w),
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.start,
-            crossAxisAlignment: CrossAxisAlignment.stretch,
-            spacing: 24.h,
-            children: [
-              const StepProgressBarWidget(
-                  currentStepValue: 1, totalStepsValue: 2),
-              Text("please_select_menstrual_period".tr,
-                  textAlign: TextAlign.center,
-                  style: Theme.of(context).textTheme.headlineLarge!.copyWith()),
+    return Column(
+      mainAxisAlignment: MainAxisAlignment.start,
+      crossAxisAlignment: CrossAxisAlignment.stretch,
+      spacing: 24.h,
+      children: [
+        Text("please_select_menstrual_period".tr,
+            textAlign: TextAlign.center,
+            style: Theme.of(context).textTheme.headlineLarge!.copyWith()),
 
-              datePicker(context),
+        datePicker(context),
 
-              // Button
-              Padding(
-                padding:
-                    const EdgeInsets.symmetric(horizontal: 20, vertical: 5),
-                child: Text(
-                  "cycle_length".tr,
-                  style: Theme.of(context).textTheme.headlineLarge!.copyWith(),
-                ),
-              ),
-              periodDaysDropdown(context),
-
-              Container(
-                padding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 16.h),
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(8.r),
-                  color: context.pinkSherbet.withAlpha(40),
-                ),
-                child: Text(
-                  "menstrual_period_hint".tr,
-                  textAlign: TextAlign.center,
-                  style: Theme.of(context).textTheme.bodyMedium!.copyWith(
-                        color: context.pinkSherbet,
-                      ),
-                ),
-              )
-            ],
+        // Button
+        Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 5),
+          child: Text(
+            "cycle_length".tr,
+            style: Theme.of(context).textTheme.headlineLarge!.copyWith(),
           ),
         ),
-      ),
-      floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
-      floatingActionButton: Container(
-        margin: EdgeInsets.symmetric(horizontal: 20.w, vertical: 16.h),
-        child: ElevatedButton(
-          onPressed: () {},
-          child: Text("continue".tr),
+        periodDaysDropdown(context),
+
+        Container(
+          padding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 16.h),
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(8.r),
+            color: context.pinkSherbet.withAlpha(40),
+          ),
+          child: Text(
+            "menstrual_period_hint".tr,
+            textAlign: TextAlign.center,
+            style: Theme.of(context).textTheme.bodyMedium!.copyWith(
+                  color: context.pinkSherbet,
+                ),
+          ),
         ),
-      ),
+        SizedBox(
+          height: 1.h,
+        )
+      ],
     );
   }
 
@@ -96,14 +73,14 @@ class MenstrualPeriodView extends StatelessWidget {
             Expanded(
               child: Text(
                 Deviceutils.replacePlaceholder(
-                    "days".tr, {'s': '${controller.menstrualLength[7]}'}),
+                    "days".tr, {'s': '${menstrualLength[7]}'}),
                 style: context.textStyles.bodyMedium,
                 overflow: TextOverflow.ellipsis,
               ),
             ),
           ],
         ),
-        items: controller.menstrualLength
+        items: menstrualLength
             .map((int item) => DropdownMenuItem<String>(
                   value: item.toString(),
                   child: Text(
@@ -113,12 +90,11 @@ class MenstrualPeriodView extends StatelessWidget {
                   ),
                 ))
             .toList(),
-        value: controller.selectedValue.value,
+        value: selectedValue.value,
         onChanged: (String? value) {
           if (value != null) {
-            controller.selectedValue.value = value;
-            controller.selectedMenstrualCycle.value =
-                int.parse(value.split(' ')[0]);
+            selectedValue.value = value;
+            selectedMenstrualCycle.value = int.parse(value.split(' ')[0]);
           }
         },
         buttonStyleData: ButtonStyleData(
@@ -184,11 +160,13 @@ class MenstrualPeriodView extends StatelessWidget {
           ),
           currentDateTextStyle: context.textStyles.bodyMedium
               ?.copyWith(color: context.onPrimaryColor),
-          currentDate: controller.selectedDate.value,
+          currentDate: selectedDate.value,
           centerLeadingDate: true,
           minDate: DateTime.now().subtract(const Duration(days: 365)),
           maxDate: DateTime.now(),
-          onDateSelected: (newDate) => controller.selectedDate.value = newDate,
+          onDateSelected: (newDate) => setState(() {
+            selectedDate.value = newDate;
+          }),
         ),
       ),
     );

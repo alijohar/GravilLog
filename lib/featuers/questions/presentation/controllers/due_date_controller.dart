@@ -20,7 +20,7 @@ class DueDateController extends GetxController {
   /// Navigates to the page where the user can calculate their
   /// due date based on their last menstrual period.
   void onHelpCalculate() {
-    Get.toNamed(Routes.menstrualPeriodRoute, arguments: pregnantData.value);
+  
   }
 
   /// Navigates to the next step in the flow, passing the
