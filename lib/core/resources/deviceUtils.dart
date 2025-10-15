@@ -114,16 +114,21 @@ class Deviceutils {
 
   static void showCustomDialog(BuildContext context,
           {required String title,
-          required String bodyText,
-          required String buttonText,
+           String? bodyText,
+           String? buttonText,
+            TextAlign? textAlign,
+            Widget?content,
+            TextStyle? textStyle,
           bool isDismissible = true,
           String? leadingSvgImagePath,
-          required void Function()? buttonAction}) =>
+          Color? backgroundColor,
+           void Function()? buttonAction}) =>
       showDialog(
           context: context,
           barrierDismissible: isDismissible,
           builder: (context) {
             return AlertDialog(
+              backgroundColor:backgroundColor ,
               shape: const RoundedRectangleBorder(
                   borderRadius: BorderRadius.all(Radius.circular(10))),
               title: Column(
@@ -141,20 +146,23 @@ class Deviceutils {
                   ],
                   Text(
                     title,
-                    textAlign: TextAlign.center,
-                    style: context.textStyles.bodyMedium!.copyWith(
+                    textAlign:textAlign?? TextAlign.center,
+                    style:textStyle?? context.textStyles.bodyMedium!.copyWith(
                       color: context.pinkSherbet,
                       fontWeight: FontWeight.bold,
                     ),
                   ),
                 ],
               ),
-              content: Text(
+              content:bodyText==null?
+              content:
+              Text(
                 bodyText,
                 textAlign: TextAlign.center,
-                style: context.textStyles.bodySmall,
+                style:textStyle?? context.textStyles.bodySmall,
               ),
               actions: [
+                buttonText!=null?
                 AuthElevatedButton(
                     onPressed: buttonAction,
                     child: Text(
@@ -162,7 +170,7 @@ class Deviceutils {
                       style: context.textStyles.bodyMedium!.copyWith(
                           color: context.surfaceColor,
                           fontWeight: FontWeight.bold),
-                    )),
+                    )):const SizedBox.shrink()
               ],
             );
           });

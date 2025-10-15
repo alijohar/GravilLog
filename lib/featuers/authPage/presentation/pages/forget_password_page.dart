@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:gravilog_2025/core/resources/app_theme.dart';
-import 'package:gravilog_2025/featuers/authPage/presentation/widgets/auth_elevated_button.dart';
-import 'package:gravilog_2025/featuers/authPage/presentation/widgets/form_text_field/custom_text_fiels.dart';
-import 'package:gravilog_2025/featuers/authPage/presentation/widgets/widgets.dart';
+import '/core/resources/app_theme.dart';
+import '/featuers/authPage/presentation/widgets/auth_elevated_button.dart';
+import '/featuers/authPage/presentation/widgets/form_text_field/custom_text_fiels.dart';
+import '/featuers/authPage/presentation/widgets/widgets.dart';
 
 import '../../../../core/resources/assets_manager.dart';
 import '../controllers/forget_password_controller.dart';
@@ -73,7 +73,9 @@ class ForgetPasswordView extends StatelessWidget {
                       ? () => controller.resetPassword(context)
                       : null,
                   child: controller.loading.value
-                      ? const Loader(duration: Duration(milliseconds: 600))
+                      ? Loader(
+                          color: context.surfaceColor,
+                        )
                       : Text(
                           "send_reset_link".tr,
                           style: context.textStyles.bodyLarge!.copyWith(

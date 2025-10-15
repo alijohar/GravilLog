@@ -1,15 +1,12 @@
-
 import '../../business/entities/auth_result_entity.dart';
 
-class AuthResultModel  extends AuthResultEntity{
+class AuthResultModel extends AuthResultEntity {
   AuthResultModel({
-    required String? token,
+    //?token my returned as bool in case login failed
+    required dynamic token,
     required String? error,
     required String? result,
   }) : super(token: token, error: error, result: result);
-
-
-
 
   AuthResultModel copyWith({
     String? token,
@@ -23,24 +20,22 @@ class AuthResultModel  extends AuthResultEntity{
     );
   }
 
-  factory AuthResultModel.fromJson(Map<String, dynamic> json){
+  factory AuthResultModel.fromJson(Map<String, dynamic> json) {
     return AuthResultModel(
       token: json["token"],
       error: json["error"],
       result: json["result"],
-
     );
   }
 
   Map<String, dynamic> toJson() => {
-    "token": token,
-    "error": error,
-    "result": result,
-
-  };
+        "token": token,
+        "error": error,
+        "result": result,
+      };
 
   @override
-  String toString(){
+  String toString() {
     return "$token, $error, ";
   }
 }

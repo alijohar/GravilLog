@@ -60,6 +60,7 @@ class AppTextStyles{
     fontSize: 14.sp,
     fontWeight: FontWeight.w500,
   );
+
   static get textStyle12bodySmall400 =>TextStyle(
     color: ColorManager.textSecondary,
     fontSize: 12.sp,

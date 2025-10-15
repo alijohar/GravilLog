@@ -114,7 +114,6 @@ class AuthRemoteDataSourceImpl implements AuthRemoteDataSource {
   Future<GetPregnancyResultModel> getPregnacyInfo(
       {required AuthParams authParams}) async {
     try {
-      print("getPregnacyInfoooooooo ${authParams.token}");
       final baseResponse = await DioSingleton().dioInstance.post(
         '${AppConstants.BASE_URL}',
         data: {
