@@ -25,8 +25,9 @@ Future<void> main() async {
 }
 
 class MyApp extends GetView<LanguageController> {
-
-  const MyApp({super.key,});
+  const MyApp({
+    super.key,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -41,7 +42,8 @@ class MyApp extends GetView<LanguageController> {
             debugShowCheckedModeBanner: false,
             initialBinding: MainBindings(),
             theme: AppTheme.lightTheme(controller.currentLanguage.value),
-            locale: Locale(controller.currentLanguage.value), // Default language
+            locale:
+                Locale(controller.currentLanguage.value), // Default language
             fallbackLocale: const Locale(AppConstants.englishLanguage, 'US'),
             supportedLocales: const [
               Locale(AppConstants.englishLanguage, 'US'),
@@ -57,7 +59,7 @@ class MyApp extends GetView<LanguageController> {
             unknownRoute: GetPage(
                 name: '/notfound', page: () => RouteGenerator.unDefinedPage()),
             getPages: RouteGenerator.getPages(),
-            initialRoute: Routes.pregnantQuestionRoute,
+            initialRoute: Routes.questionScreenRoute,
           ),
         );
       },

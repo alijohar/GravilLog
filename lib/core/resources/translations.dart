@@ -4,12 +4,13 @@ class Translation extends Translations {
   @override
   Map<String, Map<String, String>> get keys => {
         'en_US': {
-
           // news values
           "menstrual_period_hint":
               "We’ll help you track your next cycle starting from August 11, 2025.",
           "due_date_question": "When is your due date?",
           "help_calculate": "I don’t know / Help me calculate",
+          "pregnant_question_hint":
+              "We’ll personalize your experience based on your answer.",
           // end news value
 
           "step": "Step",
@@ -72,8 +73,7 @@ class Translation extends Translations {
           "or": "or",
           "or_continuo_with": "Or continue with",
           "are_you_pregnant": "Are you pregnant?",
-          "pregnant_question_hint":
-              "We’ll personalize your experience based on your answer.",
+
           "pregnant": "Pregnant",
           "not_pregnant": "Not Pregnant",
           "confirm": "Confirm",
@@ -597,9 +597,10 @@ class Translation extends Translations {
           // new values
           "menstrual_period_hint":
               "سنساعدك في تتبع دورتك الشهرية القادمة بدءًا من 11 أغسطس 2025.",
-            "due_date_question":"متى موعد ولادتك؟",
-            "help_calculate":"لا أعرف / ساعدني في الحساب",
-              // end new values
+          "due_date_question": "متى موعد ولادتك؟",
+          "pregnant_question_hint": "سوف نقوم بتخصيص تجربتك بناءً على إجابتك.",
+          "help_calculate": "لا أعرف / ساعدني في الحساب",
+          // end new values
           "chooseLanguage": "اختر لغتك",
           "selectLanguage": "حدد اللغة المفضلة لديك للمتابعة",
           "changeLater": "يمكنك تغيير ذلك لاحقًا في الإعدادات",
@@ -654,7 +655,7 @@ class Translation extends Translations {
           "no": "لا",
           "confirm": "تأكيد",
           "please_select_menstrual_period": "أول يوم من آخر دورة شهرية",
-          "cycle_length": "طول الدورة",
+          "cycle_length": "متوسط ​​طول الدورة",
           "days": "{s} يوم",
           "calculate": "احسب",
           "best_time_to_pregnant": "افضل وقت للحمل",

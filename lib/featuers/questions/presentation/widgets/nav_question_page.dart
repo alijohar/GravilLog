@@ -1,5 +1,7 @@
 import 'package:gravilog_2025/featuers/questions/presentation/pages/due_date_page.dart';
 import 'package:gravilog_2025/featuers/questions/presentation/pages/menstrual_period_page.dart';
+import 'package:gravilog_2025/featuers/questions/presentation/pages/pregnet_page.dart';
+
 import 'widgets.dart';
 
 class NavQuestionPage extends StatefulWidget {
@@ -12,11 +14,10 @@ class NavQuestionPage extends StatefulWidget {
 class _NavQuestionPageState extends State<NavQuestionPage> {
   int currentStep = 1;
   final List<Widget> screens = [
+    const PregnantQuestionView(),
     const MenstrualPeriodView(),
-   const DueDateView(),
-
+    const DueDateView(),
     ///second three screens
-
     const PregnancyInfoPage(),
     const MedicalHistoryView(),
     const AboutYouView(),
