@@ -6,7 +6,7 @@ import '../../../../core/resources/routes_manager.dart';
 
 class LanguageController extends GetxController {
   LocalPreferences localDataSource = Get.find();
-  var currentLanguage = "ar".obs;
+  var currentLanguage = "en".obs;
 
   @override
   void onInit() {
