@@ -16,7 +16,7 @@ class Translation extends Translations {
           // end news value
 
           "step": "Step",
-          "first": "",
+          "first": "First",
           "moreAboutYou": "Tell us more about your pregnancy",
           "support": "This information helps us suppot you better.",
           "gender": "Baby’s gender",
