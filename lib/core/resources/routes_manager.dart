@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:gravilog_2025/featuers/authPage/presentation/controllers/language_controller.dart';
 import 'package:gravilog_2025/featuers/authPage/presentation/pages/forget_password_page.dart';
 import 'package:gravilog_2025/featuers/authPage/presentation/pages/language_page.dart';
 import 'package:gravilog_2025/featuers/authPage/presentation/pages/onboarding_page.dart';
 import 'package:gravilog_2025/featuers/authPage/presentation/pages/privacy_policy_page.dart';
 import 'package:gravilog_2025/featuers/authPage/presentation/pages/signup_page.dart';
 import 'package:gravilog_2025/featuers/authPage/presentation/pages/terms_of_use_page.dart';
+import 'package:gravilog_2025/featuers/questions/presentation/pages/last_period_question_page.dart';
 import 'package:gravilog_2025/featuers/questions/presentation/pages/pregnet_page.dart';
 import 'package:gravilog_2025/featuers/questions/presentation/widgets/nav_question_page.dart';
 import 'package:gravilog_2025/featuers/splash/presentation/controllers/splash_controller.dart';
@@ -15,7 +15,6 @@ import 'package:gravilog_2025/featuers/splash/presentation/pages/splash_page.dar
 import '../../featuers/authPage/presentation/pages/login_page.dart';
 import '../../featuers/authPage/presentation/pages/sign_up_password_page.dart';
 import '../../featuers/questions/presentation/pages/expect_delivery_page.dart';
-import '../../featuers/questions/presentation/pages/menstrual_period_page.dart';
 
 class Routes {
   static const String splashRoute = "/";
@@ -28,9 +27,10 @@ class Routes {
   static const String termsOfUseRoute = "/termsOfUse";
   static const String forgetPasswordRoute = "/forgetPassword";
   static const String pregnantQuestionRoute = "/pregnantQuestion";
-  static const String menstrualPeriodRoute = "/menstrualPeriod";
   static const String questionScreenRoute = "/menstrualPeriod";
+  static const String lastPeriodQuestionRoute = "/lastPeriod";
   static const String expectDeliveryRoute = "/expectDelivery";
+  static const String duePeriodRoute = "/duePeriod";
 }
 
 class RouteGenerator {
@@ -47,6 +47,8 @@ class RouteGenerator {
       GetPage(name: Routes.onboardingRoute, page: () => OnboardView()),
       GetPage(name: Routes.signUpRoute, page: () => const SignupView()),
       GetPage(name: Routes.questionScreenRoute, page: () => const NavQuestionPage()),
+      GetPage(name: Routes.pregnantQuestionRoute, page: () => const PregnantQuestionPage()),
+      GetPage(name: Routes.lastPeriodQuestionRoute, page: () => const LastPeriodQuestionPage()),
       GetPage(
           name: Routes.signUpPasswordsRoute,
           page: () => const SignupPasswordsView()),
@@ -55,11 +57,6 @@ class RouteGenerator {
       GetPage(
           name: Routes.forgetPasswordRoute,
           page: () => const ForgetPasswordView()),
-      GetPage(
-          name: Routes.pregnantQuestionRoute,
-          page: () => const PregnantQuestionView()),
-      GetPage(
-          name: Routes.menstrualPeriodRoute, page: () => MenstrualPeriodView()),
       GetPage(
           name: Routes.expectDeliveryRoute, page: () => ExpectDeliveryView()),
     ];

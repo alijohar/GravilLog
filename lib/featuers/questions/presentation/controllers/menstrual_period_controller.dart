@@ -1,10 +1,9 @@
 import 'package:get/get.dart';
-import 'package:flutter/material.dart';
 import 'package:gravilog_2025/core/resources/routes_manager.dart';
-import 'package:gravilog_2025/featuers/questions/presentation/controllers/pregnet_controller.dart';
-
 import '../../data/models/pregnant_info_model.dart';
 
+
+//Note: all logic for menstrual period for tasting
 class MenstrualPeriodController extends GetxController {
   var selectedDate = DateTime.now().obs;
   var selectedMenstrualCycle = 28.obs; // Defaultwert

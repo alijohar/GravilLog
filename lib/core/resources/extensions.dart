@@ -1,4 +1,4 @@
-part of  'package:gravilog_2025/core/resources/app_theme.dart';
+part of 'package:gravilog_2025/core/resources/app_theme.dart';
 
 // Extension for easy access to custom colors and text styles
 extension AppColors on BuildContext {
@@ -54,13 +54,23 @@ extension AppColors on BuildContext {
 
   // Background Gradient
   LinearGradient get backgroundGradient => const LinearGradient(
-    begin: Alignment.topCenter,
-    end: Alignment.bottomCenter,
-    colors: [
-      ColorManager.gradientStart, // #FDE5EF
-      ColorManager.gradientEnd,   // #DCE9EF
-    ],
-  );
+        begin: Alignment.topCenter,
+        end: Alignment.bottomCenter,
+        colors: [
+          ColorManager.gradientStart, // #FDE5EF
+          ColorManager.gradientEnd, // #DCE9EF
+        ],
+      );
+
+  // Scondary Gradient
+  LinearGradient get secondaryGradient => const LinearGradient(
+        begin: Alignment.topCenter,
+        end: Alignment.bottomCenter,
+        colors: [
+          ColorManager.secondaryGradientStart, // #FDE5EF
+          ColorManager.secondaryGradientEnd, // #DCE9EF
+        ],
+      );
 
   // Helper method to create gradient scaffold
   Widget gradientScaffold({
@@ -81,6 +91,36 @@ extension AppColors on BuildContext {
       body: Container(
         decoration: BoxDecoration(
           gradient: backgroundGradient,
+        ),
+        child: body,
+      ),
+      bottomNavigationBar: bottomNavigationBar,
+      floatingActionButton: floatingActionButton,
+      floatingActionButtonLocation: floatingActionButtonLocation,
+      drawer: drawer,
+      endDrawer: endDrawer,
+    );
+  }
+
+  // Helper method to create secondary gradient scaffold
+  Widget secondaryGradientScaffold({
+    required Widget body,
+    PreferredSizeWidget? appBar,
+    Widget? bottomNavigationBar,
+    Widget? floatingActionButton,
+    FloatingActionButtonLocation? floatingActionButtonLocation,
+    Widget? drawer,
+    Widget? endDrawer,
+    bool extendBody = false,
+    bool extendBodyBehindAppBar = false,
+  }) {
+    return Scaffold(
+      extendBody: extendBody,
+      extendBodyBehindAppBar: extendBodyBehindAppBar,
+      appBar: appBar,
+      body: Container(
+        decoration: BoxDecoration(
+          gradient: secondaryGradient,
         ),
         child: body,
       ),
