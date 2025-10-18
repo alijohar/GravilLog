@@ -11,6 +11,8 @@ class Translation extends Translations {
           "help_calculate": "I don’t know / Help me calculate",
           "pregnant_question_hint":
               "We’ll personalize your experience based on your answer.",
+          "last-period":"The first day of your last period?",
+          "last-period-sheet":"We’ll help you track your next cycle starting from August 11, 2025.",
           // end news value
 
           "step": "Step",
@@ -600,6 +602,9 @@ class Translation extends Translations {
           "due_date_question": "متى موعد ولادتك؟",
           "pregnant_question_hint": "سوف نقوم بتخصيص تجربتك بناءً على إجابتك.",
           "help_calculate": "لا أعرف / ساعدني في الحساب",
+          "last-period-sheet":"سنساعدك في تتبع دورتك الشهرية القادمة بدءًا من 11 أغسطس 2025.",
+          "last-period":"متى بدأت آخر دورة شهرية؟",
+
           // end new values
           "chooseLanguage": "اختر لغتك",
           "selectLanguage": "حدد اللغة المفضلة لديك للمتابعة",
@@ -763,7 +768,6 @@ class Translation extends Translations {
           "are_you_sure_logout": "هل أنت متأكدة من تسجيل الخروج؟",
           "logout_save_data": "تسجيل الخروج وحفظ البيانات الخاصة بك",
           "cancel": "إلغاء",
-          "yes": "نعم",
           "delivery_date": "تاريخ الولادة",
           "add_your_own_photo": "أضيفي صورتك الخاصة",
           "my_gallery": "معرض صوري",
@@ -994,7 +998,6 @@ class Translation extends Translations {
               "لتقديم نظام غذائي مناسب ومخصص لك، يرجى الإجابة على ما يلي:",
           "suffer_from_gestational_pregnancy":
               "1. هل تعانين من سكري الحمل أو ما قبل الحمل؟",
-          "no": "لا",
           "do_you_any_food_allergies": "2. هل لديك أي حساسية غذائية؟",
           "determine_type_allergy": "تحديد نوع الحساسية:",
           "egg_allergy": "حساسية البيض",

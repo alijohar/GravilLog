@@ -1,6 +1,3 @@
-import 'package:gravilog_2025/featuers/questions/presentation/pages/due_date_page.dart';
-import 'package:gravilog_2025/featuers/questions/presentation/pages/menstrual_period_page.dart';
-import 'package:gravilog_2025/featuers/questions/presentation/pages/pregnet_page.dart';
 
 import 'widgets.dart';
 
@@ -13,16 +10,16 @@ class NavQuestionPage extends StatefulWidget {
 
 class _NavQuestionPageState extends State<NavQuestionPage> {
   int currentStep = 1;
-  final List<Widget> screens = [
-    const PregnantQuestionView(),
-    const MenstrualPeriodView(),
-    const DueDateView(),
-    ///second three screens
+   List<Widget> screens =[
+     const DueDatePage(),
+     const MenstrualPeriodPage(),
     const PregnancyInfoPage(),
-    const MedicalHistoryView(),
-    const AboutYouView(),
+    const MedicalHistoryPage(),
+    const AboutYouPage(),
   ];
   int totalSteps = 5;
+
+
 
   @override
   Widget build(BuildContext context) {
@@ -32,7 +29,7 @@ class _NavQuestionPageState extends State<NavQuestionPage> {
         child: Scaffold(
       appBar: AppBar(
         leading: currentStep == 1
-            ? const SizedBox.shrink()
+            ? const BackButton()
             : BackButton(
                 onPressed: () {
                   setState(() {
@@ -66,12 +63,13 @@ class _NavQuestionPageState extends State<NavQuestionPage> {
               ),
               const HeightSpace(16),
               IndexedStack(
-                index: currentStep - 1,
+                index: currentStep-1 ,
                 children: screens,
               ),
+
               AppElevatedButton(
                   onPressed: () {
-                    if (currentStep <= screens.length - 1) {
+                    if (currentStep <= screens.length-1 ) {
                       currentStep++;
                     } else {
                       ///navigate to home
@@ -80,7 +78,7 @@ class _NavQuestionPageState extends State<NavQuestionPage> {
                     setState(() {});
                   },
                   text: "continue"),
-              const HeightSpace(12),
+              const HeightSpace(16),
             ],
           ),
         ),
