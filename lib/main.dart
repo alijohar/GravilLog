@@ -4,7 +4,6 @@ import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-
 import 'core/binding/main_binding.dart';
 import 'core/local_preferences/local_preferences.dart';
 import 'core/resources/app_theme.dart';
@@ -19,7 +18,8 @@ Future<void> main() async {
   // Initialize LocalPreferences before app starts
   final sharedPreferences = await SharedPreferences.getInstance();
   Get.put(LocalPreferences(sharedPreferences), permanent: true);
-  Get.put(LanguageController());
+  final controller = Get.put(LanguageController());
+  await controller.initLanguage();
 
   runApp(const MyApp());
 }
