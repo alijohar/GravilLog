@@ -3,8 +3,8 @@ class AppConstants {
   static const int splashDelay = 2;
   static const String arabicLanguage = "ar";
   static const String englishLanguage = "en";
-  static const String englishFontFamily = "Poppins";
-  static const String arabicFontFamily = "Almarai";
+  static const String englishFontFamily = "Almarai";
+  static const String arabicFontFamily = "Poppins";
   static const BASE_URL = "https://gravilog.com/json-rpc";
   static const LOGIN = "login";
   static const RESET_PASSWORD = "resetPassword";
