@@ -31,7 +31,7 @@ class _DatesPickerState extends State<DatesPicker> {
           daysOfTheWeekTextStyle: AppTextStyles.kTextStyle14MediumGrey400,
           slidersSize: 16.sp,
           slidersColor: ColorManager.pinkSherbet,
-          selectedCellTextStyle: AppTextStyles.kTextStyleHead16Weight700,
+          selectedCellTextStyle: AppTextStyles.kTextStyle20Pink700.copyWith(fontSize:16.sp),
           selectedCellDecoration: const BoxDecoration(
             color: ColorManager.peachyPink,
             shape: BoxShape.circle,
