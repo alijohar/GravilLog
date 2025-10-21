@@ -4,7 +4,6 @@ import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-
 import 'core/binding/main_binding.dart';
 import 'core/local_preferences/local_preferences.dart';
 import 'core/resources/app_theme.dart';
@@ -19,14 +18,16 @@ Future<void> main() async {
   // Initialize LocalPreferences before app starts
   final sharedPreferences = await SharedPreferences.getInstance();
   Get.put(LocalPreferences(sharedPreferences), permanent: true);
-  Get.put(LanguageController());
+  final controller = Get.put(LanguageController());
+  await controller.initLanguage();
 
   runApp(const MyApp());
 }
 
 class MyApp extends GetView<LanguageController> {
-
-  const MyApp({super.key,});
+  const MyApp({
+    super.key,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -41,7 +42,8 @@ class MyApp extends GetView<LanguageController> {
             debugShowCheckedModeBanner: false,
             initialBinding: MainBindings(),
             theme: AppTheme.lightTheme(controller.currentLanguage.value),
-            locale: Locale(controller.currentLanguage.value), // Default language
+            locale:
+                Locale(controller.currentLanguage.value), // Default language
             fallbackLocale: const Locale(AppConstants.englishLanguage, 'US'),
             supportedLocales: const [
               Locale(AppConstants.englishLanguage, 'US'),
@@ -57,7 +59,7 @@ class MyApp extends GetView<LanguageController> {
             unknownRoute: GetPage(
                 name: '/notfound', page: () => RouteGenerator.unDefinedPage()),
             getPages: RouteGenerator.getPages(),
-            initialRoute: Routes.splashRoute,
+            initialRoute: Routes.pregnantQuestionRoute,
           ),
         );
       },

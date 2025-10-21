@@ -46,7 +46,6 @@ class ColorManager {
   static const Color textSecondary = Color(0xFF545555);
   static const Color textTertiary = Color(0xFF808080);
 
-
   // Snackbar Colors
   static const Color snackBarSuccess = Color(0xFFE9FFF2);
   static const Color snackbarWarning = Color(0xFFFFF2D3);
@@ -58,4 +57,8 @@ class ColorManager {
   // Gradient Colors
   static const Color gradientStart = Color(0xFFFDE5EF); // Light pink
   static const Color gradientEnd = Color(0xFFDCE9EF); // Light blue
+
+  // scondary Gradient Colors
+  static const Color secondaryGradientStart = Color(0xFFFFF4F8); // Light pink
+  static const Color secondaryGradientEnd = Color(0xFFEDF5F9); // Light blue
 }

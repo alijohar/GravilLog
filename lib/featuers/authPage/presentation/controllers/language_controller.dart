@@ -7,27 +7,37 @@ import '../../../../core/resources/routes_manager.dart';
 class LanguageController extends GetxController {
   LocalPreferences localDataSource = Get.find();
   var currentLanguage = "en".obs;
+  Future<void> initLanguage() async {
+    final savedLang = getDeviceLanguage();
+    currentLanguage.value = savedLang;
+
+    await Get.updateLocale(Locale(savedLang));
+
+    log("Initialized language: $savedLang");
+  }
 
   @override
   void onInit() {
     super.onInit();
-    localDataSource = Get.find<LocalPreferences>();
-    currentLanguage.value = getDeviceLanguage();
     log("currentLanguage is ${currentLanguage.value}");
   }
 
   Future<void> onContinue() async {
-    await changeLanguage(currentLanguage.value);
     await setDeviceLanguage(currentLanguage.value);
-    Get.toNamed(Routes.onboardingRoute);
+    await changeLanguage(currentLanguage.value);
+    Get.offAllNamed(Routes.onboardingRoute);
   }
 
   Future<void> changeLanguage(String languageCode) async {
+    currentLanguage.value = languageCode;
+    await localDataSource.setLanguage(languageCode);
     await Get.updateLocale(Locale(languageCode));
+
   }
 
   Future<void> setDeviceLanguage(String languageCode) async {
     await localDataSource.setLanguage(languageCode);
+    log("Language saved: $languageCode");
   }
 
   String getDeviceLanguage() {

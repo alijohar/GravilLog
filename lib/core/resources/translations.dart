@@ -4,8 +4,19 @@ class Translation extends Translations {
   @override
   Map<String, Map<String, String>> get keys => {
         'en_US': {
+          // news values
+          "menstrual_period_hint":
+              "We’ll help you track your next cycle starting from August 11, 2025.",
+          "due_date_question": "When is your due date?",
+          "help_calculate": "I don’t know / Help me calculate",
+          "pregnant_question_hint":
+              "We’ll personalize your experience based on your answer.",
+          "last-period":"The first day of your last period?",
+          "last-period-sheet":"We’ll help you track your next cycle starting from August 11, 2025.",
+          // end news value
+
           "step": "Step",
-          "first": "",
+          "first": "First",
           "moreAboutYou": "Tell us more about your pregnancy",
           "support": "This information helps us suppot you better.",
           "gender": "Baby’s gender",
@@ -63,13 +74,14 @@ class Translation extends Translations {
           "dont_have_account": "Don’t have account?",
           "or": "or",
           "or_continuo_with": "Or continue with",
-          "are_you": "Are you?",
+          "are_you_pregnant": "Are you pregnant?",
+
           "pregnant": "Pregnant",
           "not_pregnant": "Not Pregnant",
           "confirm": "Confirm",
           "please_select_menstrual_period":
-              "Please Select Your 1st day in Menstrual period",
-          "cycle_length": "Cycle Length",
+              "The first day of your last period?",
+          "cycle_length": "Average cycle length",
           "days": "{s} days",
           "calculate": "Calculate",
           "best_time_to_pregnant": "Best Time to get Pregnant",
@@ -584,6 +596,16 @@ class Translation extends Translations {
           "remember_me": "Remember me ?",
         },
         'ar_SA': {
+          // new values
+          "menstrual_period_hint":
+              "سنساعدك في تتبع دورتك الشهرية القادمة بدءًا من 11 أغسطس 2025.",
+          "due_date_question": "متى موعد ولادتك؟",
+          "pregnant_question_hint": "سوف نقوم بتخصيص تجربتك بناءً على إجابتك.",
+          "help_calculate": "لا أعرف / ساعدني في الحساب",
+          "last-period-sheet":"سنساعدك في تتبع دورتك الشهرية القادمة بدءًا من 11 أغسطس 2025.",
+          "last-period":"متى بدأت آخر دورة شهرية؟",
+
+          // end new values
           "chooseLanguage": "اختر لغتك",
           "selectLanguage": "حدد اللغة المفضلة لديك للمتابعة",
           "changeLater": "يمكنك تغيير ذلك لاحقًا في الإعدادات",
@@ -632,12 +654,13 @@ class Translation extends Translations {
           "dont_have_account": "ليس لديك حساب؟",
           "or": "أو",
           "or_continuo_with": "أو الاستمرار مع",
-          "are_you": "هل انت؟",
-          "pregnant": "حامل",
-          "not_pregnant": "غير حامل",
+          "are_you_pregnant": "هل أنت حامل؟",
+          "pregnant_qustion_hint": "سوف نقوم بتخصيص تجربتك بناءً على إجابتك.",
+          "yes": "نعم",
+          "no": "لا",
           "confirm": "تأكيد",
-          "please_select_menstrual_period": "ادخلي تاريخ أول يوم في اخر دورة",
-          "cycle_length": "طول الدورة",
+          "please_select_menstrual_period": "أول يوم من آخر دورة شهرية",
+          "cycle_length": "متوسط ​​طول الدورة",
           "days": "{s} يوم",
           "calculate": "احسب",
           "best_time_to_pregnant": "افضل وقت للحمل",
@@ -745,7 +768,6 @@ class Translation extends Translations {
           "are_you_sure_logout": "هل أنت متأكدة من تسجيل الخروج؟",
           "logout_save_data": "تسجيل الخروج وحفظ البيانات الخاصة بك",
           "cancel": "إلغاء",
-          "yes": "نعم",
           "delivery_date": "تاريخ الولادة",
           "add_your_own_photo": "أضيفي صورتك الخاصة",
           "my_gallery": "معرض صوري",
@@ -976,7 +998,6 @@ class Translation extends Translations {
               "لتقديم نظام غذائي مناسب ومخصص لك، يرجى الإجابة على ما يلي:",
           "suffer_from_gestational_pregnancy":
               "1. هل تعانين من سكري الحمل أو ما قبل الحمل؟",
-          "no": "لا",
           "do_you_any_food_allergies": "2. هل لديك أي حساسية غذائية؟",
           "determine_type_allergy": "تحديد نوع الحساسية:",
           "egg_allergy": "حساسية البيض",

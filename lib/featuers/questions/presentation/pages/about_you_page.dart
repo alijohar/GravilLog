@@ -1,7 +1,7 @@
 import '../widgets/widgets.dart';
 
-class AboutYouView extends StatelessWidget {
-  const AboutYouView({super.key});
+class AboutYouPage extends StatelessWidget {
+  const AboutYouPage({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -45,7 +45,7 @@ class AboutYouView extends StatelessWidget {
         Container(
           padding: const EdgeInsets.all(12),
           decoration: BoxDecoration(
-            color: Colors.pink.shade50,
+            color: context.pinkSherbet.withAlpha(40),
             borderRadius: BorderRadius.circular(12),
           ),
           child: Column(

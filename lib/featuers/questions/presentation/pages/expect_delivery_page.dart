@@ -1,15 +1,11 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:get/get_common/get_reset.dart';
-import 'package:get/get_core/src/get_main.dart';
 import 'package:gravilog_2025/core/resources/app_theme.dart';
 import 'package:gravilog_2025/core/resources/color_manager.dart';
 import 'package:gravilog_2025/core/resources/deviceUtils.dart';
 import 'package:intl/intl.dart';
 
 import '../../../authPage/presentation/widgets/loader.dart';
-import '../../data/models/pregnant_info_model.dart';
 import '../controllers/expect_delivery_controller.dart';
 
 class ExpectDeliveryView extends StatelessWidget {

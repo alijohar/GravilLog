@@ -6,9 +6,7 @@ import 'package:get/get.dart';
 import 'package:gravilog_2025/featuers/authPage/data/models/auth_result_model.dart';
 import 'package:gravilog_2025/featuers/authPage/data/models/get_pregnancy_result_model.dart';
 import 'package:gravilog_2025/featuers/authPage/data/models/patient_info_result_model.dart';
-
 import 'package:shared_preferences/shared_preferences.dart';
-import '../../featuers/authPage/business/entities/auth_result_entity.dart';
 import '../../featuers/authPage/data/models/user_model.dart';
 import '../../featuers/questions/data/models/pregnant_info_model.dart';
 import '../resources/constants_manager.dart';
@@ -24,7 +22,7 @@ class LocalPreferences extends LocalStorage {
       if (userStr == null) return null;
       var user = UserModel.fromJson(json.decode(userStr), fromLocal: true);
       return user.obs;
-    } catch (e, t) {
+    } catch (e) {
       debugPrint('Fetch local user $e');
       return null;
     }
@@ -73,8 +71,8 @@ class LocalPreferences extends LocalStorage {
   }
 
   @override
-  setLanguage(String languageCode) {
-    instance.setString(AppConstants.PREFS_KEY_LANGUAGE, languageCode);
+  Future<void>setLanguage(String languageCode) async{
+    await instance.setString(AppConstants.PREFS_KEY_LANGUAGE, languageCode);
   }
 
   @override

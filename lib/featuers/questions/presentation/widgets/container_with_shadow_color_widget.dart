@@ -7,7 +7,7 @@ final EdgeInsetsGeometry? margin;
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: margin,
+      margin: margin??EdgeInsets.zero,
       decoration: BoxDecoration(
           color: Colors.white,
           borderRadius: BorderRadius.circular(8),
