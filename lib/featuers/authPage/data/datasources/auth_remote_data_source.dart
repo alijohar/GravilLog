@@ -23,30 +23,25 @@ abstract class AuthRemoteDataSource {
 class AuthRemoteDataSourceImpl implements AuthRemoteDataSource {
   @override
   Future<AuthResultModel> login({required AuthParams authParams}) async {
-    try {
-      final baseResponse = await DioSingleton().dioInstance.post(
-        '${AppConstants.BASE_URL}',
-        data: {
-          "jsonrpc": "2.0",
-          "method": AppConstants.LOGIN,
-          "params": {
-            "patient": authParams.patient,
-            "email": authParams.email,
-            "password": authParams.password,
-          },
-          "id": 0,
+    final baseResponse = await DioSingleton().dioInstance.post(
+      AppConstants.BASE_URL,
+      data: {
+        "jsonrpc": "2.0",
+        "method": AppConstants.LOGIN,
+        "params": {
+          "patient": authParams.patient,
+          "email": authParams.email,
+          "password": authParams.password,
         },
-      );
+        "id": 0,
+      },
+    );
 
-      var response = BaseResModel.fromJson(baseResponse);
+    final response = BaseResModel.fromJson(baseResponse);
 
-      var authRepone = AuthResultModel.fromJson(response.result);
-      return authRepone;
-    } on Exception catch (e) {
-      print("the BaseResModel Exception is ${e.toString()}");
+    var authResponse = AuthResultModel.fromJson(response.result);
 
-      throw OtherFailure(errorMessage: e.toString());
-    }
+    return authResponse;
   }
 
   @override

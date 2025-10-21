@@ -1,12 +1,13 @@
 import '../../business/entities/auth_result_entity.dart';
 
 class AuthResultModel extends AuthResultEntity {
-  AuthResultModel({
-    //?token my returned as bool in case login failed
-    required dynamic token,
-    required String? error,
-    required String? result,
-  }) : super(token: token, error: error, result: result);
+  const AuthResultModel({
+    required super.token,
+    required super.error,
+    required super.result,
+  });
+
+  bool get hasError => error != null;
 
   AuthResultModel copyWith({
     String? token,

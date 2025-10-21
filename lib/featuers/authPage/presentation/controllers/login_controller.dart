@@ -96,56 +96,37 @@ class LoginController extends GetxController {
     failureOrLogin.fold(
       (newFailure) {
         loading.value = false;
-        Deviceutils.showToastMessage(
-            "error_occurred_try_again".tr, Get.context!);
+        Deviceutils.showToastMessage(newFailure.errorMessage.tr, Get.context!);
       },
       (authResultModel) async {
         loading.value = false;
-        log("get pregnancy info token: result token1: ${authResultModel.token}");
-        if (authResultModel.token is String &&
-            authResultModel.token!.isNotEmpty) {
-          log("get pregnancy info token: result token: ${authResultModel.token}");
-          final pregnancyInfoSaved = await _eitherFailureOrGetPregnacyInfo(
-              AuthParams(token: authResultModel.token));
-          if (!pregnancyInfoSaved) {
-            loading.value = false;
-            Deviceutils.showToastMessage(
-                "error_occurred_try_again".tr, Get.context!);
-            return;
-          }
 
-          final patientInfoResponse = await _eitherFailureOrgetPatientInfo(
-              AuthParams(token: authResultModel.token));
-
-          if (saveSession.value) {
-            await localDataSource.savePatientInfo(patientInfoResponse);
-
-            await localDataSource.saveUserSession(authResultModel);
-          }
-
+        final pregnancyInfoSaved = await _eitherFailureOrGetPregnacyInfo(
+            AuthParams(token: authResultModel.token));
+        if (!pregnancyInfoSaved) {
           loading.value = false;
-
-          if (patientInfoResponse?.patient?.healthStatus?.isPregnant != null) {
-            log("navigation to home");
-            //_navigationService.pushNamedAndRemoveUntil(Routes.homeLayoutView);
-          } else {
-            print("navigation to pregnantQuestionView");
-            Get.offAllNamed(Routes.pregnantQuestionRoute);
-          }
-        } else if ((authResultModel.token is bool)) {
-          if (!authResultModel.token) {
-            Deviceutils.showCustomDialog(Get.context!,
-                title: "check_you_email".tr,
-                bodyText: "please_verify_your_account".tr,
-                buttonText: 'ok'.tr,
-                isDismissible: false,
-                buttonAction: () => Get.back());
-          }
-        } else {
-          loading.value = false;
-
           Deviceutils.showToastMessage(
-              "incorrect_credentials".tr, Get.context!);
+              "error_occurred_try_again".tr, Get.context!);
+          return;
+        }
+
+        final patientInfoResponse = await _eitherFailureOrgetPatientInfo(
+            AuthParams(token: authResultModel.token));
+
+        if (saveSession.value) {
+          await localDataSource.savePatientInfo(patientInfoResponse);
+
+          await localDataSource.saveUserSession(authResultModel);
+        }
+
+        loading.value = false;
+
+        if (patientInfoResponse?.patient?.healthStatus?.isPregnant != null) {
+          log("navigation to home");
+          //_navigationService.pushNamedAndRemoveUntil(Routes.homeLayoutView);
+        } else {
+          print("navigation to pregnantQuestionView");
+          Get.offAllNamed(Routes.pregnantQuestionRoute);
         }
       },
     );

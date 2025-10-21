@@ -1,8 +1,9 @@
 import 'dart:developer';
 
 import 'package:dartz/dartz.dart';
-import 'package:gravilog_2025/featuers/authPage/data/models/get_pregnancy_result_model.dart';
-import 'package:gravilog_2025/featuers/authPage/data/models/patient_info_result_model.dart';
+import '/featuers/authPage/errors/auth_exception.dart';
+import '/featuers/authPage/data/models/get_pregnancy_result_model.dart';
+import '/featuers/authPage/data/models/patient_info_result_model.dart';
 
 import '../../../../../core/connection/network_info.dart';
 import '../../../../../core/errors/exceptions.dart';
@@ -26,27 +27,19 @@ class AuthRepositoryImpl implements AuthRepository {
 
   @override
   Future<Either<Failure, AuthResultModel>> login(
-      {required AuthParams authParams}) async {
-    if (await networkInfo.isConnected!) {
-      try {
-        AuthResultModel authResultModel =
+          {required AuthParams authParams}) async =>
+      await ExceptionsHandler.baseHelperMethod(() async {
+        await networkInfo.isConnected;
+        final authResultModel =
             await remoteDataSource.login(authParams: authParams);
+        //?now we need to check if there is any error happened
+        //? to early throw it from here
+        if (authResultModel.hasError) {
+          throw AuthException(errorMessage: authResultModel.error!);
+        }
 
-        return Right(authResultModel);
-      } on ServerException catch (e, stack) {
-        log('$stack');
-        return Left(ServerFailure(errorMessage: 'This is a server exception'));
-      } on OtherFailure catch (e, stack) {
-        log('$stack');
-        return Left(OtherFailure(errorMessage: e.errorMessage));
-      } catch (e, stack) {
-        log('$stack');
-        return Left(OtherFailure(errorMessage: 'This is an exception $e'));
-      }
-    } else {
-      return Left(ServerFailure(errorMessage: 'No Connection'));
-    }
-  }
+        return authResultModel;
+      });
 
   @override
   Future<Either<Failure, AuthResultModel>> signup(
@@ -91,7 +84,7 @@ class AuthRepositoryImpl implements AuthRepository {
   }
 
   @override
-  Future<Either<Failure, GetPregnancyResultModel>> getPregnacyInfo(
+  Future<Either<Failure, GetPregnancyResultModel>> getPregnancyInfo(
       {required AuthParams authParams}) async {
     if (await networkInfo.isConnected!) {
       try {
