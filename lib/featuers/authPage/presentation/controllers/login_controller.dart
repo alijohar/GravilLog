@@ -3,6 +3,7 @@ import 'dart:developer';
 import 'package:data_connection_checker_tv/data_connection_checker.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:gravilog_2025/featuers/authPage/data/models/user_model.dart';
 import '/core/resources/deviceUtils.dart';
 import '/featuers/authPage/business/usecases/getPatientInfo.dart';
 import '../../business/usecases/get_pregnancy_info.dart';
@@ -99,6 +100,9 @@ class LoginController extends GetxController {
         Deviceutils.showToastMessage(failure.errorMessage.tr, Get.context!);
       },
       (result) async {
+        if (saveSession.value) {
+          await localDataSource.setUser(UserModel.fromJson(result.toJson()));
+        }
         await _eitherFailureOrGetPregnancyInfo(
           AuthParams(
             token: result.token,
@@ -115,7 +119,7 @@ class LoginController extends GetxController {
         //?we won't have info about if he pregnant or not
         if (patientInfoResponse?.patient?.healthStatus?.isPregnant != null) {
           log("navigation to home");
-          //_navigationService.pushNamedAndRemoveUntil(Routes.homeLayoutView);
+          Get.offAllNamed(Routes.homeRoute);
         } else {
           Get.offAllNamed(Routes.pregnantQuestionRoute);
         }

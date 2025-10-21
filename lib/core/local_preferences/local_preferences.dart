@@ -3,9 +3,9 @@ import 'dart:developer';
 
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:gravilog_2025/featuers/authPage/data/models/auth_result_model.dart';
-import 'package:gravilog_2025/featuers/authPage/data/models/get_pregnancy_result_model.dart';
-import 'package:gravilog_2025/featuers/authPage/data/models/patient_info_result_model.dart';
+import '/featuers/authPage/data/models/auth_result_model.dart';
+import '/featuers/authPage/data/models/get_pregnancy_result_model.dart';
+import '/featuers/authPage/data/models/patient_info_result_model.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import '../../featuers/authPage/data/models/user_model.dart';
 import '../../featuers/questions/data/models/pregnant_info_model.dart';
@@ -33,13 +33,9 @@ class LocalPreferences extends LocalStorage {
     if (user == null) {
       instance.remove("user");
       instance.clear();
-      debugPrint("removed");
     } else {
       if (await instance.setString("user", json.encode(user.toJson()))) {
-        debugPrint("saved");
-      } else {
-        debugPrint("not saved");
-      }
+      } else {}
     }
   }
 
@@ -65,13 +61,12 @@ class LocalPreferences extends LocalStorage {
 
   @override
   Future<bool> isOnCompletedProfile() async {
-    return
-        // instance.getBool(AppConstants.PREFS_KEY_COMPLETE_PROFILE) ??
-        false;
+    // instance.getBool(AppConstants.PREFS_KEY_COMPLETE_PROFILE) ??
+    return false;
   }
 
   @override
-  Future<void>setLanguage(String languageCode) async{
+  Future<void> setLanguage(String languageCode) async {
     await instance.setString(AppConstants.PREFS_KEY_LANGUAGE, languageCode);
   }
 

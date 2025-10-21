@@ -7,7 +7,7 @@ import '../../featuers/authPage/data/models/patient_info_result_model.dart';
 import '../../featuers/authPage/data/models/user_model.dart';
 import '../../featuers/questions/data/models/pregnant_info_model.dart';
 
-abstract class LocalStorage{
+abstract class LocalStorage {
   Future<bool> savePregnancyInfo(GetPregnancyResultModel data);
   Future<bool> saveUserSession(AuthResultModel data);
   Future<Pair<bool, String>> getUserSession();
@@ -18,5 +18,6 @@ abstract class LocalStorage{
   isOnBoardingScreenViewed();
   setLanguage(String languageCode);
   getLanguage();
-
+  Future<bool> isOnCompletedProfile();
+  Future<void> setOnCompletedProfile(bool isOnCompleteProfile);
 }
