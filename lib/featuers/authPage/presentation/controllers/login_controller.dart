@@ -5,7 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import '/core/resources/deviceUtils.dart';
 import '/featuers/authPage/business/usecases/getPatientInfo.dart';
-import '/featuers/authPage/business/usecases/getPregnacyInfo.dart';
+import '../../business/usecases/get_pregnancy_info.dart';
 import '../../../../../core/connection/network_info.dart';
 import '../../../../../core/errors/failure.dart';
 import '../../../../../core/params/params.dart';
@@ -13,7 +13,6 @@ import '../../../../core/local_preferences/local_preferences.dart';
 import '../../../../core/resources/routes_manager.dart';
 import '../../business/usecases/login.dart';
 import '../../data/datasources/auth_remote_data_source.dart';
-import '../../data/models/get_pregnancy_result_model.dart';
 import '../../data/models/patient_info_result_model.dart';
 import '../../data/repositories/auth_repository_impl.dart';
 
@@ -94,65 +93,56 @@ class LoginController extends GetxController {
     );
 
     failureOrLogin.fold(
-      (newFailure) {
+      (failure) {
         loading.value = false;
-        Deviceutils.showToastMessage(newFailure.errorMessage.tr, Get.context!);
+
+        Deviceutils.showToastMessage(failure.errorMessage.tr, Get.context!);
       },
-      (authResultModel) async {
-        loading.value = false;
+      (result) async {
+        await _eitherFailureOrGetPregnancyInfo(
+          AuthParams(
+            token: result.token,
+          ),
+        );
 
-        final pregnancyInfoSaved = await _eitherFailureOrGetPregnacyInfo(
-            AuthParams(token: authResultModel.token));
-        if (!pregnancyInfoSaved) {
-          loading.value = false;
-          Deviceutils.showToastMessage(
-              "error_occurred_try_again".tr, Get.context!);
-          return;
-        }
-
-        final patientInfoResponse = await _eitherFailureOrgetPatientInfo(
-            AuthParams(token: authResultModel.token));
-
-        if (saveSession.value) {
-          await localDataSource.savePatientInfo(patientInfoResponse);
-
-          await localDataSource.saveUserSession(authResultModel);
-        }
+        final patientInfoResponse =
+            await _eitherFailureOrGetPatientInfo(AuthParams(
+          token: result.token,
+        ));
 
         loading.value = false;
-
+        //?this means this user already old because if he is not
+        //?we won't have info about if he pregnant or not
         if (patientInfoResponse?.patient?.healthStatus?.isPregnant != null) {
           log("navigation to home");
           //_navigationService.pushNamedAndRemoveUntil(Routes.homeLayoutView);
         } else {
-          print("navigation to pregnantQuestionView");
           Get.offAllNamed(Routes.pregnantQuestionRoute);
         }
       },
     );
   }
 
-  Future<bool> _eitherFailureOrGetPregnacyInfo(AuthParams authParams) async {
+  Future<bool> _eitherFailureOrGetPregnancyInfo(AuthParams authParams) async {
     loading.value = true;
-    log("get pregnancy info token: get pregnancy info in controller: ${authParams.token}");
-    final failureOrLogin = await GetPregnacyInfo(
+    final failureOrLogin = await GetPregnancyInfo(
       authRepository: authRepositoryImpl,
     ).call(authParams: authParams);
 
     return await failureOrLogin.fold(
       (newFailure) {
-        log('error message: _eitherFailureOrGetPregnacyInfo ${newFailure.errorMessage}');
         return false;
       },
-      (GetPregnancyResultModel getPregnancyResponse) async {
-        final pregnancyInfoSaved =
-            await localDataSource.savePregnancyInfo(getPregnancyResponse);
-        return pregnancyInfoSaved;
+      (getPregnancyResponse) async {
+        final isSaved = await authRepositoryImpl
+            .savePregnancyInfoLocally(getPregnancyResponse);
+        log('pregnancy info saved');
+        return isSaved.isRight();
       },
     );
   }
 
-  Future<PatientInfoResultModel?> _eitherFailureOrgetPatientInfo(
+  Future<PatientInfoResultModel?> _eitherFailureOrGetPatientInfo(
       AuthParams authParams) async {
     loading.value = true;
     final failureOrLogin =
@@ -164,7 +154,11 @@ class LoginController extends GetxController {
       (Failure newFailure) async {
         return null;
       },
-      (PatientInfoResultModel patientInfoResultModel) async {
+      (patientInfoResultModel) async {
+        final saved = await authRepositoryImpl
+            .savePatientInfoLocally(patientInfoResultModel);
+        log('patient info saved: ${saved.isRight()}');
+
         return patientInfoResultModel;
       },
     );

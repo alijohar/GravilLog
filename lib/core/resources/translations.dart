@@ -11,8 +11,9 @@ class Translation extends Translations {
           "help_calculate": "I don’t know / Help me calculate",
           "pregnant_question_hint":
               "We’ll personalize your experience based on your answer.",
-          "last-period":"The first day of your last period?",
-          "last-period-sheet":"We’ll help you track your next cycle starting from August 11, 2025.",
+          "last-period": "The first day of your last period?",
+          "last-period-sheet":
+              "We’ll help you track your next cycle starting from August 11, 2025.",
           // end news value
 
           "step": "Step",
@@ -594,6 +595,9 @@ class Translation extends Translations {
           "selectLanguage": "Select your preferred language to continue",
           "changeLater": "You can change this later in settings",
           "remember_me": "Remember me ?",
+          "INVALID_PASSWORD": "Wrong Password",
+          "EMAIL_NOT_FOUND": "This User Not Found",
+          "EMAIL_NOT_CONFIRMED": "You Need To Confirm This Email"
         },
         'ar_SA': {
           // new values
@@ -602,8 +606,9 @@ class Translation extends Translations {
           "due_date_question": "متى موعد ولادتك؟",
           "pregnant_question_hint": "سوف نقوم بتخصيص تجربتك بناءً على إجابتك.",
           "help_calculate": "لا أعرف / ساعدني في الحساب",
-          "last-period-sheet":"سنساعدك في تتبع دورتك الشهرية القادمة بدءًا من 11 أغسطس 2025.",
-          "last-period":"متى بدأت آخر دورة شهرية؟",
+          "last-period-sheet":
+              "سنساعدك في تتبع دورتك الشهرية القادمة بدءًا من 11 أغسطس 2025.",
+          "last-period": "متى بدأت آخر دورة شهرية؟",
 
           // end new values
           "chooseLanguage": "اختر لغتك",
@@ -1165,6 +1170,10 @@ class Translation extends Translations {
           "create_free_account": "إنشاء حساب مجاني",
           "already_have_an_account": "هل لديك حساب؟",
           "remember_me": "تذكرنى ؟",
+
+          "INVALID_PASSWORD": "كلمه المرور خاطئة",
+          "EMAIL_NOT_FOUND": "مستخدم غير موجود",
+          "EMAIL_NOT_CONFIRMED": "انت بحاجة لتأكيد حسابك"
         }
       };
 }

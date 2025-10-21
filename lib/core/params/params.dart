@@ -1,13 +1,8 @@
-import 'dart:ffi';
 import 'dart:io';
-
-import 'package:flutter/cupertino.dart';
 
 class NoParams {}
 
 class MessageParams {}
-
-
 
 class AuthParams {
   int? id;
@@ -26,24 +21,18 @@ class AuthParams {
   String? countryCode;
   String? language;
 
-
-
-
-
-
-  AuthParams({
-    this.id,
-    this.name,
-    this.typeValue,
-    this.type,
-    this.image,
-    this.token,
-    this.birthDate,
-    this.patient,
-    this.email,
-    this.countryCode,
-    this.phoneNumber
-  });
+  AuthParams(
+      {this.id,
+      this.name,
+      this.typeValue,
+      this.type,
+      this.image,
+      this.token,
+      this.birthDate,
+      this.patient,
+      this.email,
+      this.countryCode,
+      this.phoneNumber});
 
   AuthParams.register({
     this.name,
@@ -76,29 +65,25 @@ class AuthParams {
 
   AuthParams.getPatientInfo({
     this.token,
-
   });
 
   AuthParams.resetPassword({
     this.email,
     this.language,
-
   });
 
-
-
   Map<String, dynamic> toJson() => {
-    "id": id,
-    "name": name,
-    "type_value": typeValue,
-    "type": type,
-  };
+        "id": id,
+        "name": name,
+        "type_value": typeValue,
+        "type": type,
+      };
 
   Map<String, dynamic> toUpdateProfileJson() => {
-    "fullname": name,
-    "profile_image": image,
-    "country": country,
-  };
+        "fullname": name,
+        "profile_image": image,
+        "country": country,
+      };
 
   // Map<String, dynamic> toUpdateLocationJson() => {
   //   "latitude": latitude,
@@ -106,28 +91,26 @@ class AuthParams {
   // };
 
   Map<String, dynamic> toRegisterJson() => {
-    "fullname": name,
-    "account_value": typeValue,
-    "account_type": type,
-    if (password != null) "password": password,
-    if (country != null) "country": country,
-    "mobile_type": Platform.isAndroid ? 0 : 1,
-    if (uuid != null) "uuid": uuid,
-    "profile_image": image ?? "",
-  };
+        "fullname": name,
+        "account_value": typeValue,
+        "account_type": type,
+        if (password != null) "password": password,
+        if (country != null) "country": country,
+        "mobile_type": Platform.isAndroid ? 0 : 1,
+        if (uuid != null) "uuid": uuid,
+        "profile_image": image ?? "",
+      };
   Map<String, dynamic> toLoginJson() => {
-    "patient": patient,
-    "password": password,
-    "email": email,
-
-
-  };
+        "patient": patient,
+        "password": password,
+        "email": email,
+      };
 
   Map<String, dynamic> toUpdateJson() => {
-    "fullname": name,
-    "profile_image": image,
-    "country": country,
-  };
+        "fullname": name,
+        "profile_image": image,
+        "country": country,
+      };
 }
 
 class PregnantInfoParams {
@@ -147,8 +130,5 @@ class PregnantInfoParams {
     this.expectedDeliveryDate,
     this.expectedDeliveryMode,
     this.importantNotes,
-
-
   });
-
 }
