@@ -29,6 +29,7 @@ class AuthRepositoryImpl implements AuthRepository {
   Future<Either<Failure, AuthResultModel>> login(
           {required AuthParams authParams}) async =>
       await ExceptionsHandler.baseHelperMethod(() async {
+        await networkInfo.isConnected;
         final authResultModel =
             await remoteDataSource.login(authParams: authParams);
         //?now we need to check if there is any error happened
