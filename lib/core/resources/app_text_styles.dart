@@ -77,6 +77,11 @@ class AppTextStyles{
     fontSize: 14.sp,
     fontWeight: FontWeight.w500,
   );
+  static get textStyle18labelLarge500 =>  baseFont.copyWith(
+    color: ColorManager.textPrimary,
+    fontSize: 18.sp,
+    fontWeight: FontWeight.w500,
+  );
 
   static get textStyle12bodySmall400 => baseFont.copyWith(
     color: ColorManager.textSecondary,
