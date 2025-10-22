@@ -30,7 +30,6 @@ class ColorManager {
   static const Color grey3 = Color(0xFF8E8388);
   static const Color mediumGrey = Color(0xFF818181);
 
-
   // Status Colors
   static const Color success = Color(0xFF0FA049);
   static const Color warning = Color(0xFFFCC137);
@@ -59,6 +58,6 @@ class ColorManager {
   static const Color gradientEnd = Color(0xFFDCE9EF); // Light blue
 
   // scondary Gradient Colors
-  static const Color secondaryGradientStart = Color(0xFFFFF4F8); // Light pink
-  static const Color secondaryGradientEnd = Color(0xFFEDF5F9); // Light blue
+  static const Color skyPinkLight = Color(0xFFFFF4F8); // Light pink
+  static const Color skyBlueLight = Color(0xFFEDF5F9); // Light blue
 }

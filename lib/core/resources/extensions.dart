@@ -67,8 +67,8 @@ extension AppColors on BuildContext {
         begin: Alignment.topCenter,
         end: Alignment.bottomCenter,
         colors: [
-          ColorManager.secondaryGradientStart, // #FDE5EF
-          ColorManager.secondaryGradientEnd, // #DCE9EF
+          ColorManager.skyPinkLight, // #FDE5EF
+          ColorManager.skyBlueLight, // #DCE9EF
         ],
       );
 
