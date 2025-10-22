@@ -1,4 +1,5 @@
 import 'package:get/get.dart';
+
 import '../../../../core/local_preferences/local_preferences.dart';
 import '../../../../core/resources/routes_manager.dart';
 
@@ -6,16 +7,15 @@ class OnboardingController extends GetxController {
   LocalPreferences localDataSource = Get.find();
   final currentIndex = 0.obs;
 
-
-
 // return image path based on language
- String imagePath() {
+  String imagePath() {
     if (localDataSource.getLanguage() == 'ar') {
       return 'assets/images/onboard2_ar.svg';
     } else {
       return 'assets/images/onboard2.svg';
     }
   }
+
   // make it late to initialize it in onInit method
   late List<String> onboardImages;
 
@@ -31,7 +31,7 @@ class OnboardingController extends GetxController {
   }
 
   navigateToLogin() {
-    Get.toNamed(Routes.loginRoute);
+    Get.offAllNamed(Routes.loginRoute);
   }
 
   navigateToSignup() {

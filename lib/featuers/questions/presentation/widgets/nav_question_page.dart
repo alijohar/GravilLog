@@ -1,4 +1,3 @@
-
 import 'widgets.dart';
 
 class NavQuestionPage extends StatefulWidget {
@@ -10,22 +9,21 @@ class NavQuestionPage extends StatefulWidget {
 
 class _NavQuestionPageState extends State<NavQuestionPage> {
   int currentStep = 1;
-   List<Widget> screens =[
-     const DueDatePage(),
-     const MenstrualPeriodPage(),
+  List<Widget> screens = [
+    const DueDatePage(),
+    // const MenstrualPeriodPage(),
     const PregnancyInfoPage(),
     const MedicalHistoryPage(),
     const AboutYouPage(),
   ];
-  int totalSteps = 5;
-
-
 
   @override
   Widget build(BuildContext context) {
+    int totalSteps = screens.length;
+
     ///change statful screen and every setstate with controller
     final value = currentStep / totalSteps;
-    return AppBackGround(
+    return AppBackGround2(
         child: Scaffold(
       appBar: AppBar(
         leading: currentStep == 1
@@ -61,28 +59,30 @@ class _NavQuestionPageState extends State<NavQuestionPage> {
                   color: ColorManager.primary,
                 ),
               ),
-              const HeightSpace(16),
+              const HeightSpace(24),
               IndexedStack(
-                index: currentStep-1 ,
+                index: currentStep - 1,
                 children: screens,
               ),
-
-              AppElevatedButton(
-                  onPressed: () {
-                    if (currentStep <= screens.length-1 ) {
-                      currentStep++;
-                    } else {
-                      ///navigate to home
-                      return;
-                    }
-                    setState(() {});
-                  },
-                  text: "continue"),
-              const HeightSpace(16),
             ],
           ),
         ),
       ),
+      floatingActionButton: Container(
+        margin: EdgeInsets.symmetric(horizontal: 20.w, vertical: 16.h),
+        child: AppElevatedButton(
+            onPressed: () {
+              if (currentStep <= screens.length - 1) {
+                currentStep++;
+              } else {
+                ///navigate to home
+                return;
+              }
+              setState(() {});
+            },
+            text: "continue"),
+      ),
+      floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
     ));
   }
 }
