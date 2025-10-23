@@ -12,7 +12,7 @@ abstract class AuthRepository {
   Future<Either<Failure, AuthResultModel>> signup({
     required AuthParams authParams,
   });
-  Future<Either<Failure, GetPregnancyResultModel>> getPregnancyInfo({
+  Future<Either<Failure, GetPregnancyResultModel>> getPregnanciesInfo({
     required AuthParams authParams,
   });
   Future<Either<Failure, PatientInfoResultModel>> getPatientInfo({
@@ -21,4 +21,9 @@ abstract class AuthRepository {
   Future<Either<Failure, AuthResultModel>> resetPassword({
     required AuthParams authParams,
   });
+  Future<Either<Failure, bool>> savePregnancyInfoLocally(
+      GetPregnancyResultModel data);
+  Future<Either<Failure, bool>> saveUserSessionLocally(AuthResultModel data);
+  Future<Either<Failure, bool>> savePatientInfoLocally(
+      PatientInfoResultModel data);
 }

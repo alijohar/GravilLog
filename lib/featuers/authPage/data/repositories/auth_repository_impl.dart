@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import 'package:dartz/dartz.dart';
 import '/featuers/authPage/errors/auth_exception.dart';
 import '/featuers/authPage/data/models/get_pregnancy_result_model.dart';
@@ -26,8 +24,9 @@ class AuthRepositoryImpl implements AuthRepository {
   });
 
   @override
-  Future<Either<Failure, AuthResultModel>> login(
-          {required AuthParams authParams}) async =>
+  Future<Either<Failure, AuthResultModel>> login({
+    required AuthParams authParams,
+  }) async =>
       await ExceptionsHandler.baseHelperMethod(() async {
         await networkInfo.isConnected;
         final authResultModel =
@@ -42,88 +41,63 @@ class AuthRepositoryImpl implements AuthRepository {
       });
 
   @override
-  Future<Either<Failure, AuthResultModel>> signup(
-      {required AuthParams authParams}) async {
-    if (await networkInfo.isConnected!) {
-      try {
-        AuthResultModel remoteAuth =
-            await remoteDataSource.signup(authParams: authParams);
-
-        return Right(remoteAuth);
-      } on ServerException {
-        return Left(ServerFailure(errorMessage: 'This is a server exception'));
-      } on OtherFailure catch (e) {
-        return Left(OtherFailure(errorMessage: e.errorMessage));
-      } catch (e) {
-        return Left(OtherFailure(errorMessage: 'This is an exception $e'));
-      }
-    } else {
-      return Left(ServerFailure(errorMessage: 'No Connection'));
-    }
-  }
+  Future<Either<Failure, AuthResultModel>> signup({
+    required AuthParams authParams,
+  }) async =>
+      await ExceptionsHandler.baseHelperMethod(() async {
+        await networkInfo.isConnected;
+        return await remoteDataSource.signup(authParams: authParams);
+      });
 
   @override
-  Future<Either<Failure, PatientInfoResultModel>> getPatientInfo(
-      {required AuthParams authParams}) async {
-    if (await networkInfo.isConnected!) {
-      try {
-        PatientInfoResultModel patientInfoResultModel =
+  Future<Either<Failure, AuthResultModel>> resetPassword({
+    required AuthParams authParams,
+  }) async =>
+      await ExceptionsHandler.baseHelperMethod(() async {
+        await networkInfo.isConnected;
+        return await remoteDataSource.resetPassword(authParams: authParams);
+      });
+
+  @override
+  Future<Either<Failure, PatientInfoResultModel>> getPatientInfo({
+    required AuthParams authParams,
+  }) async =>
+      ExceptionsHandler.baseHelperMethod(() async {
+        await networkInfo.isConnected;
+        final result =
             await remoteDataSource.getPatientInfo(authParams: authParams);
 
-        return Right(patientInfoResultModel);
-      } on ServerException {
-        return Left(ServerFailure(errorMessage: 'This is a server exception'));
-      } on OtherFailure catch (e) {
-        return Left(OtherFailure(errorMessage: e.errorMessage));
-      } catch (e) {
-        return Left(OtherFailure(errorMessage: 'This is an exception $e'));
-      }
-    } else {
-      return Left(ServerFailure(errorMessage: 'No Connection'));
-    }
-  }
+        return result;
+      });
 
   @override
-  Future<Either<Failure, GetPregnancyResultModel>> getPregnancyInfo(
-      {required AuthParams authParams}) async {
-    if (await networkInfo.isConnected!) {
-      try {
-        GetPregnancyResultModel getPregnancyResponse =
-            await remoteDataSource.getPregnacyInfo(authParams: authParams);
+  Future<Either<Failure, GetPregnancyResultModel>> getPregnanciesInfo({
+    required AuthParams authParams,
+  }) async =>
+      ExceptionsHandler.baseHelperMethod(() async {
+        await networkInfo.isConnected;
+        final result =
+            await remoteDataSource.getPregnanciesInfo(authParams: authParams);
 
-        return Right(getPregnancyResponse);
-      } on ServerException catch (e, stack) {
-        log('$stack');
-        return Left(ServerFailure(errorMessage: 'This is a server exception'));
-      } on OtherFailure catch (e, stack) {
-        log('$stack');
-        return Left(OtherFailure(errorMessage: e.errorMessage));
-      } catch (e, stack) {
-        log('$stack');
-        return Left(OtherFailure(errorMessage: 'This is an exception $e'));
-      }
-    } else {
-      return Left(ServerFailure(errorMessage: 'No Connection'));
-    }
-  }
+        return result;
+      });
 
   @override
-  Future<Either<Failure, AuthResultModel>> resetPassword(
-      {required AuthParams authParams}) async {
-    if (await networkInfo.isConnected!) {
-      try {
-        AuthResultModel remoteAuth =
-            await remoteDataSource.resetPassword(authParams: authParams);
-        return Right(remoteAuth);
-      } on ServerException {
-        return Left(ServerFailure(errorMessage: 'This is a server exception'));
-      } on OtherFailure catch (e) {
-        return Left(OtherFailure(errorMessage: e.errorMessage));
-      } catch (e) {
-        return Left(OtherFailure(errorMessage: 'This is an exception $e'));
-      }
-    } else {
-      return Left(ServerFailure(errorMessage: 'No Connection'));
-    }
-  }
+  Future<Either<Failure, bool>> savePatientInfoLocally(
+    PatientInfoResultModel data,
+  ) async =>
+      await ExceptionsHandler.baseHelperMethod(
+          () async => await localDataSource.savePatientInfo(data));
+
+  @override
+  Future<Either<Failure, bool>> savePregnancyInfoLocally(
+          GetPregnancyResultModel data) async =>
+      await ExceptionsHandler.baseHelperMethod(
+          () async => await localDataSource.savePregnancyInfo(data));
+
+  @override
+  Future<Either<Failure, bool>> saveUserSessionLocally(
+          AuthResultModel data) async =>
+      await ExceptionsHandler.baseHelperMethod(
+          () async => await localDataSource.saveUserSession(data));
 }

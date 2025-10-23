@@ -59,7 +59,7 @@ class MyApp extends GetView<LanguageController> {
             unknownRoute: GetPage(
                 name: '/notfound', page: () => RouteGenerator.unDefinedPage()),
             getPages: RouteGenerator.getPages(),
-            initialRoute: Routes.pregnantQuestionRoute,
+            initialRoute: Routes.splashRoute,
           ),
         );
       },
