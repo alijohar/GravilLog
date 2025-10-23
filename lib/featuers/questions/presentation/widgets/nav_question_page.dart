@@ -1,14 +1,14 @@
 import 'widgets.dart';
 
 class NavQuestionPage extends StatefulWidget {
-  const NavQuestionPage({super.key});
+  int currentStep = 1;
+  NavQuestionPage({super.key, required this.currentStep});
 
   @override
   State<NavQuestionPage> createState() => _NavQuestionPageState();
 }
 
 class _NavQuestionPageState extends State<NavQuestionPage> {
-  int currentStep = 1;
   List<Widget> screens = [
     const DueDatePage(),
     // const MenstrualPeriodPage(),
@@ -19,19 +19,20 @@ class _NavQuestionPageState extends State<NavQuestionPage> {
 
   @override
   Widget build(BuildContext context) {
+    final bool isKeyboardVisible = MediaQuery.of(context).viewInsets.bottom > 0;
     int totalSteps = screens.length;
 
     ///change statful screen and every setstate with controller
-    final value = currentStep / totalSteps;
+    final value = widget.currentStep / totalSteps;
     return AppBackGround2(
         child: Scaffold(
       appBar: AppBar(
-        leading: currentStep == 1
+        leading: widget.currentStep == 1
             ? const BackButton()
             : BackButton(
                 onPressed: () {
                   setState(() {
-                    currentStep--;
+                    widget.currentStep--;
                   });
                 },
               ),
@@ -44,8 +45,8 @@ class _NavQuestionPageState extends State<NavQuestionPage> {
             children: [
               Text(
                 Get.locale!.languageCode == AppConstants.englishLanguage
-                    ? "${"step".tr}  $currentStep/ $totalSteps "
-                    : "${"step".tr}  $totalSteps/ $currentStep ",
+                    ? "${"step".tr}  ${widget.currentStep}/ $totalSteps "
+                    : "${"step".tr}  $totalSteps/ {$widget.currentStep} ",
                 style: AppTextStyles.textStyle14bodyMedium400
                     .copyWith(color: ColorManager.primary),
               ),
@@ -61,26 +62,30 @@ class _NavQuestionPageState extends State<NavQuestionPage> {
               ),
               const HeightSpace(24),
               IndexedStack(
-                index: currentStep - 1,
+                index: widget.currentStep - 1,
                 children: screens,
               ),
             ],
           ),
         ),
       ),
-      floatingActionButton: Container(
-        margin: EdgeInsets.symmetric(horizontal: 20.w, vertical: 16.h),
-        child: AppElevatedButton(
-            onPressed: () {
-              if (currentStep <= screens.length - 1) {
-                currentStep++;
-              } else {
-                ///navigate to home
-                return;
-              }
-              setState(() {});
-            },
-            text: "continue"),
+      floatingActionButton: AnimatedScale(
+        scale: isKeyboardVisible ? 0 : 1,
+        duration: const Duration(microseconds: 0),
+        child: Container(
+          margin: EdgeInsets.symmetric(horizontal: 20.w, vertical: 16.h),
+          child: AppElevatedButton(
+              onPressed: () {
+                if (widget.currentStep <= screens.length - 1) {
+                  widget.currentStep++;
+                } else {
+                  ///navigate to home
+                  return;
+                }
+                setState(() {});
+              },
+              text: "continue"),
+        ),
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
     ));

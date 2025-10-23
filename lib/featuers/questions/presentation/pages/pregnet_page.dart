@@ -15,8 +15,7 @@ class PregnantQuestionPage extends StatelessWidget {
             const HeightSpace(100),
             Text(
               "are_you_pregnant".tr,
-              style: AppTextStyles.kTextStyleHead16Weight700
-                  .copyWith(fontSize: 20.sp),
+              style: AppTextStyles.textStyle22headlineMedium600,
             ),
             const HeightSpace(24),
             Text("pregnant_question_hint".tr,
@@ -25,7 +24,7 @@ class PregnantQuestionPage extends StatelessWidget {
             const HeightSpace(24),
             AppElevatedButton(
                 onPressed: () {
-                  Get.toNamed(Routes.questionScreenRoute);
+                  Get.toNamed(Routes.questionScreenRoute, parameters: {"currentStep": "1"});
                 },
                 text: "yes"),
             const HeightSpace(16),
