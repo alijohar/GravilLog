@@ -10,14 +10,15 @@ class AboutYouPage extends StatelessWidget {
       children: [
         Text(
           "aboutYou".tr,
-          style:
-              AppTextStyles.kTextStyleHead16Weight700.copyWith(fontSize: 20.sp),
+          style: AppTextStyles.textStyle22headlineMedium600
+              .copyWith(fontSize: 18.sp),
           textAlign: TextAlign.center,
         ),
         const HeightSpace(16),
         Text(
           "bestForYou".tr,
-          style: AppTextStyles.kTextStyle16Grey400,
+          textAlign: TextAlign.center,
+          style: AppTextStyles.kTextStyle16Grey400.copyWith(fontSize: 14.sp),
         ),
         const HeightSpace(32),
 
@@ -66,7 +67,7 @@ class AboutYouPage extends StatelessWidget {
                         style: AppTextStyles.textStyle14headlineMedium500
                             .copyWith(color: ColorManager.primary)),
                     TextSpan(
-                        text:"healthyWeight".tr,
+                        text: "healthyWeight".tr,
                         style: AppTextStyles.kTextStyle16Grey400.copyWith(
                             fontSize: 14.sp, color: ColorManager.grey3)),
                   ])),

@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import '../widgets/widgets.dart';
 
 class LastPeriodQuestionPage extends StatelessWidget {
@@ -11,13 +13,14 @@ class LastPeriodQuestionPage extends StatelessWidget {
           leading: const BackButton(),
         ),
         body: Padding(
-          padding: EdgeInsets.all(16.r),
+          padding: EdgeInsets.symmetric(horizontal: 20.w),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
+              const HeightSpace(16),
               Text("last-period".tr,
                   textAlign: TextAlign.center,
-                  style: AppTextStyles.kTextStyleHead20Weight800),
+                  style: AppTextStyles.textStyle22headlineMedium600),
               const HeightSpace(16),
               const DatesPicker(),
               const HeightSpace(24),
@@ -47,8 +50,12 @@ class LastPeriodQuestionPage extends StatelessWidget {
           padding: EdgeInsets.symmetric(horizontal: 24.w, vertical: 16.h),
           child: AppElevatedButton(
               onPressed: () {
-                if (Get.previousRoute == Routes.questionScreenRoute) {
-                  Get.back();
+                log("${Get.previousRoute}bbb");
+                if (Get.previousRoute ==
+                    "${Routes.questionScreenRoute}?currentStep=1") {
+                  Get.offNamed(Routes.questionScreenRoute,
+                      parameters: {"currentStep": "2"});
+                  //Get.back();
                 } else {}
               },
               text: "continue"),
