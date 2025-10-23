@@ -1,5 +1,5 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:gravilog_2025/core/resources/app_text_styles.dart';
 
 class CustomTextFormField extends StatelessWidget {
   final TextEditingController controller;
@@ -27,11 +27,7 @@ class CustomTextFormField extends StatelessWidget {
       obscureText: obscureText,
       decoration: InputDecoration(
         hintText: hintText,
-        hintStyle: TextStyle(
-          fontWeight: Theme.of(context).textTheme.bodyMedium?.fontWeight,
-          fontSize: 14,
-          letterSpacing: 14 * 0.02,
-        ),
+        hintStyle: AppTextStyles.textStyle14labelMedium600hints,
         filled: true,
         fillColor: const Color(0xFFF8F7F7),
         border: InputBorder.none,

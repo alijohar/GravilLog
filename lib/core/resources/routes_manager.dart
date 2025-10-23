@@ -46,9 +46,17 @@ class RouteGenerator {
       GetPage(name: Routes.languageRoute, page: () => const LanguageView()),
       GetPage(name: Routes.onboardingRoute, page: () => OnboardView()),
       GetPage(name: Routes.signUpRoute, page: () => const SignupView()),
-      GetPage(name: Routes.questionScreenRoute, page: () => const NavQuestionPage()),
-      GetPage(name: Routes.pregnantQuestionRoute, page: () => const PregnantQuestionPage()),
-      GetPage(name: Routes.lastPeriodQuestionRoute, page: () => const LastPeriodQuestionPage()),
+      GetPage(
+          name: Routes.questionScreenRoute,
+          page: () => NavQuestionPage(
+                currentStep: int.parse(Get.parameters["currentStep"]!),
+              )),
+      GetPage(
+          name: Routes.pregnantQuestionRoute,
+          page: () => const PregnantQuestionPage()),
+      GetPage(
+          name: Routes.lastPeriodQuestionRoute,
+          page: () => const LastPeriodQuestionPage()),
       GetPage(
           name: Routes.signUpPasswordsRoute,
           page: () => const SignupPasswordsView()),
