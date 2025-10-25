@@ -35,6 +35,7 @@ class SplashController extends GetxController {
 
   Future<void> checkUserStatus() async {
     final user = localDataSource.getUser();
+
     bool isUserLoggedIn = user != null;
     SplashStates state;
     if (isUserLoggedIn) {
@@ -49,16 +50,16 @@ class SplashController extends GetxController {
           ? SplashStates.onBoardingViewedButNotLoggedIn
           : SplashStates.firstVisit;
     }
-    log("========================$state");
+    log("===========splash state=============$state");
 
     switch (state) {
       case SplashStates.loggedInCompleted:
         //navigate to home screen
-        // Get.offAllNamed(Routes.mainRoute);
-        // break;
+        Get.offAllNamed(Routes.homeRoute);
+        break;
       case SplashStates.loggedInButNotCompletedProfile:
         //navigate to complete profile screen
-        // Get.offAllNamed(Routes.completeProfileRoute);
+        Get.offAllNamed(Routes.pregnantQuestionRoute);
         break;
       case SplashStates.onBoardingViewedButNotLoggedIn:
         //navigate to complete login screen
@@ -69,41 +70,4 @@ class SplashController extends GetxController {
         break;
     }
   }
-
-  @override
-  void onClose() {
-    super.onClose();
-  }
-
-// Future<void> _loadSavedData() async {
-//   final prefs = await SharedPreferences.getInstance();
-//
-//   bool? isacceptedcall = await prefs.getBool('is_accepted');
-//   bool? isrejectedcall = await prefs.getBool('is_rejected');
-//
-//   print('is accepted or not $isacceptedcall');
-//   if (isacceptedcall == true) {
-//     // Handle call end action
-//     String? dataaccepted = await prefs.getString('is_accepted_data');
-//     if (dataaccepted!.isNotEmpty) {
-//       await prefs.setBool('is_accepted', false);
-//       print('is accepted dataaccepted $dataaccepted}');
-//       var extra = jsonDecode(dataaccepted);
-//
-//       Get.offAll(const ReciveCallPage(),arguments: extra);
-//
-//       await prefs.setString('is_accepted_data', '');
-//
-//     }
-//   }else if (isrejectedcall == true) {
-//       final prefs = await SharedPreferences.getInstance();
-//       await prefs.setBool('is_accepted', false);
-//       await prefs.setString('is_accepted_data', '');
-//     }
-//
-//   else{
-//   Get.offAllNamed(Routes.mainRoute);
-//   }
-//
-// }
 }

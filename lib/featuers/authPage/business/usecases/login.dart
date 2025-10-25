@@ -2,7 +2,6 @@ import 'package:dartz/dartz.dart';
 import '../../../../core/errors/failure.dart';
 import '../../../../core/params/params.dart';
 import '../../data/models/auth_result_model.dart';
-import '../entities/auth_result_entity.dart';
 import '../repositories/auth_repository.dart';
 
 class Login {
