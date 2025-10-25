@@ -1,17 +1,20 @@
-
 import '../widgets/widgets.dart';
 
 class PregnancyInfoPage extends StatelessWidget {
   const PregnancyInfoPage({super.key});
   @override
   Widget build(BuildContext context) {
-    return Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-      Text("moreAboutYou".tr,
-          style: AppTextStyles.kTextStyle20Pink700
-              .copyWith(color: ColorManager.textPrimary)),
+    return Column(crossAxisAlignment: CrossAxisAlignment.stretch, children: [
+      Text(
+        "moreAboutYou".tr,
+        textAlign: TextAlign.center,
+        style: AppTextStyles.textStyle22headlineMedium600
+            .copyWith(fontSize: 18.sp),
+      ),
       const HeightSpace(16),
       Text(
         "support".tr,
+        textAlign: TextAlign.center,
         style: AppTextStyles.kTextStyle16Grey400,
       ),
       const HeightSpace(32),
@@ -30,7 +33,7 @@ class PregnancyInfoPage extends StatelessWidget {
         children: [
           Text("relation".tr,
               style: AppTextStyles.kTextStyle20Pink700
-                  .copyWith(color:ColorManager.textPrimary)),
+                  .copyWith(color: ColorManager.textPrimary)),
           GestureDetector(
               onTap: () {
                 return Deviceutils.showCustomDialog(

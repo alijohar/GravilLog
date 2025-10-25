@@ -49,7 +49,9 @@ class RouteGenerator {
       GetPage(name: Routes.signUpRoute, page: () => const SignupView()),
       GetPage(
           name: Routes.questionScreenRoute,
-          page: () => const NavQuestionPage()),
+          page: () => NavQuestionPage(
+                currentStep: int.parse(Get.parameters["currentStep"]!),
+              )),
       GetPage(
           name: Routes.pregnantQuestionRoute,
           page: () => const PregnantQuestionPage()),

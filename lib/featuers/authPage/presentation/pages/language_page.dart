@@ -17,79 +17,91 @@ class LanguageView extends GetView<LanguageController> {
     return Scaffold(
       body: AppBackGround(
         child: SafeArea(
+            child: Container(
+          margin: EdgeInsets.symmetric(horizontal: 20.w),
           child: SingleChildScrollView(
-            child: Padding(
-              padding: EdgeInsets.symmetric(horizontal: 20.0.w),
-              child: Column(mainAxisAlignment: MainAxisAlignment.center, children: [
-                HeightSpace(100.h),
-            Image.asset(
-              ImageAssets.pregnantIcon,
-              height: 65.h,
-              width: 65.w,
-            ),
-            HeightSpace(40.h),
-            Text(
-              "chooseLanguage".tr,
+            child:
+                Column(mainAxisAlignment: MainAxisAlignment.center, children: [
+              const HeightSpace(169),
+              Image.asset(
+                ImageAssets.pregnantIcon,
+                height: 62.sp,
+                width: 62.sp,
+                fit: BoxFit.contain,
+              ),
+              const HeightSpace(40),
+              Text(
+                "chooseLanguage".tr,
                 style: AppTextStyles.kTextStyle20Pink700,
-            ),
-            HeightSpace(8.h),
-            Text(
-              "selectLanguage".tr,
-              style: AppTextStyles.textStyle16bodyLarge400,
-              textAlign: TextAlign.center,
-            ),
-            const HeightSpace(24),
-            Obx(
-                  () => Container(
-                  width: double.infinity,
-                  decoration: BoxDecoration(
-                      color: Colors.white,
-                      borderRadius: BorderRadius.circular(10.r),
-                      border: Border.all(color: ColorManager.pinkSherbet)),
-                  padding:
-                  EdgeInsets.symmetric(horizontal: 24.w, vertical: 10.h),
-                  child: DropdownButtonHideUnderline(
-                    child: DropdownButton<String>(
-                      value: controller.currentLanguage.value,
-                      onChanged: (value) {
-                        if (value != null) {
-                          controller.currentLanguage.value = value;
-                          controller.changeLanguage(value);
-                        }
-                      },
-                      icon: SvgPicture.asset(IconAssets.dropDownIcon),
-                      isExpanded: true,
-                      borderRadius: BorderRadius.circular(10.r),
-                      items: const [
-                        DropdownMenuItem(
-                          value: 'en',
-                          child: Text('English'),
-                        ),
-                        DropdownMenuItem(
-                          value: 'ar',
-                          child: Text('العربية'),
-                        ),
-                      ],
-                    ),
-                  )),
-            ),
-            HeightSpace(35.h),
-            Text(
-              "changeLater".tr,
-              style:AppTextStyles.kTextStyle16Grey400,
-            ),
-            HeightSpace(80.h),
-            AppElevatedButton(
-                onPressed: () {
-                  controller.onContinue();
-                },
-                text: 'continue'),
-            HeightSpace(40.h),
-              ]),
-            ),
+              ),
+              const HeightSpace(8),
+              Text(
+                "selectLanguage".tr,
+                style: AppTextStyles.textStyle16bodyLarge400,
+                textAlign: TextAlign.center,
+              ),
+              const HeightSpace(24),
+              Obx(
+                () => Container(
+                    width: 1.sw,
+                    height: 68.h,
+                    decoration: BoxDecoration(
+                        color: Colors.white,
+                        borderRadius: BorderRadius.circular(10.r),
+                        border: Border.all(color: ColorManager.pinkSherbet)),
+                    padding:
+                        EdgeInsets.symmetric(horizontal: 24.w, vertical: 18.h),
+                    child: DropdownButtonHideUnderline(
+                      child: DropdownButton<String>(
+                        value: controller.currentLanguage.value,
+                        onChanged: (value) {
+                          if (value != null) {
+                            controller.currentLanguage.value = value;
+                            controller.changeLanguage(value);
+                          }
+                        },
+                        icon: SvgPicture.asset(IconAssets.dropDownIcon),
+                        isExpanded: true,
+                        borderRadius: BorderRadius.circular(10.r),
+                        items: [
+                          DropdownMenuItem(
+                            value: 'en',
+                            alignment: Alignment.centerLeft,
+                            child: Text(
+                              'English',
+                              style: AppTextStyles.textStyle18labelLarge500,
+                            ),
+                          ),
+                          DropdownMenuItem(
+                            value: 'ar',
+                            alignment: Alignment.centerRight,
+                            child: Text(
+                              'العربية',
+                              style: AppTextStyles.textStyle18labelLarge500,
+                            ),
+                          ),
+                        ],
+                      ),
+                    )),
+              ),
+              const HeightSpace(40),
+              Text(
+                "changeLater".tr,
+                style: AppTextStyles.kTextStyle16Grey400,
+              ),
+            ]),
           ),
-        ),
+        )),
       ),
+      floatingActionButton: Container(
+        margin: EdgeInsets.symmetric(horizontal: 20.w, vertical: 16.h),
+        child: AppElevatedButton(
+            onPressed: () {
+              controller.onContinue();
+            },
+            text: 'continue'),
+      ),
+      floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
     );
   }
 }

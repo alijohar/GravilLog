@@ -1,6 +1,4 @@
-
 import '../widgets/widgets.dart';
-
 
 class MedicalHistoryPage extends StatelessWidget {
   const MedicalHistoryPage({super.key});
@@ -9,13 +7,14 @@ class MedicalHistoryPage extends StatelessWidget {
     return Column(crossAxisAlignment: CrossAxisAlignment.stretch, children: [
       Text(
         "medicalHistory".tr,
-        style:
-            AppTextStyles.kTextStyleHead16Weight700.copyWith(fontSize: 20.sp),
+        style: AppTextStyles.textStyle22headlineMedium600
+            .copyWith(fontSize: 18.sp),
         textAlign: TextAlign.center,
       ),
       const HeightSpace(16),
       Text(
         "conditions".tr,
+        //textAlign: TextAlign.center,
         style: AppTextStyles.kTextStyleHead16Weight700,
       ),
       const HeightSpace(16),

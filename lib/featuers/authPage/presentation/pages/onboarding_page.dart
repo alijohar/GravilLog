@@ -1,13 +1,6 @@
 import 'package:carousel_slider/carousel_slider.dart';
-import 'package:flutter/gestures.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter_svg/svg.dart';
-import 'package:get/get.dart';
-import 'package:gravilog_2025/core/resources/app_theme.dart';
 import 'package:gravilog_2025/featuers/authPage/presentation/controllers/onboarding_controller.dart';
-import 'package:url_launcher/url_launcher.dart';
-
-import '../../../../core/resources/color_manager.dart';
+import 'package:gravilog_2025/featuers/questions/presentation/widgets/widgets.dart';
 
 class OnboardView extends StatelessWidget {
   OnboardView({super.key});
@@ -33,11 +26,10 @@ class OnboardView extends StatelessWidget {
             // Carousel slider for SlidableContent and support fill Screen.
             // to build onboarding text based on index and make it Slidable
             _sliderBuilder(
-                (index) => Positioned.fill(
-                        child: _slidableContant(
+                (index) => _slidableContant(
                       context,
                       index,
-                    )),
+                    ),
                 context),
           ],
         ),
@@ -47,7 +39,7 @@ class OnboardView extends StatelessWidget {
       // Continue button at the bottom center and Stable .
       floatingActionButton: Container(
         // margin to apply figma design
-        margin: const EdgeInsets.symmetric(horizontal: 20, vertical: 24),
+        margin: EdgeInsets.symmetric(horizontal: 20.w, vertical: 24.h),
         child: _continueButton(context),
       ),
     );
@@ -56,11 +48,14 @@ class OnboardView extends StatelessWidget {
   // back button with arrow style and action
   IconButton _backButtonWithArrow(BuildContext context) {
     return IconButton(
-      padding: const EdgeInsets.symmetric(horizontal: 20),
+      style: IconButton.styleFrom(
+        overlayColor: ColorManager.transparent,
+      ),
+      padding: EdgeInsets.symmetric(horizontal: 20.w, vertical: 16.sp),
       icon: Icon(
         Icons.arrow_back,
         color: context.textPrimary,
-        size: 24,
+        size: 24.sp,
       ),
       onPressed: () => Get.back(),
     );
@@ -71,19 +66,20 @@ class OnboardView extends StatelessWidget {
     return Column(
       children: [
         const Spacer(),
-        const SizedBox(height: 32),
+        const HeightSpace(32),
         _buildIndicator(context),
-        const SizedBox(height: 14),
+        const HeightSpace(14),
         Container(
           width: context.width,
-          height: 202,
-          padding: const EdgeInsets.symmetric(horizontal: 22, vertical: 24),
+          height: 236.h,
+          padding:
+              EdgeInsets.only(left: 22.w, right: 22.w, top: 24.h, bottom: 32.h),
           // margin to apply figma design
-          decoration: const BoxDecoration(
+          decoration: BoxDecoration(
             color: ColorManager.white,
             borderRadius: BorderRadius.only(
-              topLeft: Radius.circular(16),
-              topRight: Radius.circular(16),
+              topLeft: Radius.circular(16.r),
+              topRight: Radius.circular(16.r),
             ),
           ),
           child: Obx(() => _buildOnboardingTextSwitching(
@@ -117,24 +113,13 @@ class OnboardView extends StatelessWidget {
   }
 
   // Continue button Builder with style and action.
-  ElevatedButton _continueButton(BuildContext context) {
-    return ElevatedButton(
+  AppElevatedButton _continueButton(BuildContext context) {
+    return AppElevatedButton(
       onPressed: () {
         onboardingController.localDataSource.setOnBoardingScreenViewed();
         onboardingController.navigateToLogin();
       },
-      style: ElevatedButton.styleFrom(
-        backgroundColor: ColorManager.pinkSherbet,
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(8),
-        ),
-        minimumSize: Size(context.width, 48),
-      ),
-      child: Text(
-        "continue".tr,
-        style: context.textStyles.bodyMedium
-            ?.copyWith(color: context.onPrimaryColor),
-      ),
+      text: "continue",
     );
   }
 
@@ -146,37 +131,24 @@ class OnboardView extends StatelessWidget {
     return Column(
       children: [
         // save space for app bar
-        const Spacer(),
+        const HeightSpace(154),
         // onboarding image section supporting Slidable Content
         // image section with Obx to update image based on current index
         Container(
           // margin to apply figma design
-          margin: const EdgeInsets.symmetric(horizontal: 20),
+          margin: EdgeInsets.symmetric(horizontal: 20.w),
           child: SvgPicture.asset(
             // image is based on current index
             onboardingController.onboardImages[index],
             width: context.width,
             // this height to show full image without overflow
-            height: 333,
+            height: 324.h,
             clipBehavior: Clip.none,
             fit: BoxFit.contain,
           ),
         ),
-
         // space between image and texts
-        const SizedBox(height: 78),
-        // space between texts and bottom section.
-        /*
-        const SizedBox(height: 24),
-        // bottom section texts content with margin
-        // to support Slidable Content
-        Container(
-            width: context.width,
-            margin: const EdgeInsets.symmetric(
-              horizontal: 20,
-            ),
-            // texts section with Obx to update texts based on current index.
-            child: ),*/
+        const HeightSpace(78),
         // save space for bottom section
         const Spacer(),
       ],
@@ -192,14 +164,7 @@ class OnboardView extends StatelessWidget {
           context: context,
           image: onboardingController.onboardImages[0],
           title: "onboard1_title".tr,
-          description: RichText(
-            text: TextSpan(
-              style: context.textStyles.bodyMedium,
-              children: [
-                TextSpan(text: "onboard1_description".tr),
-              ],
-            ),
-          ),
+          description: _richTextBulider(context, "onboard1_description"),
         );
       case 1:
         return _buildOnboardingText(
@@ -209,19 +174,12 @@ class OnboardView extends StatelessWidget {
           description: _richTextBulider(context, "onboard2_description"),
         );
       case 2:
-        const String url = 'gravilog.com';
+        //  const String url = 'gravilog.com';
         return _buildOnboardingText(
           context: context,
           image: onboardingController.onboardImages[2],
           title: "onboard3_title".tr,
-          description: RichText(
-            text: TextSpan(
-              style: context.textStyles.bodyMedium,
-              children: [
-                TextSpan(text: "${"onboard3_description".tr}\t"),
-              ],
-            ),
-          ),
+          description: _richTextBulider(context, "onboard3_description"),
         );
       default:
         return Container();
@@ -234,7 +192,7 @@ class OnboardView extends StatelessWidget {
       textAlign: TextAlign.center,
       softWrap: true,
       text: TextSpan(
-        style: context.textStyles.bodyMedium,
+        style: AppTextStyles.textStyle16bodyLarge400,
         children: [
           TextSpan(text: descriptionKey.tr),
         ],
@@ -256,11 +214,10 @@ class OnboardView extends StatelessWidget {
       children: [
         Text(
           title,
-          style: context.textStyles.headlineLarge
-              ?.copyWith(color: context.hotPink),
+          style: AppTextStyles.kTextStyle20Pink700,
           textAlign: TextAlign.center,
         ),
-        const SizedBox(height: 8),
+        const HeightSpace(8),
         description,
       ],
     );
@@ -272,14 +229,14 @@ class OnboardView extends StatelessWidget {
           children:
               onboardingController.onboardImages.asMap().entries.map((entry) {
             return Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 1.0),
+              padding: EdgeInsets.symmetric(horizontal: 1.0.w),
               child: Container(
                 // change width and shape based on current index
                 width: onboardingController.currentIndex.value == entry.key
-                    ? 32.0
-                    : 8.0,
-                height: 8.0,
-                margin: const EdgeInsets.symmetric(horizontal: 2.0),
+                    ? 32.0.sp
+                    : 8.0.sp,
+                height: 8.0.sp,
+                margin: EdgeInsets.symmetric(horizontal: 2.0.w),
                 decoration: BoxDecoration(
                   // change shape based on current index
                   shape: onboardingController.currentIndex.value == entry.key
@@ -288,7 +245,7 @@ class OnboardView extends StatelessWidget {
                   // change border radius based on current index
                   borderRadius:
                       onboardingController.currentIndex.value == entry.key
-                          ? BorderRadius.circular(8)
+                          ? BorderRadius.circular(8.r)
                           : null,
                   // change color based on current index
                   color: onboardingController.currentIndex.value == entry.key

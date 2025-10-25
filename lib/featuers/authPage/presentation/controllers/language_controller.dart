@@ -25,7 +25,7 @@ class LanguageController extends GetxController {
   Future<void> onContinue() async {
     await setDeviceLanguage(currentLanguage.value);
     await changeLanguage(currentLanguage.value);
-    Get.offAllNamed(Routes.onboardingRoute);
+    Get.toNamed(Routes.onboardingRoute);
   }
 
   Future<void> changeLanguage(String languageCode) async {
