@@ -11,9 +11,9 @@ class Translation extends Translations {
           "help_calculate": "I don’t know / Help me calculate",
           "pregnant_question_hint":
               "We’ll personalize your experience based on your answer.",
-          "last-period": "The first day of your last period?",
+          "last-period": "First day of your last period?",
           "last-period-sheet":
-              "We’ll help you track your next cycle starting from August 11, 2025.",
+              "Almost there - enter a few details to see your baby’s arrival date.",
           // end news value
 
           "step": "Step",
@@ -607,7 +607,7 @@ class Translation extends Translations {
           "pregnant_question_hint": "سوف نقوم بتخصيص تجربتك بناءً على إجابتك.",
           "help_calculate": "لا أعرف / ساعدني في الحساب",
           "last-period-sheet":
-              "سنساعدك في تتبع دورتك الشهرية القادمة بدءًا من 11 أغسطس 2025.",
+              "قربنا نوصل – أدخلي بعض التفاصيل لتعرفي موعد وصول طفلك.",
           "last-period": "متى بدأت آخر دورة شهرية؟",
 
           // end new values

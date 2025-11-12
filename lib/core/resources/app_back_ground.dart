@@ -19,3 +19,23 @@ class AppBackGround extends StatelessWidget {
         child: child);
   }
 }
+
+
+class SecondBackGround extends StatelessWidget {
+  const SecondBackGround({super.key, required this.child});
+  final Widget child;
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+        width: double.infinity,
+        height: double.infinity,
+        decoration: const BoxDecoration(
+          gradient: LinearGradient(
+            begin: Alignment.topCenter,
+            end: Alignment.bottomCenter,
+            colors: [ColorManager.lightPink, ColorManager.skyBlue],
+          ),
+        ),
+        child: child);
+  }
+}

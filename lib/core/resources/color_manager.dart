@@ -10,8 +10,9 @@ class ColorManager {
   // Accent Colors
   static const Color hotPink = Color(0xFFEF5E9C);
   static const Color pinkSherbet = Color(0xFFEF5E9C);
-  static const Color skyPink = Color(0xFFF4D2E1);
-  static const Color skyBlue = Color(0xFFDCE9EF);
+  static const Color skyPink = Color(0xFFFFF4F8);
+  static const Color lightPink = Color(0xFFF4D2E1);
+  static const Color skyBlue = Color(0xFFEDF5F9);
   static const Color mintCream = Color(0xFFD3F3EE);
   static const Color peachyPink = Color(0xFFFDE5EF);
 

@@ -7,8 +7,8 @@ class PregnancyInfoPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
       Text("moreAboutYou".tr,
-          style: AppTextStyles.kTextStyle20Pink700
-              .copyWith(color: ColorManager.textPrimary)),
+          style: AppTextStyles.textStyle18displaySmall600
+             ),
       const HeightSpace(16),
       Text(
         "support".tr,
