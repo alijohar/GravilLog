@@ -15,13 +15,13 @@ class DueDatePage extends StatelessWidget {
         const DatesPicker(),
         const HeightSpace(16),
         TextButton(
-          onPressed: () {},
+          onPressed: () {
+            Get.toNamed(Routes.lastPeriodQuestionRoute);
+          },
           child: Text(
             "help_calculate"
-                .tr, // NOTE: Add this key to your translation file", // NOTE: Add this key to your translation file
-            style:  AppTextStyles.kTextStyle16ButtonText800.copyWith(
-              color:ColorManager.primary
-            ),
+                .tr,
+            style:  AppTextStyles.kTextStyle14primary600
 
           ),
         ),

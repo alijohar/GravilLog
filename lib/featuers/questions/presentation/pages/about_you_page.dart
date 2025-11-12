@@ -11,8 +11,7 @@ class AboutYouPage extends StatelessWidget {
         Text(
           "aboutYou".tr,
           style:
-              AppTextStyles.kTextStyleHead16Weight700.copyWith(fontSize: 20.sp),
-          textAlign: TextAlign.center,
+              AppTextStyles.textStyle18displaySmall600
         ),
         const HeightSpace(16),
         Text(

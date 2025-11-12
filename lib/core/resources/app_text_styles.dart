@@ -47,6 +47,11 @@ class AppTextStyles{
     fontSize: 14.sp,
     fontWeight: FontWeight.w400,
   );
+  static get kTextStyle14primary600 =>  baseFont.copyWith(
+    color: ColorManager.primary,
+    fontSize: 14.sp,
+    fontWeight: FontWeight.w600,
+  );
   static get textStyle20displayMedium600 =>  baseFont.copyWith(
     color: ColorManager.textPrimary,
     fontSize: 20.sp,

@@ -15,7 +15,7 @@ class _ExistingConditionsState extends State<ExistingConditions> {
     "anemia".tr,
     "other".tr
   ];
-  List<String> selectedConditions = [];
+  List<String> selectedConditions = [ "diabetes".tr, "issues".tr,];
   @override
   Widget build(BuildContext context) {
     return Column(children: [
@@ -23,24 +23,28 @@ class _ExistingConditionsState extends State<ExistingConditions> {
         (e) {
           bool isSelected = selectedConditions.contains(e);
           return ContainerWithShadowColor(
-            margin: EdgeInsets.only(bottom: 16.h),
-            child: CheckboxListTile(
-              controlAffinity: ListTileControlAffinity.leading,
-              value: isSelected,
-              onChanged: (value) {
-                setState(
-                  () {
-                    value == true
-                        ? selectedConditions.add(e)
-                        : selectedConditions.remove(e);
+            margin: EdgeInsets.only(bottom: 18.h),
+            child: Center(
+                child: CheckboxListTile(
+                  visualDensity: VisualDensity.compact,
+                  controlAffinity: ListTileControlAffinity.leading,
+                  value: isSelected,
+                  onChanged: (value) {
+                    setState(
+                      () {
+                        value == true
+                            ? selectedConditions.add(e)
+                            : selectedConditions.remove(e);
+                       },
+                    );
                   },
-                );
-              },
-              title: Text(
-                e,
-                style: AppTextStyles.textStyle14bodyMedium400
+                  title: Text(
+                    e,
+                    style: AppTextStyles.textStyle14bodyMedium400
+                  ),
+                ),
               ),
-            ),
+
           );
         },
       )

@@ -18,6 +18,10 @@ class Deviceutils {
     return viewInsets.bottom > 0;
   }
 
+  static void closeKeyboard(BuildContext context){
+    FocusScope.of(context).unfocus();
+  }
+
   static Future<bool> isPhysicalDevice() async {
     return defaultTargetPlatform == TargetPlatform.android ||
         defaultTargetPlatform == TargetPlatform.iOS;

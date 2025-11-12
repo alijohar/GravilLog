@@ -10,8 +10,7 @@ class MedicalHistoryPage extends StatelessWidget {
       Text(
         "medicalHistory".tr,
         style:
-            AppTextStyles.kTextStyleHead16Weight700.copyWith(fontSize: 20.sp),
-        textAlign: TextAlign.center,
+            AppTextStyles.textStyle18displaySmall600,
       ),
       const HeightSpace(16),
       Text(
