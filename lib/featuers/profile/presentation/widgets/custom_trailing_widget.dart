@@ -27,7 +27,7 @@ class CustomTrailingWidget extends StatelessWidget {
               hintStyle: AppTextStyles.kTextStyle14MediumGrey400
                   .copyWith(color: ColorManager.blackGrey),
               controller: item.controller!,
-              fillColor: ColorManager.orangeColor,
+              fillColor: ColorManager.white,
             ),
           );
         }
