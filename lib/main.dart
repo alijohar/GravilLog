@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
+import 'package:gravilog_2025/core/resources/deviceUtils.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'core/binding/main_binding.dart';
 import 'core/local_preferences/local_preferences.dart';
@@ -41,6 +42,9 @@ class MyApp extends GetView<LanguageController> {
             title: 'MEMO',
             debugShowCheckedModeBanner: false,
             initialBinding: MainBindings(),
+            routingCallback: (routing) {
+              Deviceutils.closeKeyboard(context);
+            },
             theme: AppTheme.lightTheme(controller.currentLanguage.value),
             locale:
                 Locale(controller.currentLanguage.value), // Default language

@@ -1,0 +1,30 @@
+class TranslationKeys {
+  static const String profile = "profile";
+  static const String why = "why";
+  static const String myGoal = "my_goal";
+  static const String trackPregnancy = "track_pregnancy";
+  static const String getPregnant = "get_pregnant";
+  static const String postPartum = "post_partum";
+  static const String myBody = "my_body";
+  static const String height = "height1";
+  static const String weight = "weight1";
+  static const String previousCSections = "previous_c_sections";
+  static const String userName = "user_name";
+  static const String userEmail = "user_email";
+  static const String bloodType = "blood_type";
+  static const String kgData = "data_kg";
+  static const String cmData = "data_cm";
+  static const String data = "data";
+  static const String medicalHistory = "medical_history";
+  static const String myFamily = "my_family";
+  static const String myPregnancy = "my_pregnancy";
+  static const String babyGender = "baby_gender";
+  static const String relationToHusband = "relation_to_husband";
+  static const String myCommunity = "my_community";
+  static const String logOut = "log_out";
+  static const String youSwitching = "youSwitching";
+  static const String mode = "mode";
+  static const String helpYou = "help";
+  static const String notNow = "not_now";
+  static const String switching = "switch";
+}

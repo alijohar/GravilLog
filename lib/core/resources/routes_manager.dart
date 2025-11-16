@@ -1,20 +1,7 @@
-import 'package:flutter/material.dart';
-import 'package:get/get.dart';
-import '/featuers/authPage/presentation/pages/forget_password_page.dart';
-import '/featuers/authPage/presentation/pages/language_page.dart';
-import '/featuers/authPage/presentation/pages/onboarding_page.dart';
-import '/featuers/authPage/presentation/pages/privacy_policy_page.dart';
-import '/featuers/authPage/presentation/pages/signup_page.dart';
-import '/featuers/authPage/presentation/pages/terms_of_use_page.dart';
-import '/featuers/questions/presentation/pages/last_period_question_page.dart';
-import '/featuers/questions/presentation/pages/pregnet_page.dart';
-import '/featuers/questions/presentation/widgets/nav_question_page.dart';
-import '/featuers/splash/presentation/controllers/splash_controller.dart';
-import '/featuers/splash/presentation/pages/splash_page.dart';
-import '../../featuers/authPage/presentation/pages/login_page.dart';
-import '../../featuers/authPage/presentation/pages/sign_up_password_page.dart';
-import '../../featuers/home/presentation/screens/home_view.dart';
-import '../../featuers/questions/presentation/pages/expect_delivery_page.dart';
+
+import 'package:gravilog_2025/featuers/profile/presentation/pages/change_mode_page.dart';
+
+import 'barrel_routes.dart';
 
 class Routes {
   static const String splashRoute = "/";
@@ -32,6 +19,12 @@ class Routes {
   static const String expectDeliveryRoute = "/expectDelivery";
   static const String duePeriodRoute = "/duePeriod";
   static const String homeRoute = "/home-screen";
+  static const String settingsScreenRoute = "/settings-screen";
+  static const String relationToHusbandRoute = "/relation_to_husband";
+  static const String profilePageRoute= "/profile_page";
+  static const String medicalHistoryPageRoute = "/medical_history_page";
+  static const String bloodTypePageRoute = "/blood_type_page";
+  static const String babyGenderPageRoute = "/baby_gender_page";
 }
 
 class RouteGenerator {
@@ -65,8 +58,24 @@ class RouteGenerator {
           name: Routes.forgetPasswordRoute,
           page: () => const ForgetPasswordView()),
       GetPage(
-          name: Routes.expectDeliveryRoute, page: () => ExpectDeliveryView()),
-      GetPage(name: Routes.homeRoute, page: () => const HomeView()),
+          name: Routes.expectDeliveryRoute,
+          page: () => ExpectDeliveryView()),
+      GetPage(name: Routes.homeRoute,
+          page: () => const HomeView()),
+
+      GetPage(name: Routes.settingsScreenRoute,
+          page: () => const SettingsPage()),
+      GetPage(name: Routes.relationToHusbandRoute,
+          page: () => const RelationToHusbandPage()),
+      GetPage(name: Routes.profilePageRoute,
+          page: () => const ProfilePage()),
+      GetPage(name: Routes.medicalHistoryPageRoute,
+          page: () => const MedicalHistoryPage()),
+      GetPage(name: Routes.bloodTypePageRoute,
+          page: () => const BloodTypePage()),
+      GetPage(name: Routes.babyGenderPageRoute,
+          page: () => const BabyGenderPage()),
+
     ];
   }
 

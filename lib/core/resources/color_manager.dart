@@ -4,6 +4,7 @@ class ColorManager {
   // Primary Colors
   static const Color primary = Color(0xFFEF5E9C);
   static const Color primaryLight = Color(0xFFFDE5EF);
+  static const Color scaffoldSecondBackGround =  Color(0xffF9F8F7);
   // static const Color primaryWithOpacity = Color(0xFF0F1857);
   // static const Color secondary = Color(0xFF5767EB);
 
@@ -14,13 +15,13 @@ class ColorManager {
   static const Color lightPink = Color(0xFFF4D2E1);
   static const Color skyBlue = Color(0xFFEDF5F9);
   static const Color mintCream = Color(0xFFD3F3EE);
+  static const Color mintGreen = Color(0xFF00897B);
   static const Color peachyPink = Color(0xFFFDE5EF);
 
   // Neutral Colors
   static const Color white = Color(0xFFFFFFFF);
   static const Color black = Color(0xFF000000);
   static const Color transparent = Colors.transparent;
-
   // Grey Scale
   static const Color darkGrey = Color(0xFF6B6C6D);
   static const Color grey = Color(0xFF737477);
@@ -30,6 +31,10 @@ class ColorManager {
   static const Color grey2 = Color(0xFF797979);
   static const Color grey3 = Color(0xFF8E8388);
   static const Color mediumGrey = Color(0xFF818181);
+  static const Color blackGrey = Color(0xFF5F6C75);
+  static const Color darkWhiteShade = Color(0xFFD9D9D9);
+  static const Color whiteShade = Color(0xFFF2F2F2);
+  static const Color dividerColor= Color(0xFFE1E3E5);
 
 
   // Status Colors
@@ -46,6 +51,8 @@ class ColorManager {
   static const Color textPrimary = Color(0xFF30131F);
   static const Color textSecondary = Color(0xFF545555);
   static const Color textTertiary = Color(0xFF808080);
+  static const Color orangeColor = Color(0xFFE53935);
+  static const Color containerTabColor = Color(0xffFF665A);
 
   // Snackbar Colors
   static const Color snackBarSuccess = Color(0xFFE9FFF2);
@@ -54,6 +61,7 @@ class ColorManager {
 
   // Selection Colors
   static const Color selection = Color(0xFFEEF4F0);
+  static const Color facebookColor = Color(0xff3D5A98);
 
   // Gradient Colors
   static const Color gradientStart = Color(0xFFFDE5EF); // Light pink
