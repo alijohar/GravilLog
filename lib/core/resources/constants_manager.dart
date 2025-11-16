@@ -6,6 +6,7 @@ class AppConstants {
   static const String englishLanguage = "en";
   static const String englishFontFamily = "Almarai";
   static const String arabicFontFamily = "Poppins";
+  static const String iconsFontFamily ='icomoon';
   static const BASE_URL = "https://gravilog.com/json-rpc";
   static const LOGIN = "login";
   static const RESET_PASSWORD = "resetPassword";

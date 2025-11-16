@@ -30,13 +30,18 @@ class IconAssets {
   // Social Media Icons
   static const String googleIcon = "$iconPath/ic_google.svg";
   static const String facebookIcon = "$iconPath/ic_facebook.svg";
-  static const String dropDownIcon = "$iconPath/ic_drop_down.svg";
+  static const String instagramIcon = "$iconPath/instagram.svg";
 
   static const String eyeSlashIcon = "$iconPath/eye-slash.svg";
+  static const String backIcon = "$iconPath/arrow_left.svg";
+  static const String editIcon = "$iconPath/edit_pen.svg";
+  static const String settingsIcon = "$iconPath/settings.svg";
   static const String eyeIcon = "$iconPath/eye.svg";
   static const String lockIcon = "$iconPath/lock.svg";
   static const String mailIcon = "$iconPath/mail.svg";
   static const String userIcon = "$iconPath/user.svg";
+  static const String dropDownIcon = "$iconPath/ic_drop_down.svg";
+
 }
 
 class JsonAssets {
