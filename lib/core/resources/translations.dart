@@ -3,7 +3,37 @@ import 'package:get/get.dart';
 class Translation extends Translations {
   @override
   Map<String, Map<String, String>> get keys => {
-        'en_US': {
+        'en': {
+          "profile": "Profile",
+          "why": "Why subscribe",
+          "my_goal": "My goal",
+          "track_pregnancy": "Track pregnancy",
+          "get_pregnant": "Get pregnant",
+          "post_partum": "Post partum",
+          "my_body": "My body",
+          "height1": "Height",
+          "user_name":"User.name",
+          "user_email":"@email",
+          "weight1": "Weight",
+          "previous_c_sections": "Previous C-sections",
+          "blood_type": "Blood type",
+          "medical_history": "Medical history",
+          "my_family": "My family",
+          "data_kg": "Data kg",
+          "data_cm": "Data cm",
+          "data": "     data",
+          "youSwitching": "You’re switching to ",
+          "mode": "mode",
+          "help": "Your Daily Tips, Health Assistants, and Nutritious Assistant will now focus on helping you prepare for pregnancy with confidence and care.",
+          "not_now": "Not now",
+          "switch":"Switch mode",
+
+          "my_pregnancy": "My pregnancy",
+          "baby_gender": "Baby's gender",
+          "relation_to_husband": "Relation to husband",
+          "my_community": "My community",
+          "log_out": "Log out",
+
           // news values
           "menstrual_period_hint":
               "We’ll help you track your next cycle starting from August 11, 2025.",
@@ -599,8 +629,38 @@ class Translation extends Translations {
           "EMAIL_NOT_FOUND": "This User Not Found",
           "EMAIL_NOT_CONFIRMED": "You Need To Confirm This Email"
         },
-        'ar_SA': {
+        'ar': {
           // new values
+          "profile": "الملف الشخصي",
+          "my_goal": "هدفي",
+          "why":"لماذا تشترك؟",
+          "user_name":"اسم المستحدم",
+          "user_email":"@الايميل",
+          "track_pregnancy": "متابعة الحمل",
+          "get_pregnant": "الرغبة في الحمل",
+          "post_partum": "ما بعد الولادة",
+          "medical_history": "التاريخ الطبي",
+          "blood_type": "فصيلة الدم",
+
+  "youSwitching": "أنتِ تنتقلين إلى وضع ",
+  "mode": "وضع",
+  "help": "سيتم الآن تركيز نصائحك اليومية، ومساعدي الصحة، والمساعد الغذائي على تلبية احتياجاتك أثناء الحمل.",
+  "not_now": "ليس الاَن",
+  "switch": "تبديل المزاج",
+
+          "my_pregnancy":"حملي",
+          "my_body": "جسدي",
+          "height1": "الطول",
+          "weight1": "الوزن",
+          "data_kg": "كجم البيانات",
+          "data_cm": "   سم بيانات ",
+          "data": "        بيانات",
+          "previous_c_sections": "الولادات القيصرية السابقة",
+          "my_family": "عائلتي",
+          "baby_gender": "جنس الطفل",
+          "relation_to_husband": "صله القرابه بالزوج",
+          "my_community": "المجتمع",
+          "log_out": "تسجيل الخروج",
           "menstrual_period_hint":
               "سنساعدك في تتبع دورتك الشهرية القادمة بدءًا من 11 أغسطس 2025.",
           "due_date_question": "متى موعد ولادتك؟",
